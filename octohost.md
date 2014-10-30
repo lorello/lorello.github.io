@@ -16,4 +16,6 @@
     $ ssh root@octohost
     # gitreceive key-upload git
 
-Paste the public key and press CTRL+D
+Paste the public key and press CTRL+D. From another host
+
+    cat ~/.ssh/id_rsa.pub | ssh root@octohost "sudo gitreceive upload-key lorello"
