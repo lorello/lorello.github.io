@@ -57,4 +57,46 @@ Use `EXPOSE $port` inside Dockerfile and then run the container with
 
     $MYCONTAINER=$(docker run -d -P <IMAGE:TAG>)
     docker port $MYCONTAINER $PORT
-    
+
+# Volumes
+
+## Data Volume Container
+
+Create container volume for a mongodb server
+
+    docker run -v /data/db –name db_data busybox echo Data only volume for mongo
+
+Run mongo instance with mounted volume
+
+    docker run -d -P –volumes-from db_data –name mymongo mongo
+
+# Enter inside a running container (NSENTER)
+
+Install `nsenter` utility and `docker-enter` command doing this on the host
+
+    docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
+
+Launch a bash inside the container $NAME running
+
+    docker-enter $NAME bash
+
+# Use MacVlan interfaces
+
+Example: you want an `hipache` with a public interface directly connected
+to phisycal device, skipping the default NAT of docker.
+
+## Le the host use the macvlan interface
+
+Move a host from traditional `eth0` interface to `macvlan` interface as main
+network card, so it can play with a container that use `macvlan` interface
+
+    ip addr del 10.1.1.123/24 dev eth0
+    ip link add link eth0 dev eth0m type macvlan mode bridge
+    ip link set eth0m up
+    ip addr add 10.1.1.123/24 dev eth0m
+    route add default gw 10.1.1.254
+
+## Start a container that use the same macvlan interface
+
+    CID=$(docker run -d ...)
+    pipework eth0 $CID 10.1.1.234/24@10.1.1.254
