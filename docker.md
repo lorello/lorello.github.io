@@ -58,6 +58,17 @@ Use `EXPOSE $port` inside Dockerfile and then run the container with
     $MYCONTAINER=$(docker run -d -P <IMAGE:TAG>)
     docker port $MYCONTAINER $PORT
 
+## Clean unused images
+
+Remove untagged images
+
+    docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")
+
+Remove unused images
+
+    docker images -q |xargs docker rmi
+
+
 # Volumes
 
 ## Data Volume Container
