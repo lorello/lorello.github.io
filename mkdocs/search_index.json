@@ -1,0 +1,289 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#welcome-to-mkdocs", 
+            "text": "For full documentation visit  mkdocs.org .", 
+            "title": "Welcome to MkDocs"
+        }, 
+        {
+            "location": "/#commands", 
+            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
+            "title": "Commands"
+        }, 
+        {
+            "location": "/#project-layout", 
+            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "title": "Project layout"
+        }, 
+        {
+            "location": "/api-auth/", 
+            "text": "API Authentication using HMAC Hashing\n\n\nSource http://websec.io/2013/02/14/API-Authentication-Public-Private-Hashes.html\n\n\nHMAC means hash-based message authentication code''\n\n\nGenerate a Secret HASH\n\n\nHaving openssl installed ...\n\n\n$secret = base64URL(openssl_random_pseudo_bytes(32));\n\n\n\n... or without having it, just use a \nRandomLib\n\n\nClient request\n\n\n$userHash = '3441df0babc2a2dda551d7cd39fb235bc4e09cd1e4556bf261bb49188f548348';\n$secret = 'e249c439ed7697df2a4b045d97d4b9b7e1854c3ff8dd668c779013653913572e';\n$content    = json_encode(array(\n    'test' =\n 'content'\n));\n\n$hash = hash_hmac('sha256', $content, $secret);\n\n$headers = array(\n    'X-Public: '.$userHash,\n    'X-Hash: '.$hash\n);\n\n$ch = curl_init('http://test.localhost:8080/api-test/');\ncurl_setopt($ch,CURLOPT_HTTPHEADER,$headers);\ncurl_setopt($ch,CURLOPT_RETURNTRANSFER,true);\ncurl_setopt($ch,CURLOPT_POSTFIELDS,$content);\n\n$result = curl_exec($ch);\ncurl_close($ch);\n\necho \nRESULT\\n======\\n\n.print_r($result, true).\n\\n\\n\n;", 
+            "title": "Api auth"
+        }, 
+        {
+            "location": "/api-auth/#api-authentication-using-hmac-hashing", 
+            "text": "Source http://websec.io/2013/02/14/API-Authentication-Public-Private-Hashes.html  HMAC means hash-based message authentication code''", 
+            "title": "API Authentication using HMAC Hashing"
+        }, 
+        {
+            "location": "/api-auth/#generate-a-secret-hash", 
+            "text": "Having openssl installed ...  $secret = base64URL(openssl_random_pseudo_bytes(32));  ... or without having it, just use a  RandomLib", 
+            "title": "Generate a Secret HASH"
+        }, 
+        {
+            "location": "/api-auth/#client-request", 
+            "text": "$userHash = '3441df0babc2a2dda551d7cd39fb235bc4e09cd1e4556bf261bb49188f548348';\n$secret = 'e249c439ed7697df2a4b045d97d4b9b7e1854c3ff8dd668c779013653913572e';\n$content    = json_encode(array(\n    'test' =  'content'\n));\n\n$hash = hash_hmac('sha256', $content, $secret);\n\n$headers = array(\n    'X-Public: '.$userHash,\n    'X-Hash: '.$hash\n);\n\n$ch = curl_init('http://test.localhost:8080/api-test/');\ncurl_setopt($ch,CURLOPT_HTTPHEADER,$headers);\ncurl_setopt($ch,CURLOPT_RETURNTRANSFER,true);\ncurl_setopt($ch,CURLOPT_POSTFIELDS,$content);\n\n$result = curl_exec($ch);\ncurl_close($ch);\n\necho  RESULT\\n======\\n .print_r($result, true). \\n\\n ;", 
+            "title": "Client request"
+        }, 
+        {
+            "location": "/docker/", 
+            "text": "Docker\n\n\nBasics\n\n\nSearch on Docker Hub Registry and pull an image to run locally\n\n\ndocker search ubuntu\ndocker pull ubuntu\n\n\n\nRun a command in a box\n\n\ndocker run \nimage\n \ncommand\n\n\n\n\nExample\n\n\ndocker run ubuntu:14.04 /bin/echo 'Hello world'\n\n\n\nAnd then?\n    docker ps -l\n    docker commit -m \"bla bla\" -u lorello \n \n\n    docker inspect \n\n\nContainers are never ephimeral, but they get a name only with a \ncommit\n\n\nInteractive and daemon containers\n\n\nRun a container with a TTY and with an interactive STDIN\n\n\ndocker run -t -i ubuntu:14.04 /bin/bash\n\n\n\nRun a daemonized process inside a container, inspect logs realtime,\nkill the container\n\n\nMYCONTAINER=$(docker run -d ubuntu:14.04 /bin/sh -c \"while true; do echo hello world; sleep 1; done\")\ndocker logs $MYCONTAINER\ndocker kill $MYCONTAINER\n\n\n\nYou can \nsave\n the container created using\n\n\ndocker commit -m \"added stupid loop\" -a lorello $MYCONTAINER lorello/stupid:trashme\ndocker rmi lorello/stupid:trashme\n\n\n\nAdding \n-P\n options to \nrun\n command let docker maps any required network port to the host.\nThen you can inspect ports mapped using the \nps\n command or running\n\n\ndocker ports $MYCONTAINER\n\n\n\nDockerfile\n\n\nBuild \n tag an image using a \nDockerfile\n\n\ndocker build -t=\"lorello/ubuntu:myapp\" .\n\n\n\nExposing services\n\n\nUse \nEXPOSE $port\n inside Dockerfile and then run the container with\n\n\n$MYCONTAINER=$(docker run -d -P \nIMAGE:TAG\n)\ndocker port $MYCONTAINER $PORT\n\n\n\nClean unused images\n\n\nRemove untagged images\n\n\ndocker rmi -f $(docker images | grep \"\nnone\n\" | awk \"{print \\$3}\")\n\n\n\nRemove unused images\n\n\ndocker images -q |xargs docker rmi\n\n\n\nVolumes\n\n\nData Volume Container\n\n\nCreate container volume for a mongodb server\n\n\ndocker run -v /data/db \u2013name db_data busybox echo Data only volume for mongo\n\n\n\nRun mongo instance with mounted volume\n\n\ndocker run -d -P \u2013volumes-from db_data \u2013name mymongo mongo\n\n\n\nEnter inside a running container (NSENTER)\n\n\nInstall \nnsenter\n utility and \ndocker-enter\n command doing this on the host\n\n\ndocker run --rm -v /usr/local/bin:/target jpetazzo/nsenter\n\n\n\nLaunch a bash inside the container $NAME running\n\n\ndocker-enter $NAME bash\n\n\n\nUse MacVlan interfaces\n\n\nExample: you want an \nhipache\n with a public interface directly connected\nto phisycal device, skipping the default NAT of docker.\n\n\nLe the host use the macvlan interface\n\n\nMove a host from traditional \neth0\n interface to \nmacvlan\n interface as main\nnetwork card, so it can play with a container that use \nmacvlan\n interface\n\n\nip addr del 10.1.1.123/24 dev eth0\nip link add link eth0 dev eth0m type macvlan mode bridge\nip link set eth0m up\nip addr add 10.1.1.123/24 dev eth0m\nroute add default gw 10.1.1.254\n\n\n\nStart a container that use the same macvlan interface\n\n\nCID=$(docker run -d ...)\npipework eth0 $CID 10.1.1.234/24@10.1.1.254", 
+            "title": "Docker"
+        }, 
+        {
+            "location": "/docker/#docker", 
+            "text": "", 
+            "title": "Docker"
+        }, 
+        {
+            "location": "/docker/#basics", 
+            "text": "Search on Docker Hub Registry and pull an image to run locally  docker search ubuntu\ndocker pull ubuntu  Run a command in a box  docker run  image   command   Example  docker run ubuntu:14.04 /bin/echo 'Hello world'  And then?\n    docker ps -l\n    docker commit -m \"bla bla\" -u lorello    \n    docker inspect   Containers are never ephimeral, but they get a name only with a  commit", 
+            "title": "Basics"
+        }, 
+        {
+            "location": "/docker/#interactive-and-daemon-containers", 
+            "text": "Run a container with a TTY and with an interactive STDIN  docker run -t -i ubuntu:14.04 /bin/bash  Run a daemonized process inside a container, inspect logs realtime,\nkill the container  MYCONTAINER=$(docker run -d ubuntu:14.04 /bin/sh -c \"while true; do echo hello world; sleep 1; done\")\ndocker logs $MYCONTAINER\ndocker kill $MYCONTAINER  You can  save  the container created using  docker commit -m \"added stupid loop\" -a lorello $MYCONTAINER lorello/stupid:trashme\ndocker rmi lorello/stupid:trashme  Adding  -P  options to  run  command let docker maps any required network port to the host.\nThen you can inspect ports mapped using the  ps  command or running  docker ports $MYCONTAINER", 
+            "title": "Interactive and daemon containers"
+        }, 
+        {
+            "location": "/docker/#dockerfile", 
+            "text": "Build   tag an image using a  Dockerfile  docker build -t=\"lorello/ubuntu:myapp\" .", 
+            "title": "Dockerfile"
+        }, 
+        {
+            "location": "/docker/#exposing-services", 
+            "text": "Use  EXPOSE $port  inside Dockerfile and then run the container with  $MYCONTAINER=$(docker run -d -P  IMAGE:TAG )\ndocker port $MYCONTAINER $PORT", 
+            "title": "Exposing services"
+        }, 
+        {
+            "location": "/docker/#clean-unused-images", 
+            "text": "Remove untagged images  docker rmi -f $(docker images | grep \" none \" | awk \"{print \\$3}\")  Remove unused images  docker images -q |xargs docker rmi", 
+            "title": "Clean unused images"
+        }, 
+        {
+            "location": "/docker/#volumes", 
+            "text": "", 
+            "title": "Volumes"
+        }, 
+        {
+            "location": "/docker/#data-volume-container", 
+            "text": "Create container volume for a mongodb server  docker run -v /data/db \u2013name db_data busybox echo Data only volume for mongo  Run mongo instance with mounted volume  docker run -d -P \u2013volumes-from db_data \u2013name mymongo mongo", 
+            "title": "Data Volume Container"
+        }, 
+        {
+            "location": "/docker/#enter-inside-a-running-container-nsenter", 
+            "text": "Install  nsenter  utility and  docker-enter  command doing this on the host  docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter  Launch a bash inside the container $NAME running  docker-enter $NAME bash", 
+            "title": "Enter inside a running container (NSENTER)"
+        }, 
+        {
+            "location": "/docker/#use-macvlan-interfaces", 
+            "text": "Example: you want an  hipache  with a public interface directly connected\nto phisycal device, skipping the default NAT of docker.", 
+            "title": "Use MacVlan interfaces"
+        }, 
+        {
+            "location": "/docker/#le-the-host-use-the-macvlan-interface", 
+            "text": "Move a host from traditional  eth0  interface to  macvlan  interface as main\nnetwork card, so it can play with a container that use  macvlan  interface  ip addr del 10.1.1.123/24 dev eth0\nip link add link eth0 dev eth0m type macvlan mode bridge\nip link set eth0m up\nip addr add 10.1.1.123/24 dev eth0m\nroute add default gw 10.1.1.254", 
+            "title": "Le the host use the macvlan interface"
+        }, 
+        {
+            "location": "/docker/#start-a-container-that-use-the-same-macvlan-interface", 
+            "text": "CID=$(docker run -d ...)\npipework eth0 $CID 10.1.1.234/24@10.1.1.254", 
+            "title": "Start a container that use the same macvlan interface"
+        }, 
+        {
+            "location": "/git/", 
+            "text": "git config --global http.postBuffer 1024000000", 
+            "title": "Git"
+        }, 
+        {
+            "location": "/ip/", 
+            "text": "Linux IP\n\n\nDevices\n\n\nShow and change device settings\n    ip link set dev eth2 up|down\n    ip link set dev eth0 up|down arp on|off name NAME mtu 9000\n\n\nShow current settings for interface\n    ip link show dev NAME\n\n\nShow only UP interfaces\n    ip link show up\n\n\nRouting\n\n\nip route show\nip route add 192.168.1.0/24 dev eth0\nip route add default via 192.168.1.254", 
+            "title": "Ip"
+        }, 
+        {
+            "location": "/ip/#linux-ip", 
+            "text": "", 
+            "title": "Linux IP"
+        }, 
+        {
+            "location": "/ip/#devices", 
+            "text": "Show and change device settings\n    ip link set dev eth2 up|down\n    ip link set dev eth0 up|down arp on|off name NAME mtu 9000  Show current settings for interface\n    ip link show dev NAME  Show only UP interfaces\n    ip link show up", 
+            "title": "Devices"
+        }, 
+        {
+            "location": "/ip/#routing", 
+            "text": "ip route show\nip route add 192.168.1.0/24 dev eth0\nip route add default via 192.168.1.254", 
+            "title": "Routing"
+        }, 
+        {
+            "location": "/mysql/", 
+            "text": "MySQL\n\n\nDebug connections problem\n\n\n# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql\n show processlist;\n\n\n\nUsers\n\n\nmysql\n CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql\n SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql\n SELECT PASSWORD('mypass');\n\n\n\nGrants\n\n\nmysql\n SHOW GRANTS FOR 'francis'@'localhost';\nmysql\n GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nTo change password or resource limits for an existing user, without \nchanging privileges\n\n\nmysql\n GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nDumps\n\n\n# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME \n dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;", 
+            "title": "Mysql"
+        }, 
+        {
+            "location": "/mysql/#mysql", 
+            "text": "", 
+            "title": "MySQL"
+        }, 
+        {
+            "location": "/mysql/#debug-connections-problem", 
+            "text": "# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql  show processlist;", 
+            "title": "Debug connections problem"
+        }, 
+        {
+            "location": "/mysql/#users", 
+            "text": "mysql  CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql  SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql  SELECT PASSWORD('mypass');", 
+            "title": "Users"
+        }, 
+        {
+            "location": "/mysql/#grants", 
+            "text": "mysql  SHOW GRANTS FOR 'francis'@'localhost';\nmysql  GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;  To change password or resource limits for an existing user, without \nchanging privileges  mysql  GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;", 
+            "title": "Grants"
+        }, 
+        {
+            "location": "/mysql/#dumps", 
+            "text": "# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME   dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;", 
+            "title": "Dumps"
+        }, 
+        {
+            "location": "/nginx/", 
+            "text": "Nginx\n\n\ndebugging rewrites rules\n\n\nMake sure you have \nnotice\n as loglevel of \nerror_log\n\n\nerror_log  /var/log/nginx/www.yoursite.com.error.log notice;\nrewrite_log on;", 
+            "title": "Nginx"
+        }, 
+        {
+            "location": "/nginx/#nginx", 
+            "text": "", 
+            "title": "Nginx"
+        }, 
+        {
+            "location": "/nginx/#debugging-rewrites-rules", 
+            "text": "Make sure you have  notice  as loglevel of  error_log  error_log  /var/log/nginx/www.yoursite.com.error.log notice;\nrewrite_log on;", 
+            "title": "debugging rewrites rules"
+        }, 
+        {
+            "location": "/octohost/", 
+            "text": "Octohost\n\n\n\n\nOfficial documentation\n\n\nocto cli\n\n\n\n\nHow to deploy a container\n\n\nCreate a container\n and add octohost as remote\n\n\ngit remote add git@octo.lorello.it:\nAPPNAME\n.git\ngit push\n\n\n\nHow to enable a new user on Octohost\n\n\n$ ssh root@octohost\n# gitreceive key-upload git\n\n\n\nPaste the public key and press CTRL+D. From another host\n\n\ncat ~/.ssh/id_rsa.pub | ssh root@octohost \"sudo gitreceive upload-key lorello\"", 
+            "title": "Octohost"
+        }, 
+        {
+            "location": "/octohost/#octohost", 
+            "text": "Official documentation  octo cli", 
+            "title": "Octohost"
+        }, 
+        {
+            "location": "/octohost/#how-to-deploy-a-container", 
+            "text": "Create a container  and add octohost as remote  git remote add git@octo.lorello.it: APPNAME .git\ngit push", 
+            "title": "How to deploy a container"
+        }, 
+        {
+            "location": "/octohost/#how-to-enable-a-new-user-on-octohost", 
+            "text": "$ ssh root@octohost\n# gitreceive key-upload git  Paste the public key and press CTRL+D. From another host  cat ~/.ssh/id_rsa.pub | ssh root@octohost \"sudo gitreceive upload-key lorello\"", 
+            "title": "How to enable a new user on Octohost"
+        }, 
+        {
+            "location": "/openssl/", 
+            "text": "OpenSSL\n\n\nCreate private key\n\n\nopenssl genrsa -des3 -out server.key 1024\n\n\n\nGenerate a CSR (Certificate Signing Request)\n\n\nopenssl req -new -key server.key -out server.csr\n\n\n\nRemove Passphrase from Key\n\n\nopenssl rsa -in server-with-passphrase.key -out server.key\n\n\n\nGenerating a Self-Signed Certificate\n\n\nopenssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt\n\n\n\nConvert x509 to pem\n\n\nopenssl x509 -inform der -in server.crt -out server.pem\n\n\n\npkcs12 to pem \u2013 key only\n\n\nopenssl pkcs12 -nocerts -in c:\\server.pfx -out c:\\server-key.key\n\n\n\npkcs12 to pem \u2013 certificate only\n\n\nopenssl pkcs12 -nokeys -in server.pfx -out server-cert.cer\n\n\n\nCheck a private key\n\n\nopenssl rsa -in privateKey.key -check\n\n\n\nCheck a certificate\n\n\nopenssl x509 -in certificate.crt -text -noout", 
+            "title": "Openssl"
+        }, 
+        {
+            "location": "/openssl/#openssl", 
+            "text": "Create private key  openssl genrsa -des3 -out server.key 1024  Generate a CSR (Certificate Signing Request)  openssl req -new -key server.key -out server.csr  Remove Passphrase from Key  openssl rsa -in server-with-passphrase.key -out server.key  Generating a Self-Signed Certificate  openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt  Convert x509 to pem  openssl x509 -inform der -in server.crt -out server.pem  pkcs12 to pem \u2013 key only  openssl pkcs12 -nocerts -in c:\\server.pfx -out c:\\server-key.key  pkcs12 to pem \u2013 certificate only  openssl pkcs12 -nokeys -in server.pfx -out server-cert.cer  Check a private key  openssl rsa -in privateKey.key -check  Check a certificate  openssl x509 -in certificate.crt -text -noout", 
+            "title": "OpenSSL"
+        }, 
+        {
+            "location": "/php/", 
+            "text": "PHP\n\n\nPhp-fpm\n\n\nnewrelic.appname = \"web30 - liste.lillinet.org\"\npost_max_size = 52M\nupload_max_filesize = 52M\nmemory_limit = 192M\ncatch_workers_output = yes\nlog_errors = On\ndisplay_errors = On\nlog_level = notice", 
+            "title": "Php"
+        }, 
+        {
+            "location": "/php/#php", 
+            "text": "", 
+            "title": "PHP"
+        }, 
+        {
+            "location": "/php/#php-fpm", 
+            "text": "newrelic.appname = \"web30 - liste.lillinet.org\"\npost_max_size = 52M\nupload_max_filesize = 52M\nmemory_limit = 192M\ncatch_workers_output = yes\nlog_errors = On\ndisplay_errors = On\nlog_level = notice", 
+            "title": "Php-fpm"
+        }, 
+        {
+            "location": "/poormanvpn/", 
+            "text": "Sshuttle\n\n\nTransparent proxy server that works as a poor man's VPN. Forwards over ssh. Doesn't require admin. Works with Linux and MacOS. Supports DNS tunneling.\n\n\nSetup\n\n\ngit clone https://github.com/apenwarr/sshuttle\n\n\n\nUse\n\n\n./sshuttle -r you@somewhere.tld 0/0\n./sshuttle -r you@somewhere.tld 192.168.33.0/24\n\n\n\nAdd \n--dns\n to use remote dns", 
+            "title": "Poormanvpn"
+        }, 
+        {
+            "location": "/poormanvpn/#sshuttle", 
+            "text": "Transparent proxy server that works as a poor man's VPN. Forwards over ssh. Doesn't require admin. Works with Linux and MacOS. Supports DNS tunneling.", 
+            "title": "Sshuttle"
+        }, 
+        {
+            "location": "/poormanvpn/#setup", 
+            "text": "git clone https://github.com/apenwarr/sshuttle", 
+            "title": "Setup"
+        }, 
+        {
+            "location": "/poormanvpn/#use", 
+            "text": "./sshuttle -r you@somewhere.tld 0/0\n./sshuttle -r you@somewhere.tld 192.168.33.0/24  Add  --dns  to use remote dns", 
+            "title": "Use"
+        }, 
+        {
+            "location": "/puppet/", 
+            "text": "Puppet resources\n\n\nChecking code\n\n\nPuppet syntax checks\n\n\npuppet parser validate \nfile.pp\n\n\n\n\nHiera files in YAML format\n\n\nruby -e \"require 'yaml'; YAML.parse(File.open('yourhierafile'))\"", 
+            "title": "Puppet"
+        }, 
+        {
+            "location": "/puppet/#puppet-resources", 
+            "text": "", 
+            "title": "Puppet resources"
+        }, 
+        {
+            "location": "/puppet/#checking-code", 
+            "text": "Puppet syntax checks  puppet parser validate  file.pp   Hiera files in YAML format  ruby -e \"require 'yaml'; YAML.parse(File.open('yourhierafile'))\"", 
+            "title": "Checking code"
+        }, 
+        {
+            "location": "/services/", 
+            "text": "Services\n\n\nWhat services are started on boot?\n\n\nservice --status-all\n\n\n\n\n\n[ + ] \u2013 Services with this sign are currently running.\n\n\n[ \u2013 ] \u2013 Services with this sign are not currently running..\n\n\n[ ? ] \u2013 Services that do not have a status switch.\n\n\n\n\nRemove a service\n\n\nupdate-rc.d -f apache2 remove\n\n\n\nAdd a service\n\n\nupdate-rc.d apache2 defaults", 
+            "title": "Services"
+        }, 
+        {
+            "location": "/services/#services", 
+            "text": "What services are started on boot?  service --status-all   [ + ] \u2013 Services with this sign are currently running.  [ \u2013 ] \u2013 Services with this sign are not currently running..  [ ? ] \u2013 Services that do not have a status switch.   Remove a service  update-rc.d -f apache2 remove  Add a service  update-rc.d apache2 defaults", 
+            "title": "Services"
+        }, 
+        {
+            "location": "/zfs/", 
+            "text": "ZFS\n\n\nPool\n\n\nzpool create -f tank sda4\n\nzfs pool status\n\n\n\nDataset and volumes\n\n\nManaging volumes\n\n\nzfs create $pool/$volume\nzfs destroy $pool/$volume\nzfs status\n\n\n\nVolume options\n\n\nzfs create -o dedup=on -o compression=on -o mountpoint=/mnt/var tank/myvar\n\n\n\nsame as\n\n\nzfs create tank/myvar\nzfs set mountopoint=/mnt/var tank/myvar\nzfs set dedup=on tank/myvar\nzfs set compression=on tank/myvar\n\n\n\nverify options\n\n\nzfs get all tank/myvar", 
+            "title": "Zfs"
+        }, 
+        {
+            "location": "/zfs/#zfs", 
+            "text": "", 
+            "title": "ZFS"
+        }, 
+        {
+            "location": "/zfs/#pool", 
+            "text": "zpool create -f tank sda4\n\nzfs pool status", 
+            "title": "Pool"
+        }, 
+        {
+            "location": "/zfs/#dataset-and-volumes", 
+            "text": "Managing volumes  zfs create $pool/$volume\nzfs destroy $pool/$volume\nzfs status  Volume options  zfs create -o dedup=on -o compression=on -o mountpoint=/mnt/var tank/myvar  same as  zfs create tank/myvar\nzfs set mountopoint=/mnt/var tank/myvar\nzfs set dedup=on tank/myvar\nzfs set compression=on tank/myvar  verify options  zfs get all tank/myvar", 
+            "title": "Dataset and volumes"
+        }
+    ]
+}
