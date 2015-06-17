@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ip - Lorello technical notes</title>
+  <title>Packages - Lorello technical notes</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -20,7 +20,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ip";
+    var mkdocs_page_name = "Packages";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -78,19 +78,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Ip</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#linux-ip">Linux IP</a></li>
-                
-                    <li><a class="toctree-l4" href="#devices">Devices</a></li>
-                
-                    <li><a class="toctree-l4" href="#routing">Routing</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../ip/">Ip</a>
         
     </li>
 <li>
@@ -124,8 +113,17 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../packages/">Packages</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Packages</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#debianubuntu-packages">Debian/Ubuntu packages</a></li>
+                
+                    <li><a class="toctree-l4" href="#recover-a-config-file-from-original-packages">Recover a config file from original packages</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -187,7 +185,7 @@
     
       
     
-    <li>Ip</li>
+    <li>Packages</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -201,20 +199,20 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="linux-ip">Linux IP</h1>
-<h2 id="devices">Devices</h2>
-<p>Show and change device settings
-    ip link set dev eth2 up|down
-    ip link set dev eth0 up|down arp on|off name NAME mtu 9000</p>
-<p>Show current settings for interface
-    ip link show dev NAME</p>
-<p>Show only UP interfaces
-    ip link show up</p>
-<h2 id="routing">Routing</h2>
-<pre><code>ip route show
-ip route add 192.168.1.0/24 dev eth0
-ip route add default via 192.168.1.254
-</code></pre>
+                <h1 id="debianubuntu-packages">Debian/Ubuntu packages</h1>
+<h2 id="recover-a-config-file-from-original-packages">Recover a config file from original packages</h2>
+<ol>
+<li>
+<p>Find out what package installed the config file</p>
+<p>$ dpkg -S file.conf</p>
+</li>
+<li>
+<p>Rename (or delete) the config file you wish to restore</p>
+</li>
+<li>
+<p>apt-get -o Dpkg::Options::="--force-confmiss" install --reinstall <package-name></p>
+</li>
+</ol>
               
             </div>
           </div>
@@ -222,10 +220,10 @@ ip route add default via 192.168.1.254
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../mysql/" class="btn btn-neutral float-right" title="Mysql"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../php/" class="btn btn-neutral float-right" title="Php"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../git/" class="btn btn-neutral" title="Git"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../openssl/" class="btn btn-neutral" title="Openssl"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -255,10 +253,10 @@ ip route add default via 192.168.1.254
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../git/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../openssl/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../mysql/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../php/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

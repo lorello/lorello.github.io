@@ -196,6 +196,21 @@
             "title": "OpenSSL"
         }, 
         {
+            "location": "/packages/", 
+            "text": "Debian/Ubuntu packages\n\n\nRecover a config file from original packages\n\n\n\n\n\n\nFind out what package installed the config file\n\n\n$ dpkg -S file.conf\n\n\n\n\n\n\nRename (or delete) the config file you wish to restore\n\n\n\n\n\n\napt-get -o Dpkg::Options::=\"--force-confmiss\" install --reinstall", 
+            "title": "Packages"
+        }, 
+        {
+            "location": "/packages/#debianubuntu-packages", 
+            "text": "", 
+            "title": "Debian/Ubuntu packages"
+        }, 
+        {
+            "location": "/packages/#recover-a-config-file-from-original-packages", 
+            "text": "Find out what package installed the config file  $ dpkg -S file.conf    Rename (or delete) the config file you wish to restore    apt-get -o Dpkg::Options::=\"--force-confmiss\" install --reinstall", 
+            "title": "Recover a config file from original packages"
+        }, 
+        {
             "location": "/php/", 
             "text": "PHP\n\n\nPhp-fpm\n\n\nnewrelic.appname = \"web30 - liste.lillinet.org\"\npost_max_size = 52M\nupload_max_filesize = 52M\nmemory_limit = 192M\ncatch_workers_output = yes\nlog_errors = On\ndisplay_errors = On\nlog_level = notice", 
             "title": "Php"
