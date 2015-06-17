@@ -18,6 +18,12 @@
     mysql> SHOW GRANTS FOR 'francis'@'localhost';
     mysql> GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;
 
+To change password or resource limits for an existing user, without 
+changing privileges
+
+    mysql> GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;
+
+
 ## Dumps
 
     # Only DATA
