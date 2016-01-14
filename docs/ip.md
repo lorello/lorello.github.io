@@ -12,6 +12,12 @@ Show current settings for interface
 Show only UP interfaces
     ip link show up
 
+## Vlan
+
+Add a vlan interface
+
+    ip link add link eth1 name eth1.101 type vlan id 101
+
 ## Routing
 
     ip route show
