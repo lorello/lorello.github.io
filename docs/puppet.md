@@ -13,6 +13,11 @@ Hiera files in YAML format
 
 ## Cookbooks
 
+### Validating
+
+    validate_re($ensure, '(present|absent)', "ensure must be 'present' or 'absent', checked value is '$ensure'")
+
+
 ### Make an Exec run one time in N days
 
     exec { 'update composer':
