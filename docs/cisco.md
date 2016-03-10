@@ -1,5 +1,28 @@
 # Basic Cisco CLI
 
+## List intefaces with descriptions
+
+    show int description
+
+## Show detailed config for a specific interface
+
+    show running-config interface FastEthernet4/38
+
+## Show list of vlan and connected interfaces
+
+    show vlan brief
+
+## Setup an interface with
+
+    interface GigabitEthernet1/0/3
+     description Gianni's desktop
+     switchport access vlan 100
+     switchport trunk native vlan 100
+     switchport trunk allowed vlan 100,104
+     switchport mode trunk
+     spanning-tree bpduguard disable
+    end
+
 ## Shutdown an interface
 
     # enable
