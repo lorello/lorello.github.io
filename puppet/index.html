@@ -65,6 +65,41 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../atom/">Atom</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bash/">Bash</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bind/">Bind</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../changelog/">Changelog</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../cisco/">Cisco</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../docker/">Docker</a>
         
     </li>
@@ -114,13 +149,6 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../packages/">Packages</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
         <a class="" href="../php/">Php</a>
         
     </li>
@@ -134,6 +162,13 @@
 <li>
           
             <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../postfix/">Postfix</a>
+        
+    </li>
+<li>
+          
+            <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Puppet</a>
         
@@ -142,6 +177,8 @@
                 <li class="toctree-l3"><a href="#puppet-resources">Puppet resources</a></li>
                 
                     <li><a class="toctree-l4" href="#checking-code">Checking code</a></li>
+                
+                    <li><a class="toctree-l4" href="#cookbooks">Cookbooks</a></li>
                 
             
             </ul>
@@ -207,6 +244,72 @@
 <p>Hiera files in YAML format</p>
 <pre><code>ruby -e "require 'yaml'; YAML.parse(File.open('yourhierafile'))"
 </code></pre>
+<h2 id="cookbooks">Cookbooks</h2>
+<h3 id="validating">Validating</h3>
+<pre><code>validate_re($ensure, '(present|absent)', "ensure must be 'present' or 'absent', checked value is '$ensure'")
+</code></pre>
+<h3 id="making-a-private-class">Making a private class</h3>
+<pre><code>if $caller_module_name != $module_name {
+  warning("${name} is not part of the public API of the ${module_name} module and should not be directly included in the manifest.")
+}
+</code></pre>
+<h3 id="make-an-exec-run-one-time-in-n-days">Make an Exec run one time in N days</h3>
+<pre><code>exec { 'update composer':
+  command =&gt; "wget ${source} -O ${destination}",
+          onlyif  =&gt; "test `find '${destination}' -mtime +${max_age}`",
+          path    =&gt; [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/'  ],
+          require =&gt; File[$destination],
+}
+</code></pre>
+<h3 id="validate-ensure-parameter">Validate ensure parameter</h3>
+<pre><code>validate_re($ensure, [ '^installed$', '^present$', '^absent$', '^latest$' ])
+</code></pre>
+<h3 id="debug-facter-hiera">Debug Facter &amp;&amp; Hiera</h3>
+<pre><code>puppet facts find FACTNAME
+</code></pre>
+<h3 id="make-the-resource-myresource-configurable-through-hiera-hash">Make the resource myresource configurable through hiera hash</h3>
+<pre><code>class myclass (
+  $values = {},
+){
+
+  validate_hash($values)
+
+  # ensure merging of hiera levels
+  $hiera_values = hiera_hash('myclass::values', {})     # this merge multiple levels
+  $real_values = $hiera_values ? {
+    undef   =&gt; $values,                                 # default values are the class parameter ones
+    default =&gt; $hiera_values,                           # if exists, hiera values has precedence
+  }
+
+  if $real_values {
+    create_resources('myresource', $real_values)
+  }
+</code></pre>
+<h3 id="check-for-os-family-and-version">Check for OS family and version</h3>
+<pre><code>case $::osfamily {
+  'Debian': {
+    # do common debian/ubuntu things
+    case $::operatingsystem {
+      'Debian': {
+        if versioncmp($::lsbmajdistrelease, '8') &lt; 0 {
+          # do specific things for Debian &gt;= 8
+        }
+      }
+      'Ubuntu': {
+        # do specific things for Ubuntu
+      }
+      default: {
+        fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support operatingsystem Debian and Ubuntu on osfamily Debian")
+      }
+    }
+  }
+  'RedHat': {
+    # do specific things for RedHat
+  }
+  default: {
+    fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian and RedHat")
+  }
+</code></pre>
               
             </div>
           </div>
@@ -217,7 +320,7 @@
         <a href="../services/" class="btn btn-neutral float-right" title="Services"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../poormanvpn/" class="btn btn-neutral" title="Poormanvpn"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../postfix/" class="btn btn-neutral" title="Postfix"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -247,7 +350,7 @@
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../poormanvpn/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../postfix/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../services/" style="color: #fcfcfc">Next &raquo;</a></span>

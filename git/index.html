@@ -65,6 +65,41 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../atom/">Atom</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bash/">Bash</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bind/">Bind</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../changelog/">Changelog</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../cisco/">Cisco</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../docker/">Docker</a>
         
     </li>
@@ -75,6 +110,13 @@
         <a class="current" href="./">Git</a>
         
             <ul>
+            
+                <li class="toctree-l3"><a href="#git-versioning-system">Git Versioning System</a></li>
+                
+                    <li><a class="toctree-l4" href="#config">Config</a></li>
+                
+                    <li><a class="toctree-l4" href="#change-log-generation">Change Log generation</a></li>
+                
             
             </ul>
         
@@ -118,13 +160,6 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../packages/">Packages</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
         <a class="" href="../php/">Php</a>
         
     </li>
@@ -133,6 +168,13 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../poormanvpn/">Poormanvpn</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../postfix/">Postfix</a>
         
     </li>
 <li>
@@ -194,7 +236,38 @@
           <div role="main">
             <div class="section">
               
-                <p>git config --global http.postBuffer 1024000000</p>
+                <h1 id="git-versioning-system">Git Versioning System</h1>
+<h2 id="config">Config</h2>
+<pre><code>git config --global http.postBuffer 1024000000
+</code></pre>
+<h2 id="change-log-generation">Change Log generation</h2>
+<p>List file names changed between two revisions IDs</p>
+<pre><code>git diff $oldrev $newrev --diff-filter=ACDMR --name-only
+</code></pre>
+<p>List changes between two revisions IDs, with author and commit message</p>
+<pre><code># sed removes double \n that come from git log (%B)
+git log --abbrev-commit --pretty=format:'* %h %an %ar: %B' ${oldrev}..${newrev} | sed ':a;N;$!ba;s/\n\n/\n/g'
+</code></pre>
+<p>List changes after a specified date, with author and commit message</p>
+<pre><code>git log --abbrev-commit --pretty=format:'* %h %an %ar: %B' --after='2016-02-01'| sed ':a;N;$!ba;s/\n\n/\n/g'
+</code></pre>
+<p>A changelog for Slack chat</p>
+<pre><code>BRANCH=$(git rev-parse --abbrev-ref HEAD)
+HOSTNAME=$(hostname -f)
+
+# Links to changed files
+FILES_CHANGED=''
+for ITEM in $(git diff $oldrev $newrev --diff-filter=ACDMR --name-only); do
+  FILES_CHANGED="$FILES_CHANGED\n* &lt;$GIT_REPO/blob/$newrev/$ITEM|$ITEM&gt;"
+done
+
+NUM_CHANGED=$(git diff $oldrev $newrev --diff-filter=ACDMR --name-only | wc -l)
+BASEURL="$GIT_REPO/commit"
+
+GITLOG=$(git log --abbrev-commit --pretty=format:"* %an commit &lt;$BASEURL/%H|%h&gt; di %ar: %B" ${oldrev}..${newrev} | sed ':a;N;$!ba;s/\n\n/\n/g')
+
+CHANGELOG="*$NUM_CHANGED* files changed:\n$FILES_CHANGED\n\n*Details*:\n$GITLOG\n"
+</code></pre>
               
             </div>
           </div>

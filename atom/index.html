@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Packages - Lorello technical notes</title>
+  <title>Atom - Lorello technical notes</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -20,7 +20,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Packages";
+    var mkdocs_page_name = "Atom";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -59,6 +59,52 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../api-auth/">Api auth</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Atom</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#atom-editor-keybindings">ATOM Editor Keybindings</a></li>
+                
+                    <li><a class="toctree-l4" href="#core">Core</a></li>
+                
+                    <li><a class="toctree-l4" href="#plugins">Plugins</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bash/">Bash</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bind/">Bind</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../changelog/">Changelog</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../cisco/">Cisco</a>
         
     </li>
 <li>
@@ -113,22 +159,6 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Packages</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#debianubuntu-packages">Debian/Ubuntu packages</a></li>
-                
-                    <li><a class="toctree-l4" href="#recover-a-config-file-from-original-packages">Recover a config file from original packages</a></li>
-                
-            
-            </ul>
-        
-    </li>
-<li>
-          
-            <li>
     <li class="toctree-l1 ">
         <a class="" href="../php/">Php</a>
         
@@ -138,6 +168,13 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../poormanvpn/">Poormanvpn</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../postfix/">Postfix</a>
         
     </li>
 <li>
@@ -185,7 +222,7 @@
     
       
     
-    <li>Packages</li>
+    <li>Atom</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -199,20 +236,143 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="debianubuntu-packages">Debian/Ubuntu packages</h1>
-<h2 id="recover-a-config-file-from-original-packages">Recover a config file from original packages</h2>
-<ol>
-<li>
-<p>Find out what package installed the config file</p>
-<p>$ dpkg -S file.conf</p>
-</li>
-<li>
-<p>Rename (or delete) the config file you wish to restore</p>
-</li>
-<li>
-<p>apt-get -o Dpkg::Options::="--force-confmiss" install --reinstall <package-name></p>
-</li>
-</ol>
+                <h1 id="atom-editor-keybindings">ATOM Editor Keybindings</h1>
+<h2 id="core">Core</h2>
+<table>
+<thead>
+<tr>
+<th>App management</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CTRL + SHIFT + P</code></td>
+<td>Command palette</td>
+</tr>
+<tr>
+<td><code>ALT + 1,9</code></td>
+<td>Focus on pane 1,9</td>
+</tr>
+<tr>
+<td><code>CTRL + \</code></td>
+<td>Toggle Tree Pane</td>
+</tr>
+<tr>
+<td><code>CTRL + K U/D/L/R</code></td>
+<td>Split pane Up/Down/Left/Right</td>
+</tr>
+<tr>
+<td><code>CTRL + K CTRL U/D/L/R</code></td>
+<td>Focus pane Up/Down/Left/Right</td>
+</tr>
+<tr>
+<td><code>CTRL + K CTRL p/n</code></td>
+<td>Focus Previous/Next pane</td>
+</tr>
+<tr>
+<td><code>CTRL + ALT +/-</code></td>
+<td>Increase/Decrease size of pane</td>
+</tr>
+<tr>
+<td><code>CTRL + K CTRL + w</code></td>
+<td>Clone pane</td>
+</tr>
+<tr>
+<td><code>CTRL + TAB</code></td>
+<td>Next item in pane</td>
+</tr>
+<tr>
+<td><code>CTRL + SHIFT + TAB</code></td>
+<td>Previous item in pane</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Editing</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CTRL + a</code></td>
+<td>Select All</td>
+</tr>
+<tr>
+<td><code>CTRL + z</code></td>
+<td>Undo</td>
+</tr>
+<tr>
+<td><code>CTRL + SHIFT + z</code></td>
+<td>Redo</td>
+</tr>
+<tr>
+<td><code>CTRL + [, ]</code></td>
+<td>Indent, Outdent</td>
+</tr>
+<tr>
+<td><code>CTRL + /</code></td>
+<td>Comment</td>
+</tr>
+<tr>
+<td><code>CTRL + SHIFT + K</code></td>
+<td>Delete Line</td>
+</tr>
+<tr>
+<td><code>CTRL + SHIFT + D</code></td>
+<td>Duplicate Line</td>
+</tr>
+</tbody>
+</table>
+<h2 id="plugins">Plugins</h2>
+<table>
+<thead>
+<tr>
+<th>Project Manager</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SHIFT + ALT + P</code></td>
+<td>List projects</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CTRL + SHIFT + M</code></td>
+<td>Markdown Preview</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Git / GitHub</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ALT + g d</code></td>
+<td>Toggle Git diff</td>
+</tr>
+<tr>
+<td><code>ALT + g g</code></td>
+<td>Open on GitHub</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>
@@ -220,10 +380,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../php/" class="btn btn-neutral float-right" title="Php"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../bash/" class="btn btn-neutral float-right" title="Bash"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../openssl/" class="btn btn-neutral" title="Openssl"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api-auth/" class="btn btn-neutral" title="Api auth"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -253,10 +413,10 @@
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../openssl/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../api-auth/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../php/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../bash/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

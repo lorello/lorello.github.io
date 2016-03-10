@@ -65,6 +65,41 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../atom/">Atom</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bash/">Bash</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bind/">Bind</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../changelog/">Changelog</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../cisco/">Cisco</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../docker/">Docker</a>
         
     </li>
@@ -113,13 +148,6 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../packages/">Packages</a>
-        
-    </li>
-<li>
-          
-            <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Php</a>
         
@@ -128,6 +156,8 @@
                 <li class="toctree-l3"><a href="#php">PHP</a></li>
                 
                     <li><a class="toctree-l4" href="#php-fpm">Php-fpm</a></li>
+                
+                    <li><a class="toctree-l4" href="#logs-everything-to-file-htaccess-format">Logs everything to file (htaccess format)</a></li>
                 
             
             </ul>
@@ -138,6 +168,13 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../poormanvpn/">Poormanvpn</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../postfix/">Postfix</a>
         
     </li>
 <li>
@@ -210,6 +247,24 @@ log_errors = On
 display_errors = On
 log_level = notice
 </code></pre>
+<h2 id="logs-everything-to-file-htaccess-format">Logs everything to file (htaccess format)</h2>
+<pre><code>php_flag display_startup_errors on
+php_flag display_errors off
+php_flag html_errors off
+php_flag log_errors on
+#php_flag ignore_repeated_errors off
+#php_flag ignore_repeated_source off
+#php_flag report_memleaks on
+#php_flag track_errors on
+#php_value docref_root 0
+#php_value docref_ext 0
+php_value error_reporting -1
+#php_value log_errors_max_len 0#
+php_value error_log /var/local/www/web1/phperrors.log
+</code></pre>
+<p>This logs sintax erros too, not logged by default in apache error log
+or not logged if you're passing options inside the php file itself using
+ini_set.</p>
               
             </div>
           </div>
@@ -220,7 +275,7 @@ log_level = notice
         <a href="../poormanvpn/" class="btn btn-neutral float-right" title="Poormanvpn"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../packages/" class="btn btn-neutral" title="Packages"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../openssl/" class="btn btn-neutral" title="Openssl"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -250,7 +305,7 @@ log_level = notice
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../packages/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../openssl/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../poormanvpn/" style="color: #fcfcfc">Next &raquo;</a></span>

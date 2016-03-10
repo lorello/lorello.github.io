@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Api auth - Lorello technical notes</title>
+  <title>Postfix - Lorello technical notes</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -20,7 +20,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Api auth";
+    var mkdocs_page_name = "Postfix";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -57,19 +57,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Api auth</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#api-authentication-using-hmac-hashing">API Authentication using HMAC Hashing</a></li>
-                
-                    <li><a class="toctree-l4" href="#generate-a-secret-hash">Generate a Secret HASH</a></li>
-                
-                    <li><a class="toctree-l4" href="#client-request">Client request</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../api-auth/">Api auth</a>
         
     </li>
 <li>
@@ -173,8 +162,17 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../postfix/">Postfix</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Postfix</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#postfix-mail-server">Postfix mail server</a></li>
+                
+                    <li><a class="toctree-l4" href="#debug-commands">Debug commands</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -222,7 +220,7 @@
     
       
     
-    <li>Api auth</li>
+    <li>Postfix</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -236,37 +234,11 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="api-authentication-using-hmac-hashing">API Authentication using HMAC Hashing</h1>
-<p>Source http://websec.io/2013/02/14/API-Authentication-Public-Private-Hashes.html</p>
-<p>HMAC means hash-based message authentication code''</p>
-<h2 id="generate-a-secret-hash">Generate a Secret HASH</h2>
-<p>Having openssl installed ...</p>
-<pre><code>$secret = base64URL(openssl_random_pseudo_bytes(32));
-</code></pre>
-<p>... or without having it, just use a <a href="https://github.com/ircmaxell/RandomLib">RandomLib</a></p>
-<h2 id="client-request">Client request</h2>
-<pre><code>$userHash = '3441df0babc2a2dda551d7cd39fb235bc4e09cd1e4556bf261bb49188f548348';
-$secret = 'e249c439ed7697df2a4b045d97d4b9b7e1854c3ff8dd668c779013653913572e';
-$content    = json_encode(array(
-    'test' =&gt; 'content'
-));
-
-$hash = hash_hmac('sha256', $content, $secret);
-
-$headers = array(
-    'X-Public: '.$userHash,
-    'X-Hash: '.$hash
-);
-
-$ch = curl_init('http://test.localhost:8080/api-test/');
-curl_setopt($ch,CURLOPT_HTTPHEADER,$headers);
-curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-curl_setopt($ch,CURLOPT_POSTFIELDS,$content);
-
-$result = curl_exec($ch);
-curl_close($ch);
-
-echo &quot;RESULT\n======\n&quot;.print_r($result, true).&quot;\n\n&quot;;
+                <h1 id="postfix-mail-server">Postfix mail server</h1>
+<h2 id="debug-commands">Debug commands</h2>
+<p>Who is using the server to send messages?</p>
+<pre><code>find /var/spool/postfix/deferred -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'
+find /var/spool/postfix/active -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'
 </code></pre>
               
             </div>
@@ -275,10 +247,10 @@ echo &quot;RESULT\n======\n&quot;.print_r($result, true).&quot;\n\n&quot;;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../atom/" class="btn btn-neutral float-right" title="Atom"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../puppet/" class="btn btn-neutral float-right" title="Puppet"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../poormanvpn/" class="btn btn-neutral" title="Poormanvpn"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -308,10 +280,10 @@ echo &quot;RESULT\n======\n&quot;.print_r($result, true).&quot;\n\n&quot;;
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../poormanvpn/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../atom/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../puppet/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

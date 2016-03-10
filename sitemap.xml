@@ -4,7 +4,7 @@
     
     <url>
      <loc>None/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,47 @@
     
     <url>
      <loc>None/api-auth/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/atom/</loc>
+     <lastmod>2016-03-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/bash/</loc>
+     <lastmod>2016-03-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/bind/</loc>
+     <lastmod>2016-03-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/changelog/</loc>
+     <lastmod>2016-03-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/cisco/</loc>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,7 +60,7 @@
     
     <url>
      <loc>None/docker/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -28,7 +68,7 @@
     
     <url>
      <loc>None/git/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -36,7 +76,7 @@
     
     <url>
      <loc>None/ip/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -44,7 +84,7 @@
     
     <url>
      <loc>None/mysql/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -52,7 +92,7 @@
     
     <url>
      <loc>None/nginx/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -60,7 +100,7 @@
     
     <url>
      <loc>None/octohost/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -68,15 +108,7 @@
     
     <url>
      <loc>None/openssl/</loc>
-     <lastmod>2015-06-23</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
-     <loc>None/packages/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -84,7 +116,7 @@
     
     <url>
      <loc>None/php/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -92,7 +124,15 @@
     
     <url>
      <loc>None/poormanvpn/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>None/postfix/</loc>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -100,7 +140,7 @@
     
     <url>
      <loc>None/puppet/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -108,7 +148,7 @@
     
     <url>
      <loc>None/services/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -116,7 +156,7 @@
     
     <url>
      <loc>None/zfs/</loc>
-     <lastmod>2015-06-23</lastmod>
+     <lastmod>2016-03-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

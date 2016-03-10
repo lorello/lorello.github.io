@@ -65,6 +65,41 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../atom/">Atom</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bash/">Bash</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../bind/">Bind</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../changelog/">Changelog</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../cisco/">Cisco</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../docker/">Docker</a>
         
     </li>
@@ -86,6 +121,8 @@
                 <li class="toctree-l3"><a href="#linux-ip">Linux IP</a></li>
                 
                     <li><a class="toctree-l4" href="#devices">Devices</a></li>
+                
+                    <li><a class="toctree-l4" href="#vlan">Vlan</a></li>
                 
                     <li><a class="toctree-l4" href="#routing">Routing</a></li>
                 
@@ -125,13 +162,6 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../packages/">Packages</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
         <a class="" href="../php/">Php</a>
         
     </li>
@@ -140,6 +170,13 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../poormanvpn/">Poormanvpn</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../postfix/">Postfix</a>
         
     </li>
 <li>
@@ -203,13 +240,19 @@
               
                 <h1 id="linux-ip">Linux IP</h1>
 <h2 id="devices">Devices</h2>
-<p>Show and change device settings
-    ip link set dev eth2 up|down
-    ip link set dev eth0 up|down arp on|off name NAME mtu 9000</p>
-<p>Show current settings for interface
-    ip link show dev NAME</p>
+<p>Show and change device settings</p>
+<pre><code>ip link set dev eth2 up|down
+ip link set dev eth0 up|down arp on|off name NAME mtu 9000
+</code></pre>
+<p>Show current settings for interface</p>
+<pre><code>ip link show dev NAME
+</code></pre>
 <p>Show only UP interfaces
     ip link show up</p>
+<h2 id="vlan">Vlan</h2>
+<p>Add a vlan interface</p>
+<pre><code>ip link add link eth1 name eth1.101 type vlan id 101
+</code></pre>
 <h2 id="routing">Routing</h2>
 <pre><code>ip route show
 ip route add 192.168.1.0/24 dev eth0

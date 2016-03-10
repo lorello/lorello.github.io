@@ -2,13 +2,23 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Welcome to Lorello's technical notes\n\n\nUse any info in this site at your own risk", 
+            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
             "title": "Home"
         }, 
         {
-            "location": "/#welcome-to-lorellos-technical-notes", 
-            "text": "Use any info in this site at your own risk", 
-            "title": "Welcome to Lorello's technical notes"
+            "location": "/#welcome-to-mkdocs", 
+            "text": "For full documentation visit  mkdocs.org .", 
+            "title": "Welcome to MkDocs"
+        }, 
+        {
+            "location": "/#commands", 
+            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.", 
+            "title": "Commands"
+        }, 
+        {
+            "location": "/#project-layout", 
+            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.", 
+            "title": "Project layout"
         }, 
         {
             "location": "/api-auth/", 
@@ -29,6 +39,96 @@
             "location": "/api-auth/#client-request", 
             "text": "$userHash = '3441df0babc2a2dda551d7cd39fb235bc4e09cd1e4556bf261bb49188f548348';\n$secret = 'e249c439ed7697df2a4b045d97d4b9b7e1854c3ff8dd668c779013653913572e';\n$content    = json_encode(array(\n    'test' =  'content'\n));\n\n$hash = hash_hmac('sha256', $content, $secret);\n\n$headers = array(\n    'X-Public: '.$userHash,\n    'X-Hash: '.$hash\n);\n\n$ch = curl_init('http://test.localhost:8080/api-test/');\ncurl_setopt($ch,CURLOPT_HTTPHEADER,$headers);\ncurl_setopt($ch,CURLOPT_RETURNTRANSFER,true);\ncurl_setopt($ch,CURLOPT_POSTFIELDS,$content);\n\n$result = curl_exec($ch);\ncurl_close($ch);\n\necho  RESULT\\n======\\n .print_r($result, true). \\n\\n ;", 
             "title": "Client request"
+        }, 
+        {
+            "location": "/atom/", 
+            "text": "ATOM Editor Keybindings\n\n\nCore\n\n\n\n\n\n\n\n\nApp management\n\n\nAction\n\n\n\n\n\n\n\n\n\n\nCTRL + SHIFT + P\n\n\nCommand palette\n\n\n\n\n\n\nALT + 1,9\n\n\nFocus on pane 1,9\n\n\n\n\n\n\nCTRL + \\\n\n\nToggle Tree Pane\n\n\n\n\n\n\nCTRL + K U/D/L/R\n\n\nSplit pane Up/Down/Left/Right\n\n\n\n\n\n\nCTRL + K CTRL U/D/L/R\n\n\nFocus pane Up/Down/Left/Right\n\n\n\n\n\n\nCTRL + K CTRL p/n\n\n\nFocus Previous/Next pane\n\n\n\n\n\n\nCTRL + ALT +/-\n\n\nIncrease/Decrease size of pane\n\n\n\n\n\n\nCTRL + K CTRL + w\n\n\nClone pane\n\n\n\n\n\n\nCTRL + TAB\n\n\nNext item in pane\n\n\n\n\n\n\nCTRL + SHIFT + TAB\n\n\nPrevious item in pane\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEditing\n\n\nAction\n\n\n\n\n\n\n\n\n\n\nCTRL + a\n\n\nSelect All\n\n\n\n\n\n\nCTRL + z\n\n\nUndo\n\n\n\n\n\n\nCTRL + SHIFT + z\n\n\nRedo\n\n\n\n\n\n\nCTRL + [, ]\n\n\nIndent, Outdent\n\n\n\n\n\n\nCTRL + /\n\n\nComment\n\n\n\n\n\n\nCTRL + SHIFT + K\n\n\nDelete Line\n\n\n\n\n\n\nCTRL + SHIFT + D\n\n\nDuplicate Line\n\n\n\n\n\n\n\n\nPlugins\n\n\n\n\n\n\n\n\nProject Manager\n\n\nAction\n\n\n\n\n\n\n\n\n\n\nSHIFT + ALT + P\n\n\nList projects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMarkdown\n\n\nAction\n\n\n\n\n\n\n\n\n\n\nCTRL + SHIFT + M\n\n\nMarkdown Preview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGit / GitHub\n\n\nAction\n\n\n\n\n\n\n\n\n\n\nALT + g d\n\n\nToggle Git diff\n\n\n\n\n\n\nALT + g g\n\n\nOpen on GitHub", 
+            "title": "Atom"
+        }, 
+        {
+            "location": "/atom/#atom-editor-keybindings", 
+            "text": "", 
+            "title": "ATOM Editor Keybindings"
+        }, 
+        {
+            "location": "/atom/#core", 
+            "text": "App management  Action      CTRL + SHIFT + P  Command palette    ALT + 1,9  Focus on pane 1,9    CTRL + \\  Toggle Tree Pane    CTRL + K U/D/L/R  Split pane Up/Down/Left/Right    CTRL + K CTRL U/D/L/R  Focus pane Up/Down/Left/Right    CTRL + K CTRL p/n  Focus Previous/Next pane    CTRL + ALT +/-  Increase/Decrease size of pane    CTRL + K CTRL + w  Clone pane    CTRL + TAB  Next item in pane    CTRL + SHIFT + TAB  Previous item in pane        Editing  Action      CTRL + a  Select All    CTRL + z  Undo    CTRL + SHIFT + z  Redo    CTRL + [, ]  Indent, Outdent    CTRL + /  Comment    CTRL + SHIFT + K  Delete Line    CTRL + SHIFT + D  Duplicate Line", 
+            "title": "Core"
+        }, 
+        {
+            "location": "/atom/#plugins", 
+            "text": "Project Manager  Action      SHIFT + ALT + P  List projects        Markdown  Action      CTRL + SHIFT + M  Markdown Preview        Git / GitHub  Action      ALT + g d  Toggle Git diff    ALT + g g  Open on GitHub", 
+            "title": "Plugins"
+        }, 
+        {
+            "location": "/bash/", 
+            "text": "!/bin/sh\n\n\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domain\ndo\n\n\ndone", 
+            "title": "Bash"
+        }, 
+        {
+            "location": "/bash/#binsh", 
+            "text": "list=/tmp/blacklists/porn/domains\ncat $list | while read domain\ndo  done", 
+            "title": "!/bin/sh"
+        }, 
+        {
+            "location": "/bind/", 
+            "text": "Bind Name Server\n\n\nDetailed Logging\n\n\nlogging {\n\n  channel default_file { file \"/var/log/named/default.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel general_file { file \"/var/log/named/general.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel database_file { file \"/var/log/named/database.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel security_file { file \"/var/log/named/security.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel config_file { file \"/var/log/named/config.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel resolver_file { file \"/var/log/named/resolver.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel xfer-in_file { file \"/var/log/named/xfer-in.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel xfer-out_file { file \"/var/log/named/xfer-out.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel notify_file { file \"/var/log/named/notify.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel client_file { file \"/var/log/named/client.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel unmatched_file { file \"/var/log/named/unmatched.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel queries_file { file \"/var/log/named/queries.log\" versions 3 size 80m; severity dynamic; print-time yes; };\n  channel network_file { file \"/var/log/named/network.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel update_file { file \"/var/log/named/update.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel dispatch_file { file \"/var/log/named/dispatch.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel dnssec_file { file \"/var/log/named/dnssec.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel lame-servers_file { file \"/var/log/named/lame-servers.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n\n  category default { default_file; };\n  category general { general_file; };\n  category database { database_file; };\n  category security { security_file; };\n  category config { config_file; };\n  category resolver { resolver_file; };\n  category xfer-in { xfer-in_file; };\n  category xfer-out { xfer-out_file; };\n  category notify { notify_file; };\n  category client { client_file; };\n  category unmatched { unmatched_file; };\n  category queries { queries_file; };\n  category network { network_file; };\n  category update { update_file; };\n  category dispatch { dispatch_file; };\n  category dnssec { dnssec_file; };\n  category lame-servers { lame-servers_file; };\n\n};", 
+            "title": "Bind"
+        }, 
+        {
+            "location": "/bind/#bind-name-server", 
+            "text": "", 
+            "title": "Bind Name Server"
+        }, 
+        {
+            "location": "/bind/#detailed-logging", 
+            "text": "logging {\n\n  channel default_file { file \"/var/log/named/default.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel general_file { file \"/var/log/named/general.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel database_file { file \"/var/log/named/database.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel security_file { file \"/var/log/named/security.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel config_file { file \"/var/log/named/config.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel resolver_file { file \"/var/log/named/resolver.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel xfer-in_file { file \"/var/log/named/xfer-in.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel xfer-out_file { file \"/var/log/named/xfer-out.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel notify_file { file \"/var/log/named/notify.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel client_file { file \"/var/log/named/client.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel unmatched_file { file \"/var/log/named/unmatched.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel queries_file { file \"/var/log/named/queries.log\" versions 3 size 80m; severity dynamic; print-time yes; };\n  channel network_file { file \"/var/log/named/network.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel update_file { file \"/var/log/named/update.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel dispatch_file { file \"/var/log/named/dispatch.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel dnssec_file { file \"/var/log/named/dnssec.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n  channel lame-servers_file { file \"/var/log/named/lame-servers.log\" versions 3 size 5m; severity dynamic; print-time yes; };\n\n  category default { default_file; };\n  category general { general_file; };\n  category database { database_file; };\n  category security { security_file; };\n  category config { config_file; };\n  category resolver { resolver_file; };\n  category xfer-in { xfer-in_file; };\n  category xfer-out { xfer-out_file; };\n  category notify { notify_file; };\n  category client { client_file; };\n  category unmatched { unmatched_file; };\n  category queries { queries_file; };\n  category network { network_file; };\n  category update { update_file; };\n  category dispatch { dispatch_file; };\n  category dnssec { dnssec_file; };\n  category lame-servers { lame-servers_file; };\n\n};", 
+            "title": "Detailed Logging"
+        }, 
+        {
+            "location": "/changelog/", 
+            "text": "lorello commit \nhttps://github.com/lorello/lorello.github.io/commit/b0653b91eeae7044c885490c867071d05e8a0133|b0653b9\n di 18 minuti fa: added git log useful combination to create Change Logs\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/510844987528247630dbc8ca937fa7d0e4137273|5108449\n di 35 minuti fa: How to setup detailied logging in bind\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/660a81af13d9751f799495e655394a673c9e0e53|660a81a\n di 35 minuti fa: bashisms.. :)\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/f063aa0545eb12bb31d81aa2a12ec9faae6cc48e|f063aa0\n di 35 minuti fa: added atom keybindings cheetsheet\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/187415076ff2527185fb2f5cf5605b84d9c8fb69|1874150\n di 36 minuti fa: More cookbooks on puppet code\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/e88f3c8983c86cf4db26fdb3e44dff443d6c1d43|e88f3c8\n di 12 giorni fa: added cisco page\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/43ebdd0d52bf505f0734eec8b98284b3cec471e7|43ebdd0\n di 4 settimane fa: added example of an Exec with execution on each N days\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/5e95ccaad8a20878bea5334801a85005d51ab8a8|5e95cca\n di 4 settimane fa: Added logging setup for apache/mod_php", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/cisco/", 
+            "text": "Basic Cisco CLI\n\n\nList intefaces with descriptions\n\n\nshow int description\n\n\n\nShow detailed config for a specific interface\n\n\nshow running-config interface FastEthernet4/38\n\n\n\nShow list of vlan and connected interfaces\n\n\nshow vlan brief\n\n\n\nSetup an interface with\n\n\ninterface GigabitEthernet1/0/3\n description Gianni's desktop\n switchport access vlan 100\n switchport trunk native vlan 100\n switchport trunk allowed vlan 100,104\n switchport mode trunk\n spanning-tree bpduguard disable\nend\n\n\n\nShutdown an interface\n\n\n# enable\n# configure terminal\n(config)# interface FastEthernet 0/1\n(config-subif)# shutdown\n(config-subif)# end\n# write\n\n\n\nSet a description\n\n\n# en\n# conf t\n(config)# int FastEthernet 0/1\n(config-subif)# description This is 1st Port of My Switch\n(config-subif)# end\n# write", 
+            "title": "Cisco"
+        }, 
+        {
+            "location": "/cisco/#basic-cisco-cli", 
+            "text": "", 
+            "title": "Basic Cisco CLI"
+        }, 
+        {
+            "location": "/cisco/#list-intefaces-with-descriptions", 
+            "text": "show int description", 
+            "title": "List intefaces with descriptions"
+        }, 
+        {
+            "location": "/cisco/#show-detailed-config-for-a-specific-interface", 
+            "text": "show running-config interface FastEthernet4/38", 
+            "title": "Show detailed config for a specific interface"
+        }, 
+        {
+            "location": "/cisco/#show-list-of-vlan-and-connected-interfaces", 
+            "text": "show vlan brief", 
+            "title": "Show list of vlan and connected interfaces"
+        }, 
+        {
+            "location": "/cisco/#setup-an-interface-with", 
+            "text": "interface GigabitEthernet1/0/3\n description Gianni's desktop\n switchport access vlan 100\n switchport trunk native vlan 100\n switchport trunk allowed vlan 100,104\n switchport mode trunk\n spanning-tree bpduguard disable\nend", 
+            "title": "Setup an interface with"
+        }, 
+        {
+            "location": "/cisco/#shutdown-an-interface", 
+            "text": "# enable\n# configure terminal\n(config)# interface FastEthernet 0/1\n(config-subif)# shutdown\n(config-subif)# end\n# write", 
+            "title": "Shutdown an interface"
+        }, 
+        {
+            "location": "/cisco/#set-a-description", 
+            "text": "# en\n# conf t\n(config)# int FastEthernet 0/1\n(config-subif)# description This is 1st Port of My Switch\n(config-subif)# end\n# write", 
+            "title": "Set a description"
         }, 
         {
             "location": "/docker/", 
@@ -97,12 +197,27 @@
         }, 
         {
             "location": "/git/", 
-            "text": "git config --global http.postBuffer 1024000000", 
+            "text": "Git Versioning System\n\n\nConfig\n\n\ngit config --global http.postBuffer 1024000000\n\n\n\nChange Log generation\n\n\nList file names changed between two revisions IDs\n\n\ngit diff $oldrev $newrev --diff-filter=ACDMR --name-only\n\n\n\nList changes between two revisions IDs, with author and commit message\n\n\n# sed removes double \\n that come from git log (%B)\ngit log --abbrev-commit --pretty=format:'* %h %an %ar: %B' ${oldrev}..${newrev} | sed ':a;N;$!ba;s/\\n\\n/\\n/g'\n\n\n\nList changes after a specified date, with author and commit message\n\n\ngit log --abbrev-commit --pretty=format:'* %h %an %ar: %B' --after='2016-02-01'| sed ':a;N;$!ba;s/\\n\\n/\\n/g'\n\n\n\nA changelog for Slack chat\n\n\nBRANCH=$(git rev-parse --abbrev-ref HEAD)\nHOSTNAME=$(hostname -f)\n\n# Links to changed files\nFILES_CHANGED=''\nfor ITEM in $(git diff $oldrev $newrev --diff-filter=ACDMR --name-only); do\n  FILES_CHANGED=\"$FILES_CHANGED\\n* \n$GIT_REPO/blob/$newrev/$ITEM|$ITEM\n\"\ndone\n\nNUM_CHANGED=$(git diff $oldrev $newrev --diff-filter=ACDMR --name-only | wc -l)\nBASEURL=\"$GIT_REPO/commit\"\n\nGITLOG=$(git log --abbrev-commit --pretty=format:\"* %an commit \n$BASEURL/%H|%h\n di %ar: %B\" ${oldrev}..${newrev} | sed ':a;N;$!ba;s/\\n\\n/\\n/g')\n\nCHANGELOG=\"*$NUM_CHANGED* files changed:\\n$FILES_CHANGED\\n\\n*Details*:\\n$GITLOG\\n\"", 
             "title": "Git"
         }, 
         {
+            "location": "/git/#git-versioning-system", 
+            "text": "", 
+            "title": "Git Versioning System"
+        }, 
+        {
+            "location": "/git/#config", 
+            "text": "git config --global http.postBuffer 1024000000", 
+            "title": "Config"
+        }, 
+        {
+            "location": "/git/#change-log-generation", 
+            "text": "List file names changed between two revisions IDs  git diff $oldrev $newrev --diff-filter=ACDMR --name-only  List changes between two revisions IDs, with author and commit message  # sed removes double \\n that come from git log (%B)\ngit log --abbrev-commit --pretty=format:'* %h %an %ar: %B' ${oldrev}..${newrev} | sed ':a;N;$!ba;s/\\n\\n/\\n/g'  List changes after a specified date, with author and commit message  git log --abbrev-commit --pretty=format:'* %h %an %ar: %B' --after='2016-02-01'| sed ':a;N;$!ba;s/\\n\\n/\\n/g'  A changelog for Slack chat  BRANCH=$(git rev-parse --abbrev-ref HEAD)\nHOSTNAME=$(hostname -f)\n\n# Links to changed files\nFILES_CHANGED=''\nfor ITEM in $(git diff $oldrev $newrev --diff-filter=ACDMR --name-only); do\n  FILES_CHANGED=\"$FILES_CHANGED\\n*  $GIT_REPO/blob/$newrev/$ITEM|$ITEM \"\ndone\n\nNUM_CHANGED=$(git diff $oldrev $newrev --diff-filter=ACDMR --name-only | wc -l)\nBASEURL=\"$GIT_REPO/commit\"\n\nGITLOG=$(git log --abbrev-commit --pretty=format:\"* %an commit  $BASEURL/%H|%h  di %ar: %B\" ${oldrev}..${newrev} | sed ':a;N;$!ba;s/\\n\\n/\\n/g')\n\nCHANGELOG=\"*$NUM_CHANGED* files changed:\\n$FILES_CHANGED\\n\\n*Details*:\\n$GITLOG\\n\"", 
+            "title": "Change Log generation"
+        }, 
+        {
             "location": "/ip/", 
-            "text": "Linux IP\n\n\nDevices\n\n\nShow and change device settings\n    ip link set dev eth2 up|down\n    ip link set dev eth0 up|down arp on|off name NAME mtu 9000\n\n\nShow current settings for interface\n    ip link show dev NAME\n\n\nShow only UP interfaces\n    ip link show up\n\n\nRouting\n\n\nip route show\nip route add 192.168.1.0/24 dev eth0\nip route add default via 192.168.1.254", 
+            "text": "Linux IP\n\n\nDevices\n\n\nShow and change device settings\n\n\nip link set dev eth2 up|down\nip link set dev eth0 up|down arp on|off name NAME mtu 9000\n\n\n\nShow current settings for interface\n\n\nip link show dev NAME\n\n\n\nShow only UP interfaces\n    ip link show up\n\n\nVlan\n\n\nAdd a vlan interface\n\n\nip link add link eth1 name eth1.101 type vlan id 101\n\n\n\nRouting\n\n\nip route show\nip route add 192.168.1.0/24 dev eth0\nip route add default via 192.168.1.254", 
             "title": "Ip"
         }, 
         {
@@ -112,8 +227,13 @@
         }, 
         {
             "location": "/ip/#devices", 
-            "text": "Show and change device settings\n    ip link set dev eth2 up|down\n    ip link set dev eth0 up|down arp on|off name NAME mtu 9000  Show current settings for interface\n    ip link show dev NAME  Show only UP interfaces\n    ip link show up", 
+            "text": "Show and change device settings  ip link set dev eth2 up|down\nip link set dev eth0 up|down arp on|off name NAME mtu 9000  Show current settings for interface  ip link show dev NAME  Show only UP interfaces\n    ip link show up", 
             "title": "Devices"
+        }, 
+        {
+            "location": "/ip/#vlan", 
+            "text": "Add a vlan interface  ip link add link eth1 name eth1.101 type vlan id 101", 
+            "title": "Vlan"
         }, 
         {
             "location": "/ip/#routing", 
@@ -196,23 +316,8 @@
             "title": "OpenSSL"
         }, 
         {
-            "location": "/packages/", 
-            "text": "Debian/Ubuntu packages\n\n\nRecover a config file from original packages\n\n\n\n\n\n\nFind out what package installed the config file\n\n\n$ dpkg -S file.conf\n\n\n\n\n\n\nRename (or delete) the config file you wish to restore\n\n\n\n\n\n\napt-get -o Dpkg::Options::=\"--force-confmiss\" install --reinstall", 
-            "title": "Packages"
-        }, 
-        {
-            "location": "/packages/#debianubuntu-packages", 
-            "text": "", 
-            "title": "Debian/Ubuntu packages"
-        }, 
-        {
-            "location": "/packages/#recover-a-config-file-from-original-packages", 
-            "text": "Find out what package installed the config file  $ dpkg -S file.conf    Rename (or delete) the config file you wish to restore    apt-get -o Dpkg::Options::=\"--force-confmiss\" install --reinstall", 
-            "title": "Recover a config file from original packages"
-        }, 
-        {
             "location": "/php/", 
-            "text": "PHP\n\n\nPhp-fpm\n\n\nnewrelic.appname = \"web30 - liste.lillinet.org\"\npost_max_size = 52M\nupload_max_filesize = 52M\nmemory_limit = 192M\ncatch_workers_output = yes\nlog_errors = On\ndisplay_errors = On\nlog_level = notice", 
+            "text": "PHP\n\n\nPhp-fpm\n\n\nnewrelic.appname = \"web30 - liste.lillinet.org\"\npost_max_size = 52M\nupload_max_filesize = 52M\nmemory_limit = 192M\ncatch_workers_output = yes\nlog_errors = On\ndisplay_errors = On\nlog_level = notice\n\n\n\nLogs everything to file (htaccess format)\n\n\nphp_flag display_startup_errors on\nphp_flag display_errors off\nphp_flag html_errors off\nphp_flag log_errors on\n#php_flag ignore_repeated_errors off\n#php_flag ignore_repeated_source off\n#php_flag report_memleaks on\n#php_flag track_errors on\n#php_value docref_root 0\n#php_value docref_ext 0\nphp_value error_reporting -1\n#php_value log_errors_max_len 0#\nphp_value error_log /var/local/www/web1/phperrors.log\n\n\n\nThis logs sintax erros too, not logged by default in apache error log\nor not logged if you're passing options inside the php file itself using\nini_set.", 
             "title": "Php"
         }, 
         {
@@ -224,6 +329,11 @@
             "location": "/php/#php-fpm", 
             "text": "newrelic.appname = \"web30 - liste.lillinet.org\"\npost_max_size = 52M\nupload_max_filesize = 52M\nmemory_limit = 192M\ncatch_workers_output = yes\nlog_errors = On\ndisplay_errors = On\nlog_level = notice", 
             "title": "Php-fpm"
+        }, 
+        {
+            "location": "/php/#logs-everything-to-file-htaccess-format", 
+            "text": "php_flag display_startup_errors on\nphp_flag display_errors off\nphp_flag html_errors off\nphp_flag log_errors on\n#php_flag ignore_repeated_errors off\n#php_flag ignore_repeated_source off\n#php_flag report_memleaks on\n#php_flag track_errors on\n#php_value docref_root 0\n#php_value docref_ext 0\nphp_value error_reporting -1\n#php_value log_errors_max_len 0#\nphp_value error_log /var/local/www/web1/phperrors.log  This logs sintax erros too, not logged by default in apache error log\nor not logged if you're passing options inside the php file itself using\nini_set.", 
+            "title": "Logs everything to file (htaccess format)"
         }, 
         {
             "location": "/poormanvpn/", 
@@ -246,8 +356,23 @@
             "title": "Use"
         }, 
         {
+            "location": "/postfix/", 
+            "text": "Postfix mail server\n\n\nDebug commands\n\n\nWho is using the server to send messages?\n\n\nfind /var/spool/postfix/deferred -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'\nfind /var/spool/postfix/active -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'", 
+            "title": "Postfix"
+        }, 
+        {
+            "location": "/postfix/#postfix-mail-server", 
+            "text": "", 
+            "title": "Postfix mail server"
+        }, 
+        {
+            "location": "/postfix/#debug-commands", 
+            "text": "Who is using the server to send messages?  find /var/spool/postfix/deferred -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'\nfind /var/spool/postfix/active -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'", 
+            "title": "Debug commands"
+        }, 
+        {
             "location": "/puppet/", 
-            "text": "Puppet resources\n\n\nChecking code\n\n\nPuppet syntax checks\n\n\npuppet parser validate \nfile.pp\n\n\n\n\nHiera files in YAML format\n\n\nruby -e \"require 'yaml'; YAML.parse(File.open('yourhierafile'))\"", 
+            "text": "Puppet resources\n\n\nChecking code\n\n\nPuppet syntax checks\n\n\npuppet parser validate \nfile.pp\n\n\n\n\nHiera files in YAML format\n\n\nruby -e \"require 'yaml'; YAML.parse(File.open('yourhierafile'))\"\n\n\n\nCookbooks\n\n\nValidating\n\n\nvalidate_re($ensure, '(present|absent)', \"ensure must be 'present' or 'absent', checked value is '$ensure'\")\n\n\n\nMaking a private class\n\n\nif $caller_module_name != $module_name {\n  warning(\"${name} is not part of the public API of the ${module_name} module and should not be directly included in the manifest.\")\n}\n\n\n\nMake an Exec run one time in N days\n\n\nexec { 'update composer':\n  command =\n \"wget ${source} -O ${destination}\",\n          onlyif  =\n \"test `find '${destination}' -mtime +${max_age}`\",\n          path    =\n [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/'  ],\n          require =\n File[$destination],\n}\n\n\n\nValidate ensure parameter\n\n\nvalidate_re($ensure, [ '^installed$', '^present$', '^absent$', '^latest$' ])\n\n\n\nDebug Facter \n Hiera\n\n\npuppet facts find FACTNAME\n\n\n\nMake the resource myresource configurable through hiera hash\n\n\nclass myclass (\n  $values = {},\n){\n\n  validate_hash($values)\n\n  # ensure merging of hiera levels\n  $hiera_values = hiera_hash('myclass::values', {})     # this merge multiple levels\n  $real_values = $hiera_values ? {\n    undef   =\n $values,                                 # default values are the class parameter ones\n    default =\n $hiera_values,                           # if exists, hiera values has precedence\n  }\n\n  if $real_values {\n    create_resources('myresource', $real_values)\n  }\n\n\n\nCheck for OS family and version\n\n\ncase $::osfamily {\n  'Debian': {\n    # do common debian/ubuntu things\n    case $::operatingsystem {\n      'Debian': {\n        if versioncmp($::lsbmajdistrelease, '8') \n 0 {\n          # do specific things for Debian \n= 8\n        }\n      }\n      'Ubuntu': {\n        # do specific things for Ubuntu\n      }\n      default: {\n        fail(\"Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support operatingsystem Debian and Ubuntu on osfamily Debian\")\n      }\n    }\n  }\n  'RedHat': {\n    # do specific things for RedHat\n  }\n  default: {\n    fail(\"Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian and RedHat\")\n  }", 
             "title": "Puppet"
         }, 
         {
@@ -259,6 +384,11 @@
             "location": "/puppet/#checking-code", 
             "text": "Puppet syntax checks  puppet parser validate  file.pp   Hiera files in YAML format  ruby -e \"require 'yaml'; YAML.parse(File.open('yourhierafile'))\"", 
             "title": "Checking code"
+        }, 
+        {
+            "location": "/puppet/#cookbooks", 
+            "text": "Validating  validate_re($ensure, '(present|absent)', \"ensure must be 'present' or 'absent', checked value is '$ensure'\")  Making a private class  if $caller_module_name != $module_name {\n  warning(\"${name} is not part of the public API of the ${module_name} module and should not be directly included in the manifest.\")\n}  Make an Exec run one time in N days  exec { 'update composer':\n  command =  \"wget ${source} -O ${destination}\",\n          onlyif  =  \"test `find '${destination}' -mtime +${max_age}`\",\n          path    =  [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/'  ],\n          require =  File[$destination],\n}  Validate ensure parameter  validate_re($ensure, [ '^installed$', '^present$', '^absent$', '^latest$' ])  Debug Facter   Hiera  puppet facts find FACTNAME  Make the resource myresource configurable through hiera hash  class myclass (\n  $values = {},\n){\n\n  validate_hash($values)\n\n  # ensure merging of hiera levels\n  $hiera_values = hiera_hash('myclass::values', {})     # this merge multiple levels\n  $real_values = $hiera_values ? {\n    undef   =  $values,                                 # default values are the class parameter ones\n    default =  $hiera_values,                           # if exists, hiera values has precedence\n  }\n\n  if $real_values {\n    create_resources('myresource', $real_values)\n  }  Check for OS family and version  case $::osfamily {\n  'Debian': {\n    # do common debian/ubuntu things\n    case $::operatingsystem {\n      'Debian': {\n        if versioncmp($::lsbmajdistrelease, '8')   0 {\n          # do specific things for Debian  = 8\n        }\n      }\n      'Ubuntu': {\n        # do specific things for Ubuntu\n      }\n      default: {\n        fail(\"Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support operatingsystem Debian and Ubuntu on osfamily Debian\")\n      }\n    }\n  }\n  'RedHat': {\n    # do specific things for RedHat\n  }\n  default: {\n    fail(\"Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian and RedHat\")\n  }", 
+            "title": "Cookbooks"
         }, 
         {
             "location": "/services/", 
