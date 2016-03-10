@@ -17,6 +17,11 @@ Hiera files in YAML format
 
     validate_re($ensure, '(present|absent)', "ensure must be 'present' or 'absent', checked value is '$ensure'")
 
+### Making a private class
+
+    if $caller_module_name != $module_name {
+      warning("${name} is not part of the public API of the ${module_name} module and should not be directly included in the manifest.")
+    }
 
 ### Make an Exec run one time in N days
 
@@ -54,8 +59,28 @@ Hiera files in YAML format
         create_resources('myresource', $real_values)
       }
 
-### Be sure that a class is private
+### Check for OS family and version
 
-      if $caller_module_name != $module_name {
-           fail("Use of private class ${name} by ${caller_module_name}")
+    case $::osfamily {
+      'Debian': {
+        # do common debian/ubuntu things
+        case $::operatingsystem {
+          'Debian': {
+            if versioncmp($::lsbmajdistrelease, '8') < 0 {
+              # do specific things for Debian >= 8
+            }
+          }
+          'Ubuntu': {
+            # do specific things for Ubuntu
+          }
+          default: {
+            fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support operatingsystem Debian and Ubuntu on osfamily Debian")
+          }
+        }
+      }
+      'RedHat': {
+        # do specific things for RedHat
+      }
+      default: {
+        fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian and RedHat")
       }
