@@ -33,3 +33,17 @@ changing privileges
     SET AUTOCOMMIT=0;
     SET FOREIGN_KEY_CHECKS=0;
 
+## Mysql Replica
+
+    mysql> GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';
+    mysql> FLUSH PRIVILEGES;
+
+    mysql> CHANGE MASTER TO 
+	MASTER_HOST='12.34.56.789',
+	MASTER_USER='slave_user',
+	MASTER_PASSWORD='password',
+	MASTER_LOG_FILE='mysql-bin.000001',
+	MASTER_LOG_POS=107;
+
+
+    mysql> SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;
