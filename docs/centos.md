@@ -42,4 +42,4 @@ Monitoring system
     # git clone https://github.com/firehol/netdata.git –depth=1 && cd netdata && ./netdata-installer.sh
 
 
-For more info see also https://wiki.centos.org/AdditionalResources/Repositories
+For more info see also <https://wiki.centos.org/AdditionalResources/Repositories>
