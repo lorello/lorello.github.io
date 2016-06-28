@@ -34,4 +34,12 @@ Requires kernel >= 3.10, probably centos 6.5 and later
     $ sudo groupadd docker
     $ sudo usermod -aG docker `whoami`
 
+### Netdata
+
+Monitoring system
+
+    # yum install zlib-devel libuuid-devel libmnl-devel gcc make git autoconf autogen automake pkgconfig
+    # git clone https://github.com/firehol/netdata.git –depth=1 && cd netdata && ./netdata-installer.sh
+
+
 For more info see also https://wiki.centos.org/AdditionalResources/Repositories
