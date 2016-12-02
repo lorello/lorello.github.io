@@ -16,4 +16,17 @@ Add a service
 
     update-rc.d apache2 defaults
 
+## Systemd
 
+Files path
+
+    /usr/lib/systemd
+      /user
+      /system
+
+    ~/.config/systemd
+      /user
+
+Useful commands
+
+    systemctl (enable|try-reload-or-restart|list-units|kill|status|show|cat) <NAME>

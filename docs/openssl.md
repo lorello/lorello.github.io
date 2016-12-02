@@ -35,3 +35,9 @@ Check a private key
 Check a certificate
 
     openssl x509 -in certificate.crt -text -noout
+
+split pfx file
+
+    openssl pkcs12 -in your.pfx -clcerts -nokeys -out yourcert.pem
+    openssl pkcs12 -in your.pfx -nocerts -out yourkey.pem
+
