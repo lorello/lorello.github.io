@@ -13,6 +13,7 @@
     # bootstrap script, compatible with the main redhat/debian-based distros, osX and Windows
     \curl -sSL https://git.io/v18L4 | sudo bash -s '' production
 
+Detailed info and code of bootstrap scripts at https://github.com/lorello/puppet-bootstrap 
 
 ## Checking code
 
