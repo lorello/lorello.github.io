@@ -62,13 +62,18 @@
         }, 
         {
             "location": "/bash/", 
-            "text": "!/bin/sh\n\n\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domain\ndo\n\n\ndone", 
+            "text": "Bashism\n\n\nLoops\n\n\nLoop on a rows of a text file\n\n\n#!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone\n\n\n\nLoop on a counter\n\n\ncounter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone", 
             "title": "Bash"
         }, 
         {
-            "location": "/bash/#binsh", 
-            "text": "list=/tmp/blacklists/porn/domains\ncat $list | while read domain\ndo  done", 
-            "title": "!/bin/sh"
+            "location": "/bash/#bashism", 
+            "text": "", 
+            "title": "Bashism"
+        }, 
+        {
+            "location": "/bash/#loops", 
+            "text": "Loop on a rows of a text file  #!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone  Loop on a counter  counter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone", 
+            "title": "Loops"
         }, 
         {
             "location": "/bind/", 
@@ -86,8 +91,53 @@
             "title": "Detailed Logging"
         }, 
         {
+            "location": "/centos/", 
+            "text": "CentOS\n\n\nRepositories\n\n\nExtra Packages (community approved by CentOS)\n\n\n# yum install epel-release\n\n\n\nRackspace updated packages for PHP/Mysql/python\n\n\n# curl -fsSL https://setup.ius.io/ | sh\n\n\n\nPuppet collections\n\n\n# rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-(5|6|7).noarch.rpm\n\n\n\nSysdig\n\n\nsysdig requires kernel headers\n\n\nrpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public\ncurl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo\n\nyum -y install kernel-devel-$(uname -r)\nyum -y install sysdig\n\n\n\nDocker\n\n\nRequires kernel \n= 3.10, probably centos 6.5 and later\n\n\ncurl -fsSL https://get.docker.com/ | sh\nsudo service docker start\nsudo chkconfig docker on\nsudo groupadd docker\nsudo usermod -aG docker `whoami`\n\n\n\nNetdata\n\n\nMonitoring system\n\n\nyum install zlib-devel libuuid-devel libmnl-devel gcc make git autoconf autogen automake pkgconfig\ngit clone https://github.com/firehol/netdata.git \u2013depth=1 \n cd netdata \n ./netdata-installer.sh\n\n\n\nFor more info see also \nhttps://wiki.centos.org/AdditionalResources/Repositories", 
+            "title": "Centos"
+        }, 
+        {
+            "location": "/centos/#centos", 
+            "text": "", 
+            "title": "CentOS"
+        }, 
+        {
+            "location": "/centos/#repositories", 
+            "text": "", 
+            "title": "Repositories"
+        }, 
+        {
+            "location": "/centos/#extra-packages-community-approved-by-centos", 
+            "text": "# yum install epel-release", 
+            "title": "Extra Packages (community approved by CentOS)"
+        }, 
+        {
+            "location": "/centos/#rackspace-updated-packages-for-phpmysqlpython", 
+            "text": "# curl -fsSL https://setup.ius.io/ | sh", 
+            "title": "Rackspace updated packages for PHP/Mysql/python"
+        }, 
+        {
+            "location": "/centos/#puppet-collections", 
+            "text": "# rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-(5|6|7).noarch.rpm", 
+            "title": "Puppet collections"
+        }, 
+        {
+            "location": "/centos/#sysdig", 
+            "text": "sysdig requires kernel headers  rpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public\ncurl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo\n\nyum -y install kernel-devel-$(uname -r)\nyum -y install sysdig", 
+            "title": "Sysdig"
+        }, 
+        {
+            "location": "/centos/#docker", 
+            "text": "Requires kernel  = 3.10, probably centos 6.5 and later  curl -fsSL https://get.docker.com/ | sh\nsudo service docker start\nsudo chkconfig docker on\nsudo groupadd docker\nsudo usermod -aG docker `whoami`", 
+            "title": "Docker"
+        }, 
+        {
+            "location": "/centos/#netdata", 
+            "text": "Monitoring system  yum install zlib-devel libuuid-devel libmnl-devel gcc make git autoconf autogen automake pkgconfig\ngit clone https://github.com/firehol/netdata.git \u2013depth=1   cd netdata   ./netdata-installer.sh  For more info see also  https://wiki.centos.org/AdditionalResources/Repositories", 
+            "title": "Netdata"
+        }, 
+        {
             "location": "/changelog/", 
-            "text": "lorello commit \nhttps://github.com/lorello/lorello.github.io/commit/b0653b91eeae7044c885490c867071d05e8a0133|b0653b9\n di 18 minuti fa: added git log useful combination to create Change Logs\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/510844987528247630dbc8ca937fa7d0e4137273|5108449\n di 35 minuti fa: How to setup detailied logging in bind\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/660a81af13d9751f799495e655394a673c9e0e53|660a81a\n di 35 minuti fa: bashisms.. :)\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/f063aa0545eb12bb31d81aa2a12ec9faae6cc48e|f063aa0\n di 35 minuti fa: added atom keybindings cheetsheet\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/187415076ff2527185fb2f5cf5605b84d9c8fb69|1874150\n di 36 minuti fa: More cookbooks on puppet code\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/e88f3c8983c86cf4db26fdb3e44dff443d6c1d43|e88f3c8\n di 12 giorni fa: added cisco page\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/43ebdd0d52bf505f0734eec8b98284b3cec471e7|43ebdd0\n di 4 settimane fa: added example of an Exec with execution on each N days\n\n\nlorello commit \nhttps://github.com/lorello/lorello.github.io/commit/5e95ccaad8a20878bea5334801a85005d51ab8a8|5e95cca\n di 4 settimane fa: Added logging setup for apache/mod_php", 
+            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/fd108b2387591000d0389d81de7589953ac28181|fd108b2\n di 2 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/b3295130edec70d3af4222470b26d7898f183a72|b329513\n di 3 minutes ago: minor format change\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/7ba8d303abed25623e73faa43dc3393987fb6be1|7ba8d30\n di 14 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/50dfa2bf2a90e82bd35876aa2503d62a5785b2fa|50dfa2b\n di 16 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/1e55e02c334a4d80317a1e4f9fa6609e45b6dca4|1e55e02\n di 16 minutes ago: More info on systemd services config\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/557cf4b1476428a725f46cfb93fdf6112c1e5151|557cf4b\n di 4 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/8a300df88539c47d9309fced35fa229ae6fccdae|8a300df\n di 4 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/8041de80f71855137df24290abdccca397ee805c|8041de8\n di 4 weeks ago: small updates", 
             "title": "Changelog"
         }, 
         {
@@ -241,8 +291,28 @@
             "title": "Routing"
         }, 
         {
+            "location": "/lvm/", 
+            "text": "Managing Logical Volumes\n\n\nImagine to manage SDB\n\n\nCreate an LVM-ready partition /dev/sdb1\n\n\nNot strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition\n\n\nfdisk /dev/sdb\nn p 1 t 8e p w\n\n\n\nAdd LVM Magic\n\n\npvcreate /dev/sdb1\nvgcreate hdd_vg /dev/sdb1\nlvcreate -L 150G -n vmware hdd_vg\n\nmkfs -t ext4 /dev/hdd_vg/vmstore\n\nblkid /dev/hdd_vg/vmstore\n\nmkdir -p /mnt/vmstore\n\n\n\nedit \n/etc/fstab\n accordingly then\n\n\nmount -a", 
+            "title": "Lvm"
+        }, 
+        {
+            "location": "/lvm/#managing-logical-volumes", 
+            "text": "Imagine to manage SDB", 
+            "title": "Managing Logical Volumes"
+        }, 
+        {
+            "location": "/lvm/#create-an-lvm-ready-partition-devsdb1", 
+            "text": "Not strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition  fdisk /dev/sdb\nn p 1 t 8e p w", 
+            "title": "Create an LVM-ready partition /dev/sdb1"
+        }, 
+        {
+            "location": "/lvm/#add-lvm-magic", 
+            "text": "pvcreate /dev/sdb1\nvgcreate hdd_vg /dev/sdb1\nlvcreate -L 150G -n vmware hdd_vg\n\nmkfs -t ext4 /dev/hdd_vg/vmstore\n\nblkid /dev/hdd_vg/vmstore\n\nmkdir -p /mnt/vmstore  edit  /etc/fstab  accordingly then  mount -a", 
+            "title": "Add LVM Magic"
+        }, 
+        {
             "location": "/mysql/", 
-            "text": "MySQL\n\n\nDebug connections problem\n\n\n# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql\n show processlist;\n\n\n\nUsers\n\n\nmysql\n CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql\n SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql\n SELECT PASSWORD('mypass');\n\n\n\nGrants\n\n\nmysql\n SHOW GRANTS FOR 'francis'@'localhost';\nmysql\n GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nTo change password or resource limits for an existing user, without \nchanging privileges\n\n\nmysql\n GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nDumps\n\n\n# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME \n dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;", 
+            "text": "MySQL\n\n\nDebug connections problem\n\n\n# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql\n show processlist;\n\n\n\nUsers\n\n\nmysql\n CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql\n SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql\n SELECT PASSWORD('mypass');\n\n\n\nGrants\n\n\nmysql\n SHOW GRANTS FOR 'francis'@'localhost';\nmysql\n GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nTo change password or resource limits for an existing user, without \nchanging privileges\n\n\nmysql\n GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nDumps\n\n\n# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME \n dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;\n\n\n\nMysql Replica\n\n\nmysql\n GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql\n FLUSH PRIVILEGES;\n\nmysql\n CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;\n\n\nmysql\n SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;", 
             "title": "Mysql"
         }, 
         {
@@ -269,6 +339,11 @@
             "location": "/mysql/#dumps", 
             "text": "# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME   dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;", 
             "title": "Dumps"
+        }, 
+        {
+            "location": "/mysql/#mysql-replica", 
+            "text": "mysql  GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql  FLUSH PRIVILEGES;\n\nmysql  CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;\n\n\nmysql  SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;", 
+            "title": "Mysql Replica"
         }, 
         {
             "location": "/nginx/", 
@@ -307,12 +382,12 @@
         }, 
         {
             "location": "/openssl/", 
-            "text": "OpenSSL\n\n\nCreate private key\n\n\nopenssl genrsa -des3 -out server.key 1024\n\n\n\nGenerate a CSR (Certificate Signing Request)\n\n\nopenssl req -new -key server.key -out server.csr\n\n\n\nRemove Passphrase from Key\n\n\nopenssl rsa -in server-with-passphrase.key -out server.key\n\n\n\nGenerating a Self-Signed Certificate\n\n\nopenssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt\n\n\n\nConvert x509 to pem\n\n\nopenssl x509 -inform der -in server.crt -out server.pem\n\n\n\npkcs12 to pem \u2013 key only\n\n\nopenssl pkcs12 -nocerts -in c:\\server.pfx -out c:\\server-key.key\n\n\n\npkcs12 to pem \u2013 certificate only\n\n\nopenssl pkcs12 -nokeys -in server.pfx -out server-cert.cer\n\n\n\nCheck a private key\n\n\nopenssl rsa -in privateKey.key -check\n\n\n\nCheck a certificate\n\n\nopenssl x509 -in certificate.crt -text -noout", 
+            "text": "OpenSSL\n\n\nCreate private key\n\n\nopenssl genrsa -des3 -out server.key 1024\n\n\n\nGenerate a CSR (Certificate Signing Request)\n\n\nopenssl req -new -key server.key -out server.csr\n\n\n\nRemove Passphrase from Key\n\n\nopenssl rsa -in server-with-passphrase.key -out server.key\n\n\n\nGenerating a Self-Signed Certificate\n\n\nopenssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt\n\n\n\nConvert x509 to pem\n\n\nopenssl x509 -inform der -in server.crt -out server.pem\n\n\n\npkcs12 to pem \u2013 key only\n\n\nopenssl pkcs12 -nocerts -in c:\\server.pfx -out c:\\server-key.key\n\n\n\npkcs12 to pem \u2013 certificate only\n\n\nopenssl pkcs12 -nokeys -in server.pfx -out server-cert.cer\n\n\n\nCheck a private key\n\n\nopenssl rsa -in privateKey.key -check\n\n\n\nCheck a certificate\n\n\nopenssl x509 -in certificate.crt -text -noout\n\n\n\nsplit pfx file\n\n\nopenssl pkcs12 -in your.pfx -clcerts -nokeys -out yourcert.pem\nopenssl pkcs12 -in your.pfx -nocerts -out yourkey.pem", 
             "title": "Openssl"
         }, 
         {
             "location": "/openssl/#openssl", 
-            "text": "Create private key  openssl genrsa -des3 -out server.key 1024  Generate a CSR (Certificate Signing Request)  openssl req -new -key server.key -out server.csr  Remove Passphrase from Key  openssl rsa -in server-with-passphrase.key -out server.key  Generating a Self-Signed Certificate  openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt  Convert x509 to pem  openssl x509 -inform der -in server.crt -out server.pem  pkcs12 to pem \u2013 key only  openssl pkcs12 -nocerts -in c:\\server.pfx -out c:\\server-key.key  pkcs12 to pem \u2013 certificate only  openssl pkcs12 -nokeys -in server.pfx -out server-cert.cer  Check a private key  openssl rsa -in privateKey.key -check  Check a certificate  openssl x509 -in certificate.crt -text -noout", 
+            "text": "Create private key  openssl genrsa -des3 -out server.key 1024  Generate a CSR (Certificate Signing Request)  openssl req -new -key server.key -out server.csr  Remove Passphrase from Key  openssl rsa -in server-with-passphrase.key -out server.key  Generating a Self-Signed Certificate  openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt  Convert x509 to pem  openssl x509 -inform der -in server.crt -out server.pem  pkcs12 to pem \u2013 key only  openssl pkcs12 -nocerts -in c:\\server.pfx -out c:\\server-key.key  pkcs12 to pem \u2013 certificate only  openssl pkcs12 -nokeys -in server.pfx -out server-cert.cer  Check a private key  openssl rsa -in privateKey.key -check  Check a certificate  openssl x509 -in certificate.crt -text -noout  split pfx file  openssl pkcs12 -in your.pfx -clcerts -nokeys -out yourcert.pem\nopenssl pkcs12 -in your.pfx -nocerts -out yourkey.pem", 
             "title": "OpenSSL"
         }, 
         {
@@ -387,18 +462,98 @@
         }, 
         {
             "location": "/puppet/#cookbooks", 
-            "text": "Validating  validate_re($ensure, '(present|absent)', \"ensure must be 'present' or 'absent', checked value is '$ensure'\")  Making a private class  if $caller_module_name != $module_name {\n  warning(\"${name} is not part of the public API of the ${module_name} module and should not be directly included in the manifest.\")\n}  Make an Exec run one time in N days  exec { 'update composer':\n  command =  \"wget ${source} -O ${destination}\",\n          onlyif  =  \"test `find '${destination}' -mtime +${max_age}`\",\n          path    =  [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/'  ],\n          require =  File[$destination],\n}  Validate ensure parameter  validate_re($ensure, [ '^installed$', '^present$', '^absent$', '^latest$' ])  Debug Facter   Hiera  puppet facts find FACTNAME  Make the resource myresource configurable through hiera hash  class myclass (\n  $values = {},\n){\n\n  validate_hash($values)\n\n  # ensure merging of hiera levels\n  $hiera_values = hiera_hash('myclass::values', {})     # this merge multiple levels\n  $real_values = $hiera_values ? {\n    undef   =  $values,                                 # default values are the class parameter ones\n    default =  $hiera_values,                           # if exists, hiera values has precedence\n  }\n\n  if $real_values {\n    create_resources('myresource', $real_values)\n  }  Check for OS family and version  case $::osfamily {\n  'Debian': {\n    # do common debian/ubuntu things\n    case $::operatingsystem {\n      'Debian': {\n        if versioncmp($::lsbmajdistrelease, '8')   0 {\n          # do specific things for Debian  = 8\n        }\n      }\n      'Ubuntu': {\n        # do specific things for Ubuntu\n      }\n      default: {\n        fail(\"Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support operatingsystem Debian and Ubuntu on osfamily Debian\")\n      }\n    }\n  }\n  'RedHat': {\n    # do specific things for RedHat\n  }\n  default: {\n    fail(\"Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian and RedHat\")\n  }", 
+            "text": "", 
             "title": "Cookbooks"
         }, 
         {
+            "location": "/puppet/#validating", 
+            "text": "validate_re($ensure, '(present|absent)', \"ensure must be 'present' or 'absent', checked value is '$ensure'\")", 
+            "title": "Validating"
+        }, 
+        {
+            "location": "/puppet/#making-a-private-class", 
+            "text": "if $caller_module_name != $module_name {\n  warning(\"${name} is not part of the public API of the ${module_name} module and should not be directly included in the manifest.\")\n}", 
+            "title": "Making a private class"
+        }, 
+        {
+            "location": "/puppet/#make-an-exec-run-one-time-in-n-days", 
+            "text": "exec { 'update composer':\n  command =  \"wget ${source} -O ${destination}\",\n          onlyif  =  \"test `find '${destination}' -mtime +${max_age}`\",\n          path    =  [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/'  ],\n          require =  File[$destination],\n}", 
+            "title": "Make an Exec run one time in N days"
+        }, 
+        {
+            "location": "/puppet/#validate-ensure-parameter", 
+            "text": "validate_re($ensure, [ '^installed$', '^present$', '^absent$', '^latest$' ])", 
+            "title": "Validate ensure parameter"
+        }, 
+        {
+            "location": "/puppet/#debug-facter-hiera", 
+            "text": "puppet facts find FACTNAME", 
+            "title": "Debug Facter &amp;&amp; Hiera"
+        }, 
+        {
+            "location": "/puppet/#make-the-resource-myresource-configurable-through-hiera-hash", 
+            "text": "class myclass (\n  $values = {},\n){\n\n  validate_hash($values)\n\n  # ensure merging of hiera levels\n  $hiera_values = hiera_hash('myclass::values', {})     # this merge multiple levels\n  $real_values = $hiera_values ? {\n    undef   =  $values,                                 # default values are the class parameter ones\n    default =  $hiera_values,                           # if exists, hiera values has precedence\n  }\n\n  if $real_values {\n    create_resources('myresource', $real_values)\n  }", 
+            "title": "Make the resource myresource configurable through hiera hash"
+        }, 
+        {
+            "location": "/puppet/#check-for-os-family-and-version", 
+            "text": "case $::osfamily {\n  'Debian': {\n    # do common debian/ubuntu things\n    case $::operatingsystem {\n      'Debian': {\n        if versioncmp($::lsbmajdistrelease, '8')   0 {\n          # do specific things for Debian  = 8\n        }\n      }\n      'Ubuntu': {\n        # do specific things for Ubuntu\n      }\n      default: {\n        fail(\"Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support operatingsystem Debian and Ubuntu on osfamily Debian\")\n      }\n    }\n  }\n  'RedHat': {\n    # do specific things for RedHat\n  }\n  default: {\n    fail(\"Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian and RedHat\")\n  }", 
+            "title": "Check for OS family and version"
+        }, 
+        {
+            "location": "/raid/", 
+            "text": "Linux Software Raid (MdAdm)\n\n\nRecover a standalone disk from RAID1 failure\n\n\n# Connect disk, suppose it get recognized as /dev/sdb\n\n# Array it's probably assembled automatically as `/dev/mdNNN`, but _inactive_\nroot@motoko:~# cat /proc/mdstat\nPersonalities : [linear] [multipath] [raid0] [raid1] [raid6] [raid5] [raid4] [raid10]\nmd125 : inactive sdb6[0](S)\n  953321472 blocks super 1.2\n\nmd126 : inactive sdb1[0](S)\n  19529728 blocks super 1.2\n\nmd127 : inactive sdb5[1](S)\n  3905528 blocks super 1.2\n\nroot@motoko:~# mdadm --stop /dev/md125\n\nroot@motoko:~# mdadm --assemble --force /dev/md0 /dev/sdb6`\nmdadm: /dev/md0 has been started with 1 drive (out of 2).\n\nroot@motoko:~# cat /proc/mdstat\nPersonalities : [linear] [multipath] [raid0] [raid1] [raid6] [raid5] [raid4] [raid10]\nmd0 : active raid1 sdb6[0]\n      953321336 blocks super 1.2 [2/1] [U_]\n\nunused devices: \nnone\n\n\nroot@motoko:~# mkdir /mnt/recovery\nroot@motoko:~# mount /dev/md0 /mnt/recovery\n\n# if fails try also\nroot@motoko:~# fsck -p /dev/md0", 
+            "title": "Raid"
+        }, 
+        {
+            "location": "/raid/#linux-software-raid-mdadm", 
+            "text": "", 
+            "title": "Linux Software Raid (MdAdm)"
+        }, 
+        {
+            "location": "/raid/#recover-a-standalone-disk-from-raid1-failure", 
+            "text": "# Connect disk, suppose it get recognized as /dev/sdb\n\n# Array it's probably assembled automatically as `/dev/mdNNN`, but _inactive_\nroot@motoko:~# cat /proc/mdstat\nPersonalities : [linear] [multipath] [raid0] [raid1] [raid6] [raid5] [raid4] [raid10]\nmd125 : inactive sdb6[0](S)\n  953321472 blocks super 1.2\n\nmd126 : inactive sdb1[0](S)\n  19529728 blocks super 1.2\n\nmd127 : inactive sdb5[1](S)\n  3905528 blocks super 1.2\n\nroot@motoko:~# mdadm --stop /dev/md125\n\nroot@motoko:~# mdadm --assemble --force /dev/md0 /dev/sdb6`\nmdadm: /dev/md0 has been started with 1 drive (out of 2).\n\nroot@motoko:~# cat /proc/mdstat\nPersonalities : [linear] [multipath] [raid0] [raid1] [raid6] [raid5] [raid4] [raid10]\nmd0 : active raid1 sdb6[0]\n      953321336 blocks super 1.2 [2/1] [U_]\n\nunused devices:  none \n\nroot@motoko:~# mkdir /mnt/recovery\nroot@motoko:~# mount /dev/md0 /mnt/recovery\n\n# if fails try also\nroot@motoko:~# fsck -p /dev/md0", 
+            "title": "Recover a standalone disk from RAID1 failure"
+        }, 
+        {
             "location": "/services/", 
-            "text": "Services\n\n\nWhat services are started on boot?\n\n\nservice --status-all\n\n\n\n\n\n[ + ] \u2013 Services with this sign are currently running.\n\n\n[ \u2013 ] \u2013 Services with this sign are not currently running..\n\n\n[ ? ] \u2013 Services that do not have a status switch.\n\n\n\n\nRemove a service\n\n\nupdate-rc.d -f apache2 remove\n\n\n\nAdd a service\n\n\nupdate-rc.d apache2 defaults", 
+            "text": "Services\n\n\nWhat services are started on boot?\n\n\nservice --status-all\n\n\n\n\n\n[ + ] \u2013 Services with this sign are currently running.\n\n\n[ \u2013 ] \u2013 Services with this sign are not currently running..\n\n\n[ ? ] \u2013 Services that do not have a status switch.\n\n\n\n\nRemove a service\n\n\nupdate-rc.d -f apache2 remove\n\n\n\nAdd a service\n\n\nupdate-rc.d apache2 defaults\n\n\n\nSystemd\n\n\nFiles path\n\n\n/usr/lib/systemd\n  /user\n  /system\n\n~/.config/systemd\n  /user\n\n\n\nUseful commands\n\n\nsystemctl (enable|try-reload-or-restart|list-units|kill|status|show|cat) \nNAME", 
             "title": "Services"
         }, 
         {
             "location": "/services/#services", 
             "text": "What services are started on boot?  service --status-all   [ + ] \u2013 Services with this sign are currently running.  [ \u2013 ] \u2013 Services with this sign are not currently running..  [ ? ] \u2013 Services that do not have a status switch.   Remove a service  update-rc.d -f apache2 remove  Add a service  update-rc.d apache2 defaults", 
             "title": "Services"
+        }, 
+        {
+            "location": "/services/#systemd", 
+            "text": "Files path  /usr/lib/systemd\n  /user\n  /system\n\n~/.config/systemd\n  /user  Useful commands  systemctl (enable|try-reload-or-restart|list-units|kill|status|show|cat)  NAME", 
+            "title": "Systemd"
+        }, 
+        {
+            "location": "/systemd/", 
+            "text": "SystemD\n\n\nServices has a new name... happy! They are now \nunits\n\n\npaths\n\n\n/lib/systemd/system\n\n\n\nsystem logs\n\n\nShow current logs\n\n\njournalctl -n         # show onetime\njournalctl -f         # tail logs\n\n\n\nShow today logs from two units:\n\n\njournalctl -u nginx.service -u php-fpm.service --since today\n\n\n\nShow kernel logs\n\n\njournalctl -k                # last boot\njournalctl -k -b -5          # five boots ago\n\n\n\nShow by field (\nman systemd.journal-fields\n)\n\n\njournalctl _UID=33 --since today\n\n\n\nShow only error messages, from boot\n\n\njournalctl -p err -b\n\n\n\nOther interesting options\n\n\n--no-pager        # don't use more\n--no-full         # truncate at last column\n-a                # show all, even non printable chars\n\n\n\nOverride a systemd profile\n\n\nTo override some attributes inside example.service, create\n\n\n/etc/systemd/system/example.service.d/mycustom.conf\n\n\n\nand write there you customizations", 
+            "title": "Systemd"
+        }, 
+        {
+            "location": "/systemd/#systemd", 
+            "text": "Services has a new name... happy! They are now  units", 
+            "title": "SystemD"
+        }, 
+        {
+            "location": "/systemd/#paths", 
+            "text": "/lib/systemd/system", 
+            "title": "paths"
+        }, 
+        {
+            "location": "/systemd/#system-logs", 
+            "text": "Show current logs  journalctl -n         # show onetime\njournalctl -f         # tail logs  Show today logs from two units:  journalctl -u nginx.service -u php-fpm.service --since today  Show kernel logs  journalctl -k                # last boot\njournalctl -k -b -5          # five boots ago  Show by field ( man systemd.journal-fields )  journalctl _UID=33 --since today  Show only error messages, from boot  journalctl -p err -b  Other interesting options  --no-pager        # don't use more\n--no-full         # truncate at last column\n-a                # show all, even non printable chars", 
+            "title": "system logs"
+        }, 
+        {
+            "location": "/systemd/#override-a-systemd-profile", 
+            "text": "To override some attributes inside example.service, create  /etc/systemd/system/example.service.d/mycustom.conf  and write there you customizations", 
+            "title": "Override a systemd profile"
         }, 
         {
             "location": "/zfs/", 
@@ -417,8 +572,13 @@
         }, 
         {
             "location": "/zfs/#dataset-and-volumes", 
-            "text": "Managing volumes  zfs create $pool/$volume\nzfs destroy $pool/$volume\nzfs status  Volume options  zfs create -o dedup=on -o compression=on -o mountpoint=/mnt/var tank/myvar  same as  zfs create tank/myvar\nzfs set mountopoint=/mnt/var tank/myvar\nzfs set dedup=on tank/myvar\nzfs set compression=on tank/myvar  verify options  zfs get all tank/myvar", 
+            "text": "Managing volumes  zfs create $pool/$volume\nzfs destroy $pool/$volume\nzfs status", 
             "title": "Dataset and volumes"
+        }, 
+        {
+            "location": "/zfs/#volume-options", 
+            "text": "zfs create -o dedup=on -o compression=on -o mountpoint=/mnt/var tank/myvar  same as  zfs create tank/myvar\nzfs set mountopoint=/mnt/var tank/myvar\nzfs set dedup=on tank/myvar\nzfs set compression=on tank/myvar  verify options  zfs get all tank/myvar", 
+            "title": "Volume options"
         }
     ]
 }

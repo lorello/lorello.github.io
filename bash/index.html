@@ -3,7 +3,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   
   <title>Bash - Lorello technical notes</title>
   
@@ -21,6 +24,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Bash";
+    var mkdocs_page_input_path = "bash.md";
+    var mkdocs_page_url = "/bash/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -76,7 +81,9 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#binsh">!/bin/sh</a></li>
+                <li class="toctree-l3"><a href="#bashism">Bashism</a></li>
+                
+                    <li><a class="toctree-l4" href="#loops">Loops</a></li>
                 
             
             </ul>
@@ -87,6 +94,13 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../bind/">Bind</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../centos/">Centos</a>
         
     </li>
 <li>
@@ -122,6 +136,13 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../ip/">Ip</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../lvm/">Lvm</a>
         
     </li>
 <li>
@@ -184,7 +205,21 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../raid/">Raid</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../services/">Services</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../systemd/">Systemd</a>
         
     </li>
 <li>
@@ -232,11 +267,24 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="binsh">!/bin/sh</h1>
-<p>list=/tmp/blacklists/porn/domains
-cat $list | while read domain
-do</p>
-<p>done</p>
+                <h1 id="bashism">Bashism</h1>
+<h2 id="loops">Loops</h2>
+<p>Loop on a rows of a text file</p>
+<pre><code>#!/bin/sh
+list=/tmp/blacklists/porn/domains
+cat $list | while read domains
+do
+    echo $domains
+done
+</code></pre>
+<p>Loop on a counter</p>
+<pre><code>counter=1
+while [ $counter -le 10 ]
+do
+echo $counter
+((counter++))
+done
+</code></pre>
               
             </div>
           </div>
@@ -244,7 +292,7 @@ do</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../bind/" class="btn btn-neutral float-right" title="Bind"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../bind/" class="btn btn-neutral float-right" title="Bind">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../atom/" class="btn btn-neutral" title="Atom"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -274,7 +322,7 @@ do</p>
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/lorello/lorello.github.io/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../atom/" style="color: #fcfcfc;">&laquo; Previous</a></span>

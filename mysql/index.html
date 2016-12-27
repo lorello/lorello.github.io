@@ -3,7 +3,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   
   <title>Mysql - Lorello technical notes</title>
   
@@ -21,6 +24,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Mysql";
+    var mkdocs_page_input_path = "mysql.md";
+    var mkdocs_page_url = "/mysql/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -86,6 +91,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../centos/">Centos</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../changelog/">Changelog</a>
         
     </li>
@@ -120,6 +132,13 @@
 <li>
           
             <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../lvm/">Lvm</a>
+        
+    </li>
+<li>
+          
+            <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Mysql</a>
         
@@ -134,6 +153,8 @@
                     <li><a class="toctree-l4" href="#grants">Grants</a></li>
                 
                     <li><a class="toctree-l4" href="#dumps">Dumps</a></li>
+                
+                    <li><a class="toctree-l4" href="#mysql-replica">Mysql Replica</a></li>
                 
             
             </ul>
@@ -192,7 +213,21 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../raid/">Raid</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../services/">Services</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../systemd/">Systemd</a>
         
     </li>
 <li>
@@ -268,6 +303,20 @@ mysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME &
 SET AUTOCOMMIT=0;
 SET FOREIGN_KEY_CHECKS=0;
 </code></pre>
+<h2 id="mysql-replica">Mysql Replica</h2>
+<pre><code>mysql&gt; GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';
+mysql&gt; FLUSH PRIVILEGES;
+
+mysql&gt; CHANGE MASTER TO 
+MASTER_HOST='12.34.56.789',
+MASTER_USER='slave_user',
+MASTER_PASSWORD='password',
+MASTER_LOG_FILE='mysql-bin.000001',
+MASTER_LOG_POS=107;
+
+
+mysql&gt; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;
+</code></pre>
               
             </div>
           </div>
@@ -275,10 +324,10 @@ SET FOREIGN_KEY_CHECKS=0;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../nginx/" class="btn btn-neutral float-right" title="Nginx"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../nginx/" class="btn btn-neutral float-right" title="Nginx">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../ip/" class="btn btn-neutral" title="Ip"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../lvm/" class="btn btn-neutral" title="Lvm"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -305,10 +354,10 @@ SET FOREIGN_KEY_CHECKS=0;
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/lorello/lorello.github.io/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../ip/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../lvm/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../nginx/" style="color: #fcfcfc">Next &raquo;</a></span>

@@ -8,7 +8,7 @@
   
   <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   
-  <title>Postfix - Lorello technical notes</title>
+  <title>Systemd - Lorello technical notes</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Postfix";
-    var mkdocs_page_input_path = "postfix.md";
-    var mkdocs_page_url = "/postfix/";
+    var mkdocs_page_name = "Systemd";
+    var mkdocs_page_input_path = "systemd.md";
+    var mkdocs_page_url = "/systemd/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -181,17 +181,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Postfix</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#postfix-mail-server">Postfix mail server</a></li>
-                
-                    <li><a class="toctree-l4" href="#debug-commands">Debug commands</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../postfix/">Postfix</a>
         
     </li>
 <li>
@@ -218,8 +209,21 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../systemd/">Systemd</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Systemd</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#systemd">SystemD</a></li>
+                
+                    <li><a class="toctree-l4" href="#paths">paths</a></li>
+                
+                    <li><a class="toctree-l4" href="#system-logs">system logs</a></li>
+                
+                    <li><a class="toctree-l4" href="#override-a-systemd-profile">Override a systemd profile</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -253,7 +257,7 @@
     
       
     
-    <li>Postfix</li>
+    <li>Systemd</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -267,12 +271,39 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="postfix-mail-server">Postfix mail server</h1>
-<h2 id="debug-commands">Debug commands</h2>
-<p>Who is using the server to send messages?</p>
-<pre><code>find /var/spool/postfix/deferred -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'
-find /var/spool/postfix/active -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'
+                <h1 id="systemd">SystemD</h1>
+<p>Services has a new name... happy! They are now <em>units</em></p>
+<h2 id="paths">paths</h2>
+<pre><code>/lib/systemd/system
 </code></pre>
+<h2 id="system-logs">system logs</h2>
+<p>Show current logs</p>
+<pre><code>journalctl -n         # show onetime
+journalctl -f         # tail logs
+</code></pre>
+<p>Show today logs from two units:</p>
+<pre><code>journalctl -u nginx.service -u php-fpm.service --since today
+</code></pre>
+<p>Show kernel logs</p>
+<pre><code>journalctl -k                # last boot
+journalctl -k -b -5          # five boots ago
+</code></pre>
+<p>Show by field (<code>man systemd.journal-fields</code>)</p>
+<pre><code>journalctl _UID=33 --since today
+</code></pre>
+<p>Show only error messages, from boot</p>
+<pre><code>journalctl -p err -b
+</code></pre>
+<p>Other interesting options</p>
+<pre><code>--no-pager        # don't use more
+--no-full         # truncate at last column
+-a                # show all, even non printable chars
+</code></pre>
+<h2 id="override-a-systemd-profile">Override a systemd profile</h2>
+<p>To override some attributes inside example.service, create</p>
+<pre><code>/etc/systemd/system/example.service.d/mycustom.conf
+</code></pre>
+<p>and write there you customizations</p>
               
             </div>
           </div>
@@ -280,10 +311,10 @@ find /var/spool/postfix/active -type f | xargs -n1 basename | xargs postcat -q |
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../puppet/" class="btn btn-neutral float-right" title="Puppet">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../zfs/" class="btn btn-neutral float-right" title="Zfs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../poormanvpn/" class="btn btn-neutral" title="Poormanvpn"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../services/" class="btn btn-neutral" title="Services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -313,10 +344,10 @@ find /var/spool/postfix/active -type f | xargs -n1 basename | xargs postcat -q |
           <a href="https://github.com/lorello/lorello.github.io/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../poormanvpn/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../services/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../puppet/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../zfs/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

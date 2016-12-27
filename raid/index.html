@@ -8,7 +8,7 @@
   
   <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   
-  <title>Postfix - Lorello technical notes</title>
+  <title>Raid - Lorello technical notes</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Postfix";
-    var mkdocs_page_input_path = "postfix.md";
-    var mkdocs_page_url = "/postfix/";
+    var mkdocs_page_name = "Raid";
+    var mkdocs_page_input_path = "raid.md";
+    var mkdocs_page_url = "/raid/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -181,17 +181,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Postfix</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#postfix-mail-server">Postfix mail server</a></li>
-                
-                    <li><a class="toctree-l4" href="#debug-commands">Debug commands</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../postfix/">Postfix</a>
         
     </li>
 <li>
@@ -204,8 +195,17 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../raid/">Raid</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Raid</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#linux-software-raid-mdadm">Linux Software Raid (MdAdm)</a></li>
+                
+                    <li><a class="toctree-l4" href="#recover-a-standalone-disk-from-raid1-failure">Recover a standalone disk from RAID1 failure</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -253,7 +253,7 @@
     
       
     
-    <li>Postfix</li>
+    <li>Raid</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -267,11 +267,39 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="postfix-mail-server">Postfix mail server</h1>
-<h2 id="debug-commands">Debug commands</h2>
-<p>Who is using the server to send messages?</p>
-<pre><code>find /var/spool/postfix/deferred -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'
-find /var/spool/postfix/active -type f | xargs -n1 basename | xargs postcat -q | grep 'Authenticated sender'
+                <h1 id="linux-software-raid-mdadm">Linux Software Raid (MdAdm)</h1>
+<h2 id="recover-a-standalone-disk-from-raid1-failure">Recover a standalone disk from RAID1 failure</h2>
+<pre><code># Connect disk, suppose it get recognized as /dev/sdb
+
+# Array it's probably assembled automatically as `/dev/mdNNN`, but _inactive_
+root@motoko:~# cat /proc/mdstat
+Personalities : [linear] [multipath] [raid0] [raid1] [raid6] [raid5] [raid4] [raid10]
+md125 : inactive sdb6[0](S)
+  953321472 blocks super 1.2
+
+md126 : inactive sdb1[0](S)
+  19529728 blocks super 1.2
+
+md127 : inactive sdb5[1](S)
+  3905528 blocks super 1.2
+
+root@motoko:~# mdadm --stop /dev/md125
+
+root@motoko:~# mdadm --assemble --force /dev/md0 /dev/sdb6`
+mdadm: /dev/md0 has been started with 1 drive (out of 2).
+
+root@motoko:~# cat /proc/mdstat
+Personalities : [linear] [multipath] [raid0] [raid1] [raid6] [raid5] [raid4] [raid10]
+md0 : active raid1 sdb6[0]
+      953321336 blocks super 1.2 [2/1] [U_]
+
+unused devices: &lt;none&gt;
+
+root@motoko:~# mkdir /mnt/recovery
+root@motoko:~# mount /dev/md0 /mnt/recovery
+
+# if fails try also
+root@motoko:~# fsck -p /dev/md0
 </code></pre>
               
             </div>
@@ -280,10 +308,10 @@ find /var/spool/postfix/active -type f | xargs -n1 basename | xargs postcat -q |
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../puppet/" class="btn btn-neutral float-right" title="Puppet">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../services/" class="btn btn-neutral float-right" title="Services">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../poormanvpn/" class="btn btn-neutral" title="Poormanvpn"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../puppet/" class="btn btn-neutral" title="Puppet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -313,10 +341,10 @@ find /var/spool/postfix/active -type f | xargs -n1 basename | xargs postcat -q |
           <a href="https://github.com/lorello/lorello.github.io/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../poormanvpn/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../puppet/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../puppet/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../services/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
