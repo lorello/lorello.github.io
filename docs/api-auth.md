@@ -1,8 +1,10 @@
 # API Authentication using HMAC Hashing
 
+An Example in PHP
+
 Source http://websec.io/2013/02/14/API-Authentication-Public-Private-Hashes.html
 
-HMAC means hash-based message authentication code''
+HMAC means hash-based message authentication code
 
 ## Generate a Secret HASH
 
