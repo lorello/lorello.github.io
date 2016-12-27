@@ -1,6 +1,7 @@
 site_name: Lorello technical notes
 theme: readthedocs
 #site_url: 
+remote_branch: master
 repo_url: https://github.com/lorello/lorello.github.io/
 site_description: "Unordered technical notes from LoreLLo"
 site_author: "Lorenzo Salvadorini aka LoreLLo"

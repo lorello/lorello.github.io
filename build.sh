@@ -13,4 +13,4 @@ git commit -m "Updated changelog" ./docs/changelog.md
 git push origin mkdocs
 
 # GitHub personal page: https://github.com/mkdocs/mkdocs/issues/354
-mkdocs gh-deploy --clean --remote-branch master
+mkdocs gh-deploy --clean 
