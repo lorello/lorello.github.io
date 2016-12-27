@@ -1,5 +1,19 @@
 # Puppet resources
 
+## Bootstrap puppet agent on a fresh host
+
+    export PUPPET_SERVER=puppet.devops.it     # if you have one, but it's not mandatory
+    export PUPPET_ENVIRONMENT=production
+    export PUPPET_COLLECTION=pc1              # if not specified install puppet < 4
+    # when I can't change hostname in a self-speaking name, I use variable exported
+    # in /etc/profile.d/myhostname.sh to override the ugly hostname in prompt,
+    # puppet config, and wherever I can
+    [ -n "$MYHOSTNAME" ] && export PUPPET_CERTNAME=$MYHOSTNAME
+    export PUPPET_CRON=false                  # if you prefer to run manually
+    # bootstrap script, compatible with the main redhat/debian-based distros, osX and Windows
+    \curl -sSL https://git.io/v18L4 | sudo bash -s '' production
+
+
 ## Checking code
 
 Puppet syntax checks
