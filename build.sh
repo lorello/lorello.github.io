@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 git checkout mkdocs
 
 BASEURL=https://github.com/lorello/lorello.github.io/commit
@@ -8,4 +12,5 @@ git commit -m "Updated changelog" ./docs/changelog.md
 
 git push origin mkdocs
 
-mkdocs gh-deploy
+# GitHub personal page: https://github.com/mkdocs/mkdocs/issues/354
+mkdocs gh-deploy --clean --remote-branch master

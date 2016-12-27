@@ -22,7 +22,7 @@ and use directly sdb device, instead of a partition
     
     mkdir -p /mnt/vmstore
 
-edit /etc/fstab accordingly then
+edit `/etc/fstab` accordingly then
 
     mount -a
 
