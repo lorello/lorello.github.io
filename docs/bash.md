@@ -1,5 +1,8 @@
 # Bashism
 
+I use a little library to have a common set of utilities out of the box in my
+bash scripts, it can be retrieved at https://github.com/lorello/lib.sh
+
 ## Loops
 
 Loop on a rows of a text file
