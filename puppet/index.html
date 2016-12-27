@@ -195,6 +195,8 @@
             
                 <li class="toctree-l3"><a href="#puppet-resources">Puppet resources</a></li>
                 
+                    <li><a class="toctree-l4" href="#bootstrap-puppet-agent-on-a-fresh-host">Bootstrap puppet agent on a fresh host</a></li>
+                
                     <li><a class="toctree-l4" href="#checking-code">Checking code</a></li>
                 
                     <li><a class="toctree-l4" href="#cookbooks">Cookbooks</a></li>
@@ -270,6 +272,19 @@
             <div class="section">
               
                 <h1 id="puppet-resources">Puppet resources</h1>
+<h2 id="bootstrap-puppet-agent-on-a-fresh-host">Bootstrap puppet agent on a fresh host</h2>
+<pre><code>export PUPPET_SERVER=puppet.devops.it     # if you have one, but it's not mandatory
+export PUPPET_ENVIRONMENT=production
+export PUPPET_COLLECTION=pc1              # if not specified install puppet &lt; 4
+# when I can't change hostname in a self-speaking name, I use variable exported
+# in /etc/profile.d/myhostname.sh to override the ugly hostname in prompt,
+# puppet config, and wherever I can
+[ -n "$MYHOSTNAME" ] &amp;&amp; export PUPPET_CERTNAME=$MYHOSTNAME
+export PUPPET_CRON=false                  # if you prefer to run manually
+# bootstrap script, compatible with the main redhat/debian-based distros, osX and Windows
+\curl -sSL https://git.io/v18L4 | sudo bash -s '' production
+</code></pre>
+<p>Detailed info and code of bootstrap scripts at https://github.com/lorello/puppet-bootstrap </p>
 <h2 id="checking-code">Checking code</h2>
 <p>Puppet syntax checks</p>
 <pre><code>puppet parser validate &lt;file.pp&gt;
