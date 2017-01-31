@@ -137,7 +137,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/0128f72b7c775e08cfb027d6bb8b36d727dadc86|0128f72\n di 3 seconds ago: added info on puppet bootstrap\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/fe098de08dcb1113be7f9f3206b55dfe53a1eb95|fe098de\n di 5 minutes ago: added info on puppet bootstrap\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/6f5ece12dbfb79103ec1a764b020c14edc1864b7|6f5ece1\n di 5 minutes ago: added info on lib.sh\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/ea552e88af0e96e85256a150dd6a13f309a58e06|ea552e8\n di 5 minutes ago: Little change to style\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/9483f64792affd9c76a29d9c9a84fcf3cf484b35|9483f64\n di 17 minutes ago: Moved mkdocs option 'remote branch' to config file\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/7b98e160c04695f86717fed741cefe8b5921888f|7b98e16\n di 30 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/fd108b2387591000d0389d81de7589953ac28181|fd108b2\n di 33 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/b3295130edec70d3af4222470b26d7898f183a72|b329513\n di 33 minutes ago: minor format change\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/7ba8d303abed25623e73faa43dc3393987fb6be1|7ba8d30\n di 44 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/50dfa2bf2a90e82bd35876aa2503d62a5785b2fa|50dfa2b\n di 46 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/1e55e02c334a4d80317a1e4f9fa6609e45b6dca4|1e55e02\n di 47 minutes ago: More info on systemd services config\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/557cf4b1476428a725f46cfb93fdf6112c1e5151|557cf4b\n di 4 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/8a300df88539c47d9309fced35fa229ae6fccdae|8a300df\n di 4 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/8041de80f71855137df24290abdccca397ee805c|8041de8\n di 4 weeks ago: small updates", 
+            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/377166bf40c33080a46c21446e98943b436db221|377166b\n di 7 seconds ago: more info on systemd", 
             "title": "Changelog"
         }, 
         {
@@ -537,17 +537,17 @@
         }, 
         {
             "location": "/systemd/", 
-            "text": "SystemD\n\n\nServices has a new name... happy! They are now \nunits\n\n\npaths\n\n\n/lib/systemd/system\n\n\n\nsystem logs\n\n\nShow current logs\n\n\njournalctl -n         # show onetime\njournalctl -f         # tail logs\n\n\n\nShow today logs from two units:\n\n\njournalctl -u nginx.service -u php-fpm.service --since today\n\n\n\nShow kernel logs\n\n\njournalctl -k                # last boot\njournalctl -k -b -5          # five boots ago\n\n\n\nShow by field (\nman systemd.journal-fields\n)\n\n\njournalctl _UID=33 --since today\n\n\n\nShow only error messages, from boot\n\n\njournalctl -p err -b\n\n\n\nOther interesting options\n\n\n--no-pager        # don't use more\n--no-full         # truncate at last column\n-a                # show all, even non printable chars\n\n\n\nOverride a systemd profile\n\n\nTo override some attributes inside example.service, create\n\n\n/etc/systemd/system/example.service.d/mycustom.conf\n\n\n\nand write there you customizations", 
+            "text": "SystemD\n\n\nServices has a new name... happy! They are now \nunits\n\n\nLook also:\n - https://wiki.ubuntu.com/SystemdForUpstartUsers\n\n\npaths\n\n\nCentral path system-wide\n    /lib/systemd/system\n\n\nPut general custom units in\n\n\n/etc/systemd/system/\n\n\n\nsystem logs\n\n\nShow current logs\n\n\njournalctl -n         # show onetime\njournalctl -f         # tail logs\n\n\n\nShow today logs from two units:\n\n\njournalctl -u nginx.service -u php-fpm.service --since today\n\n\n\nShow kernel logs\n\n\njournalctl -k                # last boot\njournalctl -k -b -5          # five boots ago\n\n\n\nShow by field (\nman systemd.journal-fields\n)\n\n\njournalctl _UID=33 --since today\n\n\n\nShow only error messages, from boot\n\n\njournalctl -p err -b\n\n\n\nOther interesting options\n\n\n--no-pager        # don't use more\n--no-full         # truncate at last column\n-a                # show all, even non printable chars\n\n\n\nOverride a systemd profile\n\n\nTo override some attributes inside example.service, create\n\n\n/etc/systemd/system/example.service.d/mycustom.conf\n\n\n\nand write there you customizations", 
             "title": "Systemd"
         }, 
         {
             "location": "/systemd/#systemd", 
-            "text": "Services has a new name... happy! They are now  units", 
+            "text": "Services has a new name... happy! They are now  units  Look also:\n - https://wiki.ubuntu.com/SystemdForUpstartUsers", 
             "title": "SystemD"
         }, 
         {
             "location": "/systemd/#paths", 
-            "text": "/lib/systemd/system", 
+            "text": "Central path system-wide\n    /lib/systemd/system  Put general custom units in  /etc/systemd/system/", 
             "title": "paths"
         }, 
         {
