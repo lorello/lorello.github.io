@@ -2,9 +2,18 @@
 
 Services has a new name... happy! They are now *units*
 
+Look also:
+ - https://wiki.ubuntu.com/SystemdForUpstartUsers
+
 ## paths
 
+Central path system-wide
     /lib/systemd/system
+
+Put general custom units in
+
+    /etc/systemd/system/
+
 
 ## system logs
 
