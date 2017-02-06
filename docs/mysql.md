@@ -45,5 +45,8 @@ changing privileges
 	MASTER_LOG_FILE='mysql-bin.000001',
 	MASTER_LOG_POS=107;
 
+Fix single errors on replication:
 
-    mysql> SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;
+    mysql> STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;
+
+
