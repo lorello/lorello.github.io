@@ -137,7 +137,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/377166bf40c33080a46c21446e98943b436db221|377166b\n di 7 seconds ago: more info on systemd", 
+            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/2cb6221ba2676f2a2fa6524a8de097d27f03dae1|2cb6221\n di 4 seconds ago: Fixed command to fix replication error\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/bea5d5e2da1d0dfdef75523ade4207182ff0d9e9|bea5d5e\n di 6 days ago: Added port and cmd\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/be53ebebca8f9a3d0857ce008fa60fc23bae1669|be53ebe\n di 6 days ago: Added dockerfile\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/e51701313eee82d30b1594c2a607a702f1e497b1|e517013\n di 6 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/377166bf40c33080a46c21446e98943b436db221|377166b\n di 6 days ago: more info on systemd", 
             "title": "Changelog"
         }, 
         {
@@ -312,7 +312,7 @@
         }, 
         {
             "location": "/mysql/", 
-            "text": "MySQL\n\n\nDebug connections problem\n\n\n# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql\n show processlist;\n\n\n\nUsers\n\n\nmysql\n CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql\n SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql\n SELECT PASSWORD('mypass');\n\n\n\nGrants\n\n\nmysql\n SHOW GRANTS FOR 'francis'@'localhost';\nmysql\n GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nTo change password or resource limits for an existing user, without \nchanging privileges\n\n\nmysql\n GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nDumps\n\n\n# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME \n dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;\n\n\n\nMysql Replica\n\n\nmysql\n GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql\n FLUSH PRIVILEGES;\n\nmysql\n CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;\n\n\nmysql\n SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;", 
+            "text": "MySQL\n\n\nDebug connections problem\n\n\n# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql\n show processlist;\n\n\n\nUsers\n\n\nmysql\n CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql\n SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql\n SELECT PASSWORD('mypass');\n\n\n\nGrants\n\n\nmysql\n SHOW GRANTS FOR 'francis'@'localhost';\nmysql\n GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nTo change password or resource limits for an existing user, without \nchanging privileges\n\n\nmysql\n GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nDumps\n\n\n# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME \n dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;\n\n\n\nMysql Replica\n\n\nmysql\n GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql\n FLUSH PRIVILEGES;\n\nmysql\n CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;\n\n\n\nFix single errors on replication:\n\n\nmysql\n STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;", 
             "title": "Mysql"
         }, 
         {
@@ -342,7 +342,7 @@
         }, 
         {
             "location": "/mysql/#mysql-replica", 
-            "text": "mysql  GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql  FLUSH PRIVILEGES;\n\nmysql  CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;\n\n\nmysql  SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;", 
+            "text": "mysql  GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql  FLUSH PRIVILEGES;\n\nmysql  CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;  Fix single errors on replication:  mysql  STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;", 
             "title": "Mysql Replica"
         }, 
         {
