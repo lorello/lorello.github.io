@@ -2,6 +2,12 @@
 
 Imagine to manage SDB
 
+## Show status of LVM devices / volumes / ...
+
+    pvs
+    vgs
+    lvs
+
 ## Create an LVM-ready partition /dev/sdb1 
 
 Not strictly necessary, if not needed skip this step 
@@ -12,8 +18,8 @@ and use directly sdb device, instead of a partition
 
 ## Add LVM Magic
 
-    pvcreate /dev/sdb1
-    vgcreate hdd_vg /dev/sdb1
+    pvcreate /dev/sdb
+    vgcreate  /dev/sdb1
     lvcreate -L 150G -n vmware hdd_vg
 
     mkfs -t ext4 /dev/hdd_vg/vmstore
@@ -25,5 +31,10 @@ and use directly sdb device, instead of a partition
 edit `/etc/fstab` accordingly then
 
     mount -a
+
+## Extend existing volume
+
+    lvextend -l +100G /dev/hdd_vg/vmstore
+    resize2fs /dev/hdd_vg_vmstore
 
 
