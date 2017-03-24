@@ -8,7 +8,7 @@
   
   <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   
-  <title>Zfs - Lorello technical notes</title>
+  <title>Mongodb - Lorello technical notes</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Zfs";
-    var mkdocs_page_input_path = "zfs.md";
-    var mkdocs_page_url = "/zfs/";
+    var mkdocs_page_name = "Mongodb";
+    var mkdocs_page_input_path = "mongodb.md";
+    var mkdocs_page_url = "/mongodb/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -139,8 +139,19 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../mongodb/">Mongodb</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Mongodb</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#mongodb">MongoDB</a></li>
+                
+                    <li><a class="toctree-l4" href="#generic-debug-command">Generic debug command</a></li>
+                
+                    <li><a class="toctree-l4" href="#replica-set">Replica Set</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -223,19 +234,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Zfs</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#zfs">ZFS</a></li>
-                
-                    <li><a class="toctree-l4" href="#pool">Pool</a></li>
-                
-                    <li><a class="toctree-l4" href="#dataset-and-volumes">Dataset and volumes</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../zfs/">Zfs</a>
         
     </li>
 <li>
@@ -262,7 +262,7 @@
     
       
     
-    <li>Zfs</li>
+    <li>Mongodb</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -276,29 +276,12 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="zfs">ZFS</h1>
-<h2 id="pool">Pool</h2>
-<pre><code>zpool create -f tank sda4
-
-zfs pool status
+                <h1 id="mongodb">MongoDB</h1>
+<h2 id="generic-debug-command">Generic debug command</h2>
+<pre><code>db.currentOp();
 </code></pre>
-<h2 id="dataset-and-volumes">Dataset and volumes</h2>
-<p>Managing volumes</p>
-<pre><code>zfs create $pool/$volume
-zfs destroy $pool/$volume
-zfs status
-</code></pre>
-<h3 id="volume-options">Volume options</h3>
-<pre><code>zfs create -o dedup=on -o compression=on -o mountpoint=/mnt/var tank/myvar
-</code></pre>
-<p>same as</p>
-<pre><code>zfs create tank/myvar
-zfs set mountopoint=/mnt/var tank/myvar
-zfs set dedup=on tank/myvar
-zfs set compression=on tank/myvar
-</code></pre>
-<p>verify options</p>
-<pre><code>zfs get all tank/myvar
+<h2 id="replica-set">Replica Set</h2>
+<pre><code>myreplname:PRIMARY&gt; db.printSlaveReplicationInfo()
 </code></pre>
               
             </div>
@@ -307,8 +290,10 @@ zfs set compression=on tank/myvar
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../mysql/" class="btn btn-neutral float-right" title="Mysql">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../systemd/" class="btn btn-neutral" title="Systemd"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../lvm/" class="btn btn-neutral" title="Lvm"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -338,8 +323,10 @@ zfs set compression=on tank/myvar
           <a href="https://github.com/lorello/lorello.github.io/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../systemd/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../lvm/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../mysql/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

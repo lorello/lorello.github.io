@@ -137,7 +137,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/2cb6221ba2676f2a2fa6524a8de097d27f03dae1|2cb6221\n di 4 seconds ago: Fixed command to fix replication error\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/bea5d5e2da1d0dfdef75523ade4207182ff0d9e9|bea5d5e\n di 6 days ago: Added port and cmd\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/be53ebebca8f9a3d0857ce008fa60fc23bae1669|be53ebe\n di 6 days ago: Added dockerfile\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/e51701313eee82d30b1594c2a607a702f1e497b1|e517013\n di 6 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/377166bf40c33080a46c21446e98943b436db221|377166b\n di 6 days ago: more info on systemd", 
+            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/7072600256f7d7489cbaf85e2265535367123fa9|7072600\n di 26 seconds ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/f510f6823b312def5b0f3bd39b1613f054802a9c|f510f68\n di 54 seconds ago: added some new utility command for LVM", 
             "title": "Changelog"
         }, 
         {
@@ -292,7 +292,7 @@
         }, 
         {
             "location": "/lvm/", 
-            "text": "Managing Logical Volumes\n\n\nImagine to manage SDB\n\n\nCreate an LVM-ready partition /dev/sdb1\n\n\nNot strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition\n\n\nfdisk /dev/sdb\nn p 1 t 8e p w\n\n\n\nAdd LVM Magic\n\n\npvcreate /dev/sdb1\nvgcreate hdd_vg /dev/sdb1\nlvcreate -L 150G -n vmware hdd_vg\n\nmkfs -t ext4 /dev/hdd_vg/vmstore\n\nblkid /dev/hdd_vg/vmstore\n\nmkdir -p /mnt/vmstore\n\n\n\nedit \n/etc/fstab\n accordingly then\n\n\nmount -a", 
+            "text": "Managing Logical Volumes\n\n\nImagine to manage SDB\n\n\nShow status of LVM devices / volumes / ...\n\n\npvs\nvgs\nlvs\n\n\n\nCreate an LVM-ready partition /dev/sdb1\n\n\nNot strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition\n\n\nfdisk /dev/sdb\nn p 1 t 8e p w\n\n\n\nAdd LVM Magic\n\n\npvcreate /dev/sdb\nvgcreate  /dev/sdb1\nlvcreate -L 150G -n vmware hdd_vg\n\nmkfs -t ext4 /dev/hdd_vg/vmstore\n\nblkid /dev/hdd_vg/vmstore\n\nmkdir -p /mnt/vmstore\n\n\n\nedit \n/etc/fstab\n accordingly then\n\n\nmount -a\n\n\n\nExtend existing volume\n\n\nlvextend -l +100G /dev/hdd_vg/vmstore\nresize2fs /dev/hdd_vg_vmstore", 
             "title": "Lvm"
         }, 
         {
@@ -301,14 +301,44 @@
             "title": "Managing Logical Volumes"
         }, 
         {
+            "location": "/lvm/#show-status-of-lvm-devices-volumes", 
+            "text": "pvs\nvgs\nlvs", 
+            "title": "Show status of LVM devices / volumes / ..."
+        }, 
+        {
             "location": "/lvm/#create-an-lvm-ready-partition-devsdb1", 
             "text": "Not strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition  fdisk /dev/sdb\nn p 1 t 8e p w", 
             "title": "Create an LVM-ready partition /dev/sdb1"
         }, 
         {
             "location": "/lvm/#add-lvm-magic", 
-            "text": "pvcreate /dev/sdb1\nvgcreate hdd_vg /dev/sdb1\nlvcreate -L 150G -n vmware hdd_vg\n\nmkfs -t ext4 /dev/hdd_vg/vmstore\n\nblkid /dev/hdd_vg/vmstore\n\nmkdir -p /mnt/vmstore  edit  /etc/fstab  accordingly then  mount -a", 
+            "text": "pvcreate /dev/sdb\nvgcreate  /dev/sdb1\nlvcreate -L 150G -n vmware hdd_vg\n\nmkfs -t ext4 /dev/hdd_vg/vmstore\n\nblkid /dev/hdd_vg/vmstore\n\nmkdir -p /mnt/vmstore  edit  /etc/fstab  accordingly then  mount -a", 
             "title": "Add LVM Magic"
+        }, 
+        {
+            "location": "/lvm/#extend-existing-volume", 
+            "text": "lvextend -l +100G /dev/hdd_vg/vmstore\nresize2fs /dev/hdd_vg_vmstore", 
+            "title": "Extend existing volume"
+        }, 
+        {
+            "location": "/mongodb/", 
+            "text": "MongoDB\n\n\nGeneric debug command\n\n\ndb.currentOp();\n\n\n\nReplica Set\n\n\nmyreplname:PRIMARY\n db.printSlaveReplicationInfo()", 
+            "title": "Mongodb"
+        }, 
+        {
+            "location": "/mongodb/#mongodb", 
+            "text": "", 
+            "title": "MongoDB"
+        }, 
+        {
+            "location": "/mongodb/#generic-debug-command", 
+            "text": "db.currentOp();", 
+            "title": "Generic debug command"
+        }, 
+        {
+            "location": "/mongodb/#replica-set", 
+            "text": "myreplname:PRIMARY  db.printSlaveReplicationInfo()", 
+            "title": "Replica Set"
         }, 
         {
             "location": "/mysql/", 

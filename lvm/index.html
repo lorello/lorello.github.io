@@ -139,12 +139,23 @@
             
                 <li class="toctree-l3"><a href="#managing-logical-volumes">Managing Logical Volumes</a></li>
                 
+                    <li><a class="toctree-l4" href="#show-status-of-lvm-devices-volumes">Show status of LVM devices / volumes / ...</a></li>
+                
                     <li><a class="toctree-l4" href="#create-an-lvm-ready-partition-devsdb1">Create an LVM-ready partition /dev/sdb1</a></li>
                 
                     <li><a class="toctree-l4" href="#add-lvm-magic">Add LVM Magic</a></li>
                 
+                    <li><a class="toctree-l4" href="#extend-existing-volume">Extend existing volume</a></li>
+                
             
             </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../mongodb/">Mongodb</a>
         
     </li>
 <li>
@@ -271,6 +282,11 @@
               
                 <h1 id="managing-logical-volumes">Managing Logical Volumes</h1>
 <p>Imagine to manage SDB</p>
+<h2 id="show-status-of-lvm-devices-volumes">Show status of LVM devices / volumes / ...</h2>
+<pre><code>pvs
+vgs
+lvs
+</code></pre>
 <h2 id="create-an-lvm-ready-partition-devsdb1">Create an LVM-ready partition /dev/sdb1</h2>
 <p>Not strictly necessary, if not needed skip this step 
 and use directly sdb device, instead of a partition</p>
@@ -278,8 +294,8 @@ and use directly sdb device, instead of a partition</p>
 n p 1 t 8e p w
 </code></pre>
 <h2 id="add-lvm-magic">Add LVM Magic</h2>
-<pre><code>pvcreate /dev/sdb1
-vgcreate hdd_vg /dev/sdb1
+<pre><code>pvcreate /dev/sdb
+vgcreate  /dev/sdb1
 lvcreate -L 150G -n vmware hdd_vg
 
 mkfs -t ext4 /dev/hdd_vg/vmstore
@@ -291,6 +307,10 @@ mkdir -p /mnt/vmstore
 <p>edit <code>/etc/fstab</code> accordingly then</p>
 <pre><code>mount -a
 </code></pre>
+<h2 id="extend-existing-volume">Extend existing volume</h2>
+<pre><code>lvextend -l +100G /dev/hdd_vg/vmstore
+resize2fs /dev/hdd_vg_vmstore
+</code></pre>
               
             </div>
           </div>
@@ -298,7 +318,7 @@ mkdir -p /mnt/vmstore
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../mysql/" class="btn btn-neutral float-right" title="Mysql">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../mongodb/" class="btn btn-neutral float-right" title="Mongodb">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../ip/" class="btn btn-neutral" title="Ip"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -334,7 +354,7 @@ mkdir -p /mnt/vmstore
         <span><a href="../ip/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../mysql/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../mongodb/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
