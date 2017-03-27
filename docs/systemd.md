@@ -57,6 +57,19 @@ To override some attributes inside example.service, create
 
 and write there you customizations
 
+## Manage ULIMITs
 
+Check current ulimits for an hypotethical MongoDB
+
+    root@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'
+
+Change values
+
+    root@xenial:~# cat /etc/systemd/system/mongodb.service
+    [Service]
+    LimitNOFILE=64000
+    LimitNPROC=infinity
+
+    root@xenial:~# systemctl daemon-reload 
 
 
