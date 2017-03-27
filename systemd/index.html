@@ -229,6 +229,8 @@
                 
                     <li><a class="toctree-l4" href="#override-a-systemd-profile">Override a systemd profile</a></li>
                 
+                    <li><a class="toctree-l4" href="#manage-ulimits">Manage ULIMITs</a></li>
+                
             
             </ul>
         
@@ -316,6 +318,18 @@ journalctl -k -b -5          # five boots ago
 <pre><code>/etc/systemd/system/example.service.d/mycustom.conf
 </code></pre>
 <p>and write there you customizations</p>
+<h2 id="manage-ulimits">Manage ULIMITs</h2>
+<p>Check current ulimits for an hypotethical MongoDB</p>
+<pre><code>root@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'
+</code></pre>
+<p>Change values</p>
+<pre><code>root@xenial:~# cat /etc/systemd/system/mongodb.service
+[Service]
+LimitNOFILE=64000
+LimitNPROC=infinity
+
+root@xenial:~# systemctl daemon-reload
+</code></pre>
               
             </div>
           </div>

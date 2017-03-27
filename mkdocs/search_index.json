@@ -137,7 +137,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/7072600256f7d7489cbaf85e2265535367123fa9|7072600\n di 26 seconds ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/f510f6823b312def5b0f3bd39b1613f054802a9c|f510f68\n di 54 seconds ago: added some new utility command for LVM", 
+            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/ae42b2e904ed847d88be8566b19df618dfc2949c|ae42b2e\n di 6 seconds ago: Added ulimits settings on systemd\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/deb8a5d4c4550e4c5b1add0aeaa08df98618efb0|deb8a5d\n di 3 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/7072600256f7d7489cbaf85e2265535367123fa9|7072600\n di 3 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/f510f6823b312def5b0f3bd39b1613f054802a9c|f510f68\n di 3 days ago: added some new utility command for LVM", 
             "title": "Changelog"
         }, 
         {
@@ -567,7 +567,7 @@
         }, 
         {
             "location": "/systemd/", 
-            "text": "SystemD\n\n\nServices has a new name... happy! They are now \nunits\n\n\nLook also:\n - https://wiki.ubuntu.com/SystemdForUpstartUsers\n\n\npaths\n\n\nCentral path system-wide\n    /lib/systemd/system\n\n\nPut general custom units in\n\n\n/etc/systemd/system/\n\n\n\nsystem logs\n\n\nShow current logs\n\n\njournalctl -n         # show onetime\njournalctl -f         # tail logs\n\n\n\nShow today logs from two units:\n\n\njournalctl -u nginx.service -u php-fpm.service --since today\n\n\n\nShow kernel logs\n\n\njournalctl -k                # last boot\njournalctl -k -b -5          # five boots ago\n\n\n\nShow by field (\nman systemd.journal-fields\n)\n\n\njournalctl _UID=33 --since today\n\n\n\nShow only error messages, from boot\n\n\njournalctl -p err -b\n\n\n\nOther interesting options\n\n\n--no-pager        # don't use more\n--no-full         # truncate at last column\n-a                # show all, even non printable chars\n\n\n\nOverride a systemd profile\n\n\nTo override some attributes inside example.service, create\n\n\n/etc/systemd/system/example.service.d/mycustom.conf\n\n\n\nand write there you customizations", 
+            "text": "SystemD\n\n\nServices has a new name... happy! They are now \nunits\n\n\nLook also:\n - https://wiki.ubuntu.com/SystemdForUpstartUsers\n\n\npaths\n\n\nCentral path system-wide\n    /lib/systemd/system\n\n\nPut general custom units in\n\n\n/etc/systemd/system/\n\n\n\nsystem logs\n\n\nShow current logs\n\n\njournalctl -n         # show onetime\njournalctl -f         # tail logs\n\n\n\nShow today logs from two units:\n\n\njournalctl -u nginx.service -u php-fpm.service --since today\n\n\n\nShow kernel logs\n\n\njournalctl -k                # last boot\njournalctl -k -b -5          # five boots ago\n\n\n\nShow by field (\nman systemd.journal-fields\n)\n\n\njournalctl _UID=33 --since today\n\n\n\nShow only error messages, from boot\n\n\njournalctl -p err -b\n\n\n\nOther interesting options\n\n\n--no-pager        # don't use more\n--no-full         # truncate at last column\n-a                # show all, even non printable chars\n\n\n\nOverride a systemd profile\n\n\nTo override some attributes inside example.service, create\n\n\n/etc/systemd/system/example.service.d/mycustom.conf\n\n\n\nand write there you customizations\n\n\nManage ULIMITs\n\n\nCheck current ulimits for an hypotethical MongoDB\n\n\nroot@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'\n\n\n\nChange values\n\n\nroot@xenial:~# cat /etc/systemd/system/mongodb.service\n[Service]\nLimitNOFILE=64000\nLimitNPROC=infinity\n\nroot@xenial:~# systemctl daemon-reload", 
             "title": "Systemd"
         }, 
         {
@@ -589,6 +589,11 @@
             "location": "/systemd/#override-a-systemd-profile", 
             "text": "To override some attributes inside example.service, create  /etc/systemd/system/example.service.d/mycustom.conf  and write there you customizations", 
             "title": "Override a systemd profile"
+        }, 
+        {
+            "location": "/systemd/#manage-ulimits", 
+            "text": "Check current ulimits for an hypotethical MongoDB  root@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'  Change values  root@xenial:~# cat /etc/systemd/system/mongodb.service\n[Service]\nLimitNOFILE=64000\nLimitNPROC=infinity\n\nroot@xenial:~# systemctl daemon-reload", 
+            "title": "Manage ULIMITs"
         }, 
         {
             "location": "/zfs/", 
