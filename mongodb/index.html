@@ -153,11 +153,11 @@
             
                 <li class="toctree-l3"><a href="#mongodb">MongoDB</a></li>
                 
-                    <li><a class="toctree-l4" href="#general-mongodb-commands">General mongoDB commands</a></li>
-                
                     <li><a class="toctree-l4" href="#generic-debug-command">Generic debug command</a></li>
                 
                     <li><a class="toctree-l4" href="#replica-set">Replica Set</a></li>
+                
+                    <li><a class="toctree-l4" href="#lockunlock-from-writes">Lock/Unlock from writes</a></li>
                 
             
             </ul>
@@ -293,20 +293,31 @@
             <div class="section">
               
                 <h1 id="mongodb">MongoDB</h1>
-<h2 id="general-mongodb-commands">General mongoDB commands</h2>
 <h2 id="generic-debug-command">Generic debug command</h2>
-<pre><code>db.currentOp();
+<pre><code>&gt; db.currentOp();
+&gt; db.serverStatus()
+&gt; db.stats()
+&gt; db.$collection.stats()
 </code></pre>
 <h2 id="replica-set">Replica Set</h2>
-<pre><code>myreplname:PRIMARY&gt; db.printSlaveReplicationInfo()
+<pre><code>&gt; myreplname:PRIMARY&gt; db.printReplicationInfo()
 
-myreplname:PRIMARY&gt; rs.status()
+&gt; myreplname:PRIMARY&gt; db.printSlaveReplicationInfo()
 
-myreplname:PRIMARY&gt; rs.init()
+&gt; myreplname:PRIMARY&gt; rs.status()
 
-myreplname:SECONDARY&gt; db.SlaveOk()
+&gt; myreplname:PRIMARY&gt; rs.init()
 
-myreplname:SECONDARY&gt; use admin; db.shutdownServer({timeoutSecs: 300});
+&gt; myreplname:SECONDARY&gt; db.SlaveOk()
+
+&gt; myreplname:SECONDARY&gt; use admin; db.shutdownServer({timeoutSecs: 300});
+</code></pre>
+<h2 id="lockunlock-from-writes">Lock/Unlock from writes</h2>
+<pre><code>&gt; db._adminCommand({fsync: 1, lock: 1})
+switched to db admin
+
+&gt; db.$cmd.sys.unlock.findOne()
+{ "ok" : 1, "info" : "unlock requested" }
 </code></pre>
               
             </div>

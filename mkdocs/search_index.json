@@ -147,7 +147,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/cb3d3829a25db0decc1d9ff309a2929ff4096ba8|cb3d382\n di 15 seconds ago: added more bash utilities about dates\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/0cdd63186dbf5152c7d8a0fc0b9bf07cbb49b727|0cdd631\n di 43 seconds ago: added tuning info about linux networking\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/4dbc6c1e751ab53a9abbe595f8e11c8e86f0d7f6|4dbc6c1\n di 2 minutes ago: Added new mongodb info\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/6488e92062fb15905d975e6b2003042d53a00dd7|6488e92\n di 2 hours ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/1587a4727ce98e48ead096e8459dd56ecb850230|1587a47\n di 2 hours ago: Created XenServer page and istructions for backup script 'snapback'", 
+            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/7b5053c923bb8f7021789647b501bc42c05ad6f2|7b5053c\n di 2 seconds ago: Adding mongodb debug commands\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/64aba6c69d87291124456adfb4a0655973ae4450|64aba6c\n di 85 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/cb3d3829a25db0decc1d9ff309a2929ff4096ba8|cb3d382\n di 85 minutes ago: added more bash utilities about dates\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/0cdd63186dbf5152c7d8a0fc0b9bf07cbb49b727|0cdd631\n di 86 minutes ago: added tuning info about linux networking\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/4dbc6c1e751ab53a9abbe595f8e11c8e86f0d7f6|4dbc6c1\n di 87 minutes ago: Added new mongodb info\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/6488e92062fb15905d975e6b2003042d53a00dd7|6488e92\n di 4 hours ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/1587a4727ce98e48ead096e8459dd56ecb850230|1587a47\n di 4 hours ago: Created XenServer page and istructions for backup script 'snapback'", 
             "title": "Changelog"
         }, 
         {
@@ -347,7 +347,7 @@
         }, 
         {
             "location": "/mongodb/", 
-            "text": "MongoDB\n\n\nGeneral mongoDB commands\n\n\nGeneric debug command\n\n\ndb.currentOp();\n\n\n\nReplica Set\n\n\nmyreplname:PRIMARY\n db.printSlaveReplicationInfo()\n\nmyreplname:PRIMARY\n rs.status()\n\nmyreplname:PRIMARY\n rs.init()\n\nmyreplname:SECONDARY\n db.SlaveOk()\n\nmyreplname:SECONDARY\n use admin; db.shutdownServer({timeoutSecs: 300});", 
+            "text": "MongoDB\n\n\nGeneric debug command\n\n\n db.currentOp();\n\n db.serverStatus()\n\n db.stats()\n\n db.$collection.stats()\n\n\n\nReplica Set\n\n\n myreplname:PRIMARY\n db.printReplicationInfo()\n\n\n myreplname:PRIMARY\n db.printSlaveReplicationInfo()\n\n\n myreplname:PRIMARY\n rs.status()\n\n\n myreplname:PRIMARY\n rs.init()\n\n\n myreplname:SECONDARY\n db.SlaveOk()\n\n\n myreplname:SECONDARY\n use admin; db.shutdownServer({timeoutSecs: 300});\n\n\n\nLock/Unlock from writes\n\n\n db._adminCommand({fsync: 1, lock: 1})\nswitched to db admin\n\n\n db.$cmd.sys.unlock.findOne()\n{ \"ok\" : 1, \"info\" : \"unlock requested\" }", 
             "title": "Mongodb"
         }, 
         {
@@ -356,19 +356,19 @@
             "title": "MongoDB"
         }, 
         {
-            "location": "/mongodb/#general-mongodb-commands", 
-            "text": "", 
-            "title": "General mongoDB commands"
-        }, 
-        {
             "location": "/mongodb/#generic-debug-command", 
-            "text": "db.currentOp();", 
+            "text": "db.currentOp();  db.serverStatus()  db.stats()  db.$collection.stats()", 
             "title": "Generic debug command"
         }, 
         {
             "location": "/mongodb/#replica-set", 
-            "text": "myreplname:PRIMARY  db.printSlaveReplicationInfo()\n\nmyreplname:PRIMARY  rs.status()\n\nmyreplname:PRIMARY  rs.init()\n\nmyreplname:SECONDARY  db.SlaveOk()\n\nmyreplname:SECONDARY  use admin; db.shutdownServer({timeoutSecs: 300});", 
+            "text": "myreplname:PRIMARY  db.printReplicationInfo()  myreplname:PRIMARY  db.printSlaveReplicationInfo()  myreplname:PRIMARY  rs.status()  myreplname:PRIMARY  rs.init()  myreplname:SECONDARY  db.SlaveOk()  myreplname:SECONDARY  use admin; db.shutdownServer({timeoutSecs: 300});", 
             "title": "Replica Set"
+        }, 
+        {
+            "location": "/mongodb/#lockunlock-from-writes", 
+            "text": "db._adminCommand({fsync: 1, lock: 1})\nswitched to db admin  db.$cmd.sys.unlock.findOne()\n{ \"ok\" : 1, \"info\" : \"unlock requested\" }", 
+            "title": "Lock/Unlock from writes"
         }, 
         {
             "location": "/mysql/", 
