@@ -22,3 +22,34 @@ Loop on a counter
     echo $counter
     ((counter++))
     done
+
+process cli options
+
+# Process CLI options
+	aaa=''
+	bbb=''
+	ccc=''
+
+	while [ $# -gt 0 ]
+	do
+	  case $1 in
+	    -h) print_help ;;
+	    --help) print_help ;;
+	    -a) aaa=$2 ; shift 2 ;;
+	    -b) bbb=$2 ; shift 2 ;;
+	    -c) ccc=$2 ; shift 2 ;;
+	    *) shift 1 ;;
+	  esac
+	done
+
+A more advanced options is to use [https://github.com/nk412/optparse|optparse]
+
+## Bash dates
+
+A simple date useful for filenaming: YYYY-MM-DD
+
+    $(date +%F)
+
+A full datetime
+
+    $(date +%F-%T)
