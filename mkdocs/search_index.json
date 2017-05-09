@@ -62,7 +62,7 @@
         }, 
         {
             "location": "/bash/", 
-            "text": "Bashism\n\n\nI use a little library to have a common set of utilities out of the box in my\nbash scripts, it can be retrieved at https://github.com/lorello/lib.sh\n\n\nLoops\n\n\nLoop on a rows of a text file\n\n\n#!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone\n\n\n\nLoop on a counter\n\n\ncounter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone", 
+            "text": "Bashism\n\n\nI use a little library to have a common set of utilities out of the box in my\nbash scripts, it can be retrieved at https://github.com/lorello/lib.sh\n\n\nLoops\n\n\nLoop on a rows of a text file\n\n\n#!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone\n\n\n\nLoop on a counter\n\n\ncounter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone\n\n\n\nprocess cli options\n\n\nProcess CLI options\n\n\naaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone\n\n\n\nA more advanced options is to use [https://github.com/nk412/optparse|optparse]\n\n\nBash dates\n\n\nA simple date useful for filenaming: YYYY-MM-DD\n\n\n$(date +%F)\n\n\n\nA full datetime\n\n\n$(date +%F-%T)", 
             "title": "Bash"
         }, 
         {
@@ -72,8 +72,18 @@
         }, 
         {
             "location": "/bash/#loops", 
-            "text": "Loop on a rows of a text file  #!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone  Loop on a counter  counter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone", 
+            "text": "Loop on a rows of a text file  #!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone  Loop on a counter  counter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone  process cli options", 
             "title": "Loops"
+        }, 
+        {
+            "location": "/bash/#process-cli-options", 
+            "text": "aaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone  A more advanced options is to use [https://github.com/nk412/optparse|optparse]", 
+            "title": "Process CLI options"
+        }, 
+        {
+            "location": "/bash/#bash-dates", 
+            "text": "A simple date useful for filenaming: YYYY-MM-DD  $(date +%F)  A full datetime  $(date +%F-%T)", 
+            "title": "Bash dates"
         }, 
         {
             "location": "/bind/", 
@@ -137,7 +147,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/ae42b2e904ed847d88be8566b19df618dfc2949c|ae42b2e\n di 6 seconds ago: Added ulimits settings on systemd\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/deb8a5d4c4550e4c5b1add0aeaa08df98618efb0|deb8a5d\n di 3 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/7072600256f7d7489cbaf85e2265535367123fa9|7072600\n di 3 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/f510f6823b312def5b0f3bd39b1613f054802a9c|f510f68\n di 3 days ago: added some new utility command for LVM", 
+            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/1587a4727ce98e48ead096e8459dd56ecb850230|1587a47\n di 5 seconds ago: Created XenServer page and istructions for backup script 'snapback'", 
             "title": "Changelog"
         }, 
         {
@@ -322,7 +332,7 @@
         }, 
         {
             "location": "/mongodb/", 
-            "text": "MongoDB\n\n\nGeneric debug command\n\n\ndb.currentOp();\n\n\n\nReplica Set\n\n\nmyreplname:PRIMARY\n db.printSlaveReplicationInfo()", 
+            "text": "MongoDB\n\n\nGeneral mongoDB commands\n\n\nGeneric debug command\n\n\ndb.currentOp();\n\n\n\nReplica Set\n\n\nmyreplname:PRIMARY\n db.printSlaveReplicationInfo()\n\nmyreplname:PRIMARY\n rs.status()\n\nmyreplname:PRIMARY\n rs.init()\n\nmyreplname:SECONDARY\n db.SlaveOk()\n\nmyreplname:SECONDARY\n use admin; db.shutdownServer({timeoutSecs: 300});", 
             "title": "Mongodb"
         }, 
         {
@@ -331,13 +341,18 @@
             "title": "MongoDB"
         }, 
         {
+            "location": "/mongodb/#general-mongodb-commands", 
+            "text": "", 
+            "title": "General mongoDB commands"
+        }, 
+        {
             "location": "/mongodb/#generic-debug-command", 
             "text": "db.currentOp();", 
             "title": "Generic debug command"
         }, 
         {
             "location": "/mongodb/#replica-set", 
-            "text": "myreplname:PRIMARY  db.printSlaveReplicationInfo()", 
+            "text": "myreplname:PRIMARY  db.printSlaveReplicationInfo()\n\nmyreplname:PRIMARY  rs.status()\n\nmyreplname:PRIMARY  rs.init()\n\nmyreplname:SECONDARY  db.SlaveOk()\n\nmyreplname:SECONDARY  use admin; db.shutdownServer({timeoutSecs: 300});", 
             "title": "Replica Set"
         }, 
         {
@@ -594,6 +609,41 @@
             "location": "/systemd/#manage-ulimits", 
             "text": "Check current ulimits for an hypotethical MongoDB  root@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'  Change values  root@xenial:~# cat /etc/systemd/system/mongodb.service\n[Service]\nLimitNOFILE=64000\nLimitNPROC=infinity\n\nroot@xenial:~# systemctl daemon-reload", 
             "title": "Manage ULIMITs"
+        }, 
+        {
+            "location": "/tuning/", 
+            "text": "Performance tuning\n\n\nBeyond the 10k connections and similar topics\n\n\nPrevent source port exhausting\n\n\nCheck connections totals per state:\n\n\nnetstat -nat | awk '{print $6}' | sort | uniq -c | sort -n\n\n\n\nIncrease capacity of port use and reuse:\n\n\nsysctl -w net.ipv4.ip_local_port_range=\"15000 61000\"    (default: 32768 61000)\nsysctl -w net.ipv4.tcp_fin_timeout=30           (default: 60)\n\n\n\nBacklog of connections\n\n\nsysctl -w net.core.netdev_max_backlog = 2000    (default: 1000)\nsysctl -w net.ipv4.tcp_max_syn_backlog = 2048   (default: 1024)\nnet.core.somaxconn = 1024               (default: 128)\n\n\n\nAccelerate the socket recycle capacity of kernel:\n\n\nsysctl -w net.ipv4.tcp_tw_recycle=1         (default: 0)\nsysctl -w net.ipv4.tcp_tw_reuse=1           (default: 0)", 
+            "title": "Tuning"
+        }, 
+        {
+            "location": "/tuning/#performance-tuning", 
+            "text": "Beyond the 10k connections and similar topics", 
+            "title": "Performance tuning"
+        }, 
+        {
+            "location": "/tuning/#prevent-source-port-exhausting", 
+            "text": "Check connections totals per state:  netstat -nat | awk '{print $6}' | sort | uniq -c | sort -n  Increase capacity of port use and reuse:  sysctl -w net.ipv4.ip_local_port_range=\"15000 61000\"    (default: 32768 61000)\nsysctl -w net.ipv4.tcp_fin_timeout=30           (default: 60)  Backlog of connections  sysctl -w net.core.netdev_max_backlog = 2000    (default: 1000)\nsysctl -w net.ipv4.tcp_max_syn_backlog = 2048   (default: 1024)\nnet.core.somaxconn = 1024               (default: 128)  Accelerate the socket recycle capacity of kernel:  sysctl -w net.ipv4.tcp_tw_recycle=1         (default: 0)\nsysctl -w net.ipv4.tcp_tw_reuse=1           (default: 0)", 
+            "title": "Prevent source port exhausting"
+        }, 
+        {
+            "location": "/xenserver/", 
+            "text": "XenServer\n\n\nBackup script\n\n\nhttps://github.com/markround/XenServer-snapshot-backup\n\n\nbackup config\n\n\nxe vm-list\n\nexport VM=a3308cee-c483-7d2c-708c-a9fd7d52ffe9\n\n# Backup using template saved on an external SR\nxe vm-param-set uuid=$VM other-config:XenCenter.CustomFields.backup=daily\nxe vm-param-set uuid=$VM other-config:XenCenter.CustomFields.retain=2\n\n# Backup using an XVA export to a NFS mount\nxe vm-param-set uuid=$VM other-config:XenCenter.CustomFields.xva_backup=daily\nxe vm-param-set uuid=$VM other-config:XenCenter.CustomFields.xva_retain=2\n\n# Get current config\nxe vm-param-get uuid=$VM param-name=other-config param-key=XenCenter.CustomFields.backup\nxe vm-param-get uuid=$VM param-name=other-config param-key=XenCenter.CustomFields.retain\nxe vm-param-get uuid=$VM param-name=other-config param-key=XenCenter.CustomFields.xva_backup\nxe vm-param-get uuid=$VM param-name=other-config param-key=XenCenter.CustomFields.xva_retain", 
+            "title": "Xenserver"
+        }, 
+        {
+            "location": "/xenserver/#xenserver", 
+            "text": "", 
+            "title": "XenServer"
+        }, 
+        {
+            "location": "/xenserver/#backup-script", 
+            "text": "https://github.com/markround/XenServer-snapshot-backup", 
+            "title": "Backup script"
+        }, 
+        {
+            "location": "/xenserver/#backup-config", 
+            "text": "xe vm-list\n\nexport VM=a3308cee-c483-7d2c-708c-a9fd7d52ffe9\n\n# Backup using template saved on an external SR\nxe vm-param-set uuid=$VM other-config:XenCenter.CustomFields.backup=daily\nxe vm-param-set uuid=$VM other-config:XenCenter.CustomFields.retain=2\n\n# Backup using an XVA export to a NFS mount\nxe vm-param-set uuid=$VM other-config:XenCenter.CustomFields.xva_backup=daily\nxe vm-param-set uuid=$VM other-config:XenCenter.CustomFields.xva_retain=2\n\n# Get current config\nxe vm-param-get uuid=$VM param-name=other-config param-key=XenCenter.CustomFields.backup\nxe vm-param-get uuid=$VM param-name=other-config param-key=XenCenter.CustomFields.retain\nxe vm-param-get uuid=$VM param-name=other-config param-key=XenCenter.CustomFields.xva_backup\nxe vm-param-get uuid=$VM param-name=other-config param-key=XenCenter.CustomFields.xva_retain", 
+            "title": "backup config"
         }, 
         {
             "location": "/zfs/", 

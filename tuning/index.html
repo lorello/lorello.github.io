@@ -8,7 +8,7 @@
   
   <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   
-  <title>Atom - Lorello technical notes</title>
+  <title>Tuning - Lorello technical notes</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -23,9 +23,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Atom";
-    var mkdocs_page_input_path = "atom.md";
-    var mkdocs_page_url = "/atom/";
+    var mkdocs_page_name = "Tuning";
+    var mkdocs_page_input_path = "tuning.md";
+    var mkdocs_page_url = "/tuning/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -69,19 +69,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Atom</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#atom-editor-keybindings">ATOM Editor Keybindings</a></li>
-                
-                    <li><a class="toctree-l4" href="#core">Core</a></li>
-                
-                    <li><a class="toctree-l4" href="#plugins">Plugins</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../atom/">Atom</a>
         
     </li>
 <li>
@@ -234,8 +223,17 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../tuning/">Tuning</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Tuning</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#performance-tuning">Performance tuning</a></li>
+                
+                    <li><a class="toctree-l4" href="#prevent-source-port-exhausting">Prevent source port exhausting</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -276,7 +274,7 @@
     
       
     
-    <li>Atom</li>
+    <li>Tuning</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -290,143 +288,25 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="atom-editor-keybindings">ATOM Editor Keybindings</h1>
-<h2 id="core">Core</h2>
-<table>
-<thead>
-<tr>
-<th>App management</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>CTRL + SHIFT + P</code></td>
-<td>Command palette</td>
-</tr>
-<tr>
-<td><code>ALT + 1,9</code></td>
-<td>Focus on pane 1,9</td>
-</tr>
-<tr>
-<td><code>CTRL + \</code></td>
-<td>Toggle Tree Pane</td>
-</tr>
-<tr>
-<td><code>CTRL + K U/D/L/R</code></td>
-<td>Split pane Up/Down/Left/Right</td>
-</tr>
-<tr>
-<td><code>CTRL + K CTRL U/D/L/R</code></td>
-<td>Focus pane Up/Down/Left/Right</td>
-</tr>
-<tr>
-<td><code>CTRL + K CTRL p/n</code></td>
-<td>Focus Previous/Next pane</td>
-</tr>
-<tr>
-<td><code>CTRL + ALT +/-</code></td>
-<td>Increase/Decrease size of pane</td>
-</tr>
-<tr>
-<td><code>CTRL + K CTRL + w</code></td>
-<td>Clone pane</td>
-</tr>
-<tr>
-<td><code>CTRL + TAB</code></td>
-<td>Next item in pane</td>
-</tr>
-<tr>
-<td><code>CTRL + SHIFT + TAB</code></td>
-<td>Previous item in pane</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Editing</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>CTRL + a</code></td>
-<td>Select All</td>
-</tr>
-<tr>
-<td><code>CTRL + z</code></td>
-<td>Undo</td>
-</tr>
-<tr>
-<td><code>CTRL + SHIFT + z</code></td>
-<td>Redo</td>
-</tr>
-<tr>
-<td><code>CTRL + [, ]</code></td>
-<td>Indent, Outdent</td>
-</tr>
-<tr>
-<td><code>CTRL + /</code></td>
-<td>Comment</td>
-</tr>
-<tr>
-<td><code>CTRL + SHIFT + K</code></td>
-<td>Delete Line</td>
-</tr>
-<tr>
-<td><code>CTRL + SHIFT + D</code></td>
-<td>Duplicate Line</td>
-</tr>
-</tbody>
-</table>
-<h2 id="plugins">Plugins</h2>
-<table>
-<thead>
-<tr>
-<th>Project Manager</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>SHIFT + ALT + P</code></td>
-<td>List projects</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Markdown</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>CTRL + SHIFT + M</code></td>
-<td>Markdown Preview</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Git / GitHub</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ALT + g d</code></td>
-<td>Toggle Git diff</td>
-</tr>
-<tr>
-<td><code>ALT + g g</code></td>
-<td>Open on GitHub</td>
-</tr>
-</tbody>
-</table>
+                <h1 id="performance-tuning">Performance tuning</h1>
+<p>Beyond the 10k connections and similar topics</p>
+<h2 id="prevent-source-port-exhausting">Prevent source port exhausting</h2>
+<p>Check connections totals per state:</p>
+<pre><code>netstat -nat | awk '{print $6}' | sort | uniq -c | sort -n
+</code></pre>
+<p>Increase capacity of port use and reuse:</p>
+<pre><code>sysctl -w net.ipv4.ip_local_port_range="15000 61000"    (default: 32768 61000)
+sysctl -w net.ipv4.tcp_fin_timeout=30           (default: 60)
+</code></pre>
+<p>Backlog of connections</p>
+<pre><code>sysctl -w net.core.netdev_max_backlog = 2000    (default: 1000)
+sysctl -w net.ipv4.tcp_max_syn_backlog = 2048   (default: 1024)
+net.core.somaxconn = 1024               (default: 128)
+</code></pre>
+<p>Accelerate the socket recycle capacity of kernel:</p>
+<pre><code>sysctl -w net.ipv4.tcp_tw_recycle=1         (default: 0)
+sysctl -w net.ipv4.tcp_tw_reuse=1           (default: 0)
+</code></pre>
               
             </div>
           </div>
@@ -434,10 +314,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../bash/" class="btn btn-neutral float-right" title="Bash">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../xenserver/" class="btn btn-neutral float-right" title="Xenserver">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api-auth/" class="btn btn-neutral" title="Api auth"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../systemd/" class="btn btn-neutral" title="Systemd"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -467,10 +347,10 @@
           <a href="https://github.com/lorello/lorello.github.io/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api-auth/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../systemd/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../bash/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../xenserver/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
