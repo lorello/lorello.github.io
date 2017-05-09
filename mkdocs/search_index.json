@@ -147,7 +147,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/1587a4727ce98e48ead096e8459dd56ecb850230|1587a47\n di 5 seconds ago: Created XenServer page and istructions for backup script 'snapback'", 
+            "text": "LoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/cb3d3829a25db0decc1d9ff309a2929ff4096ba8|cb3d382\n di 15 seconds ago: added more bash utilities about dates\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/0cdd63186dbf5152c7d8a0fc0b9bf07cbb49b727|0cdd631\n di 43 seconds ago: added tuning info about linux networking\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/4dbc6c1e751ab53a9abbe595f8e11c8e86f0d7f6|4dbc6c1\n di 2 minutes ago: Added new mongodb info\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/6488e92062fb15905d975e6b2003042d53a00dd7|6488e92\n di 2 hours ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nhttps://github.com/lorello/lorello.github.io/commit/1587a4727ce98e48ead096e8459dd56ecb850230|1587a47\n di 2 hours ago: Created XenServer page and istructions for backup script 'snapback'", 
             "title": "Changelog"
         }, 
         {
@@ -299,6 +299,21 @@
             "location": "/ip/#routing", 
             "text": "ip route show\nip route add 192.168.1.0/24 dev eth0\nip route add default via 192.168.1.254", 
             "title": "Routing"
+        }, 
+        {
+            "location": "/linux-networking/", 
+            "text": "Performance tuning\n\n\nBeyond the 10k connections and similar topics\n\n\nPrevent source port exhausting\n\n\nCheck connections totals per state:\n\n\nnetstat -nat | awk '{print $6}' | sort | uniq -c | sort -n\n\n\n\nIncrease capacity of port use and reuse:\n\n\nsysctl -w net.ipv4.ip_local_port_range=\"15000 61000\"    (default: 32768 61000)\nsysctl -w net.ipv4.tcp_fin_timeout=30           (default: 60)\n\n\n\nBacklog of connections\n\n\nsysctl -w net.core.netdev_max_backlog = 2000    (default: 1000)\nsysctl -w net.ipv4.tcp_max_syn_backlog = 2048   (default: 1024)\nnet.core.somaxconn = 1024               (default: 128)\n\n\n\nAccelerate the socket recycle capacity of kernel:\n\n\nsysctl -w net.ipv4.tcp_tw_recycle=1         (default: 0)\nsysctl -w net.ipv4.tcp_tw_reuse=1           (default: 0)", 
+            "title": "Linux networking"
+        }, 
+        {
+            "location": "/linux-networking/#performance-tuning", 
+            "text": "Beyond the 10k connections and similar topics", 
+            "title": "Performance tuning"
+        }, 
+        {
+            "location": "/linux-networking/#prevent-source-port-exhausting", 
+            "text": "Check connections totals per state:  netstat -nat | awk '{print $6}' | sort | uniq -c | sort -n  Increase capacity of port use and reuse:  sysctl -w net.ipv4.ip_local_port_range=\"15000 61000\"    (default: 32768 61000)\nsysctl -w net.ipv4.tcp_fin_timeout=30           (default: 60)  Backlog of connections  sysctl -w net.core.netdev_max_backlog = 2000    (default: 1000)\nsysctl -w net.ipv4.tcp_max_syn_backlog = 2048   (default: 1024)\nnet.core.somaxconn = 1024               (default: 128)  Accelerate the socket recycle capacity of kernel:  sysctl -w net.ipv4.tcp_tw_recycle=1         (default: 0)\nsysctl -w net.ipv4.tcp_tw_reuse=1           (default: 0)", 
+            "title": "Prevent source port exhausting"
         }, 
         {
             "location": "/lvm/", 
@@ -609,21 +624,6 @@
             "location": "/systemd/#manage-ulimits", 
             "text": "Check current ulimits for an hypotethical MongoDB  root@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'  Change values  root@xenial:~# cat /etc/systemd/system/mongodb.service\n[Service]\nLimitNOFILE=64000\nLimitNPROC=infinity\n\nroot@xenial:~# systemctl daemon-reload", 
             "title": "Manage ULIMITs"
-        }, 
-        {
-            "location": "/tuning/", 
-            "text": "Performance tuning\n\n\nBeyond the 10k connections and similar topics\n\n\nPrevent source port exhausting\n\n\nCheck connections totals per state:\n\n\nnetstat -nat | awk '{print $6}' | sort | uniq -c | sort -n\n\n\n\nIncrease capacity of port use and reuse:\n\n\nsysctl -w net.ipv4.ip_local_port_range=\"15000 61000\"    (default: 32768 61000)\nsysctl -w net.ipv4.tcp_fin_timeout=30           (default: 60)\n\n\n\nBacklog of connections\n\n\nsysctl -w net.core.netdev_max_backlog = 2000    (default: 1000)\nsysctl -w net.ipv4.tcp_max_syn_backlog = 2048   (default: 1024)\nnet.core.somaxconn = 1024               (default: 128)\n\n\n\nAccelerate the socket recycle capacity of kernel:\n\n\nsysctl -w net.ipv4.tcp_tw_recycle=1         (default: 0)\nsysctl -w net.ipv4.tcp_tw_reuse=1           (default: 0)", 
-            "title": "Tuning"
-        }, 
-        {
-            "location": "/tuning/#performance-tuning", 
-            "text": "Beyond the 10k connections and similar topics", 
-            "title": "Performance tuning"
-        }, 
-        {
-            "location": "/tuning/#prevent-source-port-exhausting", 
-            "text": "Check connections totals per state:  netstat -nat | awk '{print $6}' | sort | uniq -c | sort -n  Increase capacity of port use and reuse:  sysctl -w net.ipv4.ip_local_port_range=\"15000 61000\"    (default: 32768 61000)\nsysctl -w net.ipv4.tcp_fin_timeout=30           (default: 60)  Backlog of connections  sysctl -w net.core.netdev_max_backlog = 2000    (default: 1000)\nsysctl -w net.ipv4.tcp_max_syn_backlog = 2048   (default: 1024)\nnet.core.somaxconn = 1024               (default: 128)  Accelerate the socket recycle capacity of kernel:  sysctl -w net.ipv4.tcp_tw_recycle=1         (default: 0)\nsysctl -w net.ipv4.tcp_tw_reuse=1           (default: 0)", 
-            "title": "Prevent source port exhausting"
         }, 
         {
             "location": "/xenserver/", 

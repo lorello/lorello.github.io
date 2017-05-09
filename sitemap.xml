@@ -91,6 +91,14 @@
 
     
     <url>
+     <loc>None/linux-networking/</loc>
+     <lastmod>2017-05-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
      <loc>None/lvm/</loc>
      <lastmod>2017-05-09</lastmod>
      <changefreq>daily</changefreq>
@@ -188,14 +196,6 @@
     
     <url>
      <loc>None/systemd/</loc>
-     <lastmod>2017-05-09</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
-     <loc>None/tuning/</loc>
      <lastmod>2017-05-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
