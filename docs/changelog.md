@@ -1,8 +1,11 @@
 * LoreLLo commit [Updated changelog
- - d5ea0af](https://github.com/lorello/lorello.github.io/commit/d5ea0afe83a249f984e38a86c5dd9d1439a990bf) di 10 minutes ago: Updated changelog
+ - 79481d4](https://github.com/lorello/lorello.github.io/commit/79481d477077dab776151f7329c0be4a1f07d1c4) di 22 seconds ago: Updated changelog
+
+* LoreLLo commit [Updated changelog
+ - d5ea0af](https://github.com/lorello/lorello.github.io/commit/d5ea0afe83a249f984e38a86c5dd9d1439a990bf) di 11 minutes ago: Updated changelog
 
 * LoreLLo commit [Adding mongodb debug commands
- - 7b5053c](https://github.com/lorello/lorello.github.io/commit/7b5053c923bb8f7021789647b501bc42c05ad6f2) di 10 minutes ago: Adding mongodb debug commands
+ - 7b5053c](https://github.com/lorello/lorello.github.io/commit/7b5053c923bb8f7021789647b501bc42c05ad6f2) di 11 minutes ago: Adding mongodb debug commands
 
 * LoreLLo commit [Updated changelog
  - 64aba6c](https://github.com/lorello/lorello.github.io/commit/64aba6c69d87291124456adfb4a0655973ae4450) di 2 hours ago: Updated changelog
