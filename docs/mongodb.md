@@ -1,24 +1,31 @@
 # MongoDB
 
-## General mongoDB commands
-
-
-
 ## Generic debug command
 
-    db.currentOp();
-
+    > db.currentOp();
+    > db.serverStatus()
+    > db.stats()
+    > db.$collection.stats()
 
 ## Replica Set 
 
-    myreplname:PRIMARY> db.printSlaveReplicationInfo()
+    > myreplname:PRIMARY> db.printReplicationInfo()
 
-    myreplname:PRIMARY> rs.status()
+    > myreplname:PRIMARY> db.printSlaveReplicationInfo()
 
-    myreplname:PRIMARY> rs.init()
+    > myreplname:PRIMARY> rs.status()
 
-    myreplname:SECONDARY> db.SlaveOk()
+    > myreplname:PRIMARY> rs.init()
 
-    myreplname:SECONDARY> use admin; db.shutdownServer({timeoutSecs: 300});
+    > myreplname:SECONDARY> db.SlaveOk()
 
+    > myreplname:SECONDARY> use admin; db.shutdownServer({timeoutSecs: 300});
 
+## Lock/Unlock from writes
+
+    > db._adminCommand({fsync: 1, lock: 1})
+    switched to db admin
+
+    > db.$cmd.sys.unlock.findOne()
+    { "ok" : 1, "info" : "unlock requested" }
+    
