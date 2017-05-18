@@ -170,6 +170,8 @@
                 
                     <li><a class="toctree-l4" href="#mysql-replica">Mysql Replica</a></li>
                 
+                    <li><a class="toctree-l4" href="#innodb-compression">InnoDB Compression</a></li>
+                
             
             </ul>
         
@@ -337,6 +339,9 @@ MASTER_LOG_POS=107;
 </code></pre>
 <p>Fix single errors on replication:</p>
 <pre><code>mysql&gt; STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;
+</code></pre>
+<h2 id="innodb-compression">InnoDB Compression</h2>
+<pre><code>ALTER TABLE &lt;table_name&gt; ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=32;
 </code></pre>
               
             </div>

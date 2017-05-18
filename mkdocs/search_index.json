@@ -147,7 +147,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nf58162b\n di 43 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n3a482fd\n di 68 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nc77b963\n di 68 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n79481d4\n di 68 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nd5ea0af\n di 79 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n7b5053c\n di 79 minutes ago: Adding mongodb debug commands\n\n\n\n\n\n\nLoreLLo commit \n64aba6c\n di 3 hours ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \ncb3d382\n di 3 hours ago: added more bash utilities about dates\n\n\n\n\n\n\nLoreLLo commit \n0cdd631\n di 3 hours ago: added tuning info about linux networking\n\n\n\n\n\n\nLoreLLo commit \n4dbc6c1\n di 3 hours ago: Added new mongodb info\n\n\n\n\n\n\nLoreLLo commit \n6488e92\n di 5 hours ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n1587a47\n di 5 hours ago: Created XenServer page and istructions for backup script 'snapback'", 
+            "text": "LoreLLo commit \n69b45ca\n di 7 seconds ago: added example of InnoDB table compression\n\n\n\n\n\n\nLoreLLo commit \n2f54e7c\n di 32 seconds ago: fixed vgcreate command and added more examples of lvcreate command\n\n\n\n\n\n\nLoreLLo commit \nda2e75a\n di 9 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nf58162b\n di 9 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n3a482fd\n di 9 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nc77b963\n di 9 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n79481d4\n di 9 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nd5ea0af\n di 9 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n7b5053c\n di 9 days ago: Adding mongodb debug commands\n\n\n\n\n\n\nLoreLLo commit \n64aba6c\n di 9 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \ncb3d382\n di 9 days ago: added more bash utilities about dates\n\n\n\n\n\n\nLoreLLo commit \n0cdd631\n di 9 days ago: added tuning info about linux networking\n\n\n\n\n\n\nLoreLLo commit \n4dbc6c1\n di 9 days ago: Added new mongodb info\n\n\n\n\n\n\nLoreLLo commit \n6488e92\n di 9 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n1587a47\n di 9 days ago: Created XenServer page and istructions for backup script 'snapback'", 
             "title": "Changelog"
         }, 
         {
@@ -317,7 +317,7 @@
         }, 
         {
             "location": "/lvm/", 
-            "text": "Managing Logical Volumes\n\n\nImagine to manage SDB\n\n\nShow status of LVM devices / volumes / ...\n\n\npvs\nvgs\nlvs\n\n\n\nCreate an LVM-ready partition /dev/sdb1\n\n\nNot strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition\n\n\nfdisk /dev/sdb\nn p 1 t 8e p w\n\n\n\nAdd LVM Magic\n\n\npvcreate /dev/sdb\nvgcreate  /dev/sdb1\nlvcreate -L 150G -n vmware hdd_vg\n\nmkfs -t ext4 /dev/hdd_vg/vmstore\n\nblkid /dev/hdd_vg/vmstore\n\nmkdir -p /mnt/vmstore\n\n\n\nedit \n/etc/fstab\n accordingly then\n\n\nmount -a\n\n\n\nExtend existing volume\n\n\nlvextend -l +100G /dev/hdd_vg/vmstore\nresize2fs /dev/hdd_vg_vmstore", 
+            "text": "Managing Logical Volumes\n\n\nImagine to manage SDB\n\n\nShow status of LVM devices / volumes / ...\n\n\npvs\nvgs\nlvs\n\n\n\nCreate an LVM-ready partition /dev/sdb1\n\n\nNot strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition\n\n\nfdisk /dev/sdb\nn p 1 t 8e p w\n\n\n\nAdd LVM Magic\n\n\n( pvcreate /dev/sdb )\nvgcreate vg00 /dev/sdb\n\nlvcreate -L 150G -n mysql vg00  # defined size\nlvcreate -l95%VG -n mysql vg00  # 95% of the size of the VG\nlvcreate -l90%FREE -n mysql vg00    # 90% of the remaining free space in the Volume Group\n\n\nmkfs -t ext4 /dev/vg00/mysql\n\nblkid /dev/vg00/mysql\n\nmkdir -p /mnt/mysql\n\n\n\nedit \n/etc/fstab\n accordingly then\n\n\nmount -a\n\nmkdir /mnt/mysql/{binlog,data}\n\n\n\nExtend existing volume\n\n\nlvextend -l +100G /dev/hdd_vg/vmstore\nresize2fs /dev/hdd_vg_vmstore", 
             "title": "Lvm"
         }, 
         {
@@ -337,7 +337,7 @@
         }, 
         {
             "location": "/lvm/#add-lvm-magic", 
-            "text": "pvcreate /dev/sdb\nvgcreate  /dev/sdb1\nlvcreate -L 150G -n vmware hdd_vg\n\nmkfs -t ext4 /dev/hdd_vg/vmstore\n\nblkid /dev/hdd_vg/vmstore\n\nmkdir -p /mnt/vmstore  edit  /etc/fstab  accordingly then  mount -a", 
+            "text": "( pvcreate /dev/sdb )\nvgcreate vg00 /dev/sdb\n\nlvcreate -L 150G -n mysql vg00  # defined size\nlvcreate -l95%VG -n mysql vg00  # 95% of the size of the VG\nlvcreate -l90%FREE -n mysql vg00    # 90% of the remaining free space in the Volume Group\n\n\nmkfs -t ext4 /dev/vg00/mysql\n\nblkid /dev/vg00/mysql\n\nmkdir -p /mnt/mysql  edit  /etc/fstab  accordingly then  mount -a\n\nmkdir /mnt/mysql/{binlog,data}", 
             "title": "Add LVM Magic"
         }, 
         {
@@ -372,7 +372,7 @@
         }, 
         {
             "location": "/mysql/", 
-            "text": "MySQL\n\n\nDebug connections problem\n\n\n# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql\n show processlist;\n\n\n\nUsers\n\n\nmysql\n CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql\n SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql\n SELECT PASSWORD('mypass');\n\n\n\nGrants\n\n\nmysql\n SHOW GRANTS FOR 'francis'@'localhost';\nmysql\n GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nTo change password or resource limits for an existing user, without \nchanging privileges\n\n\nmysql\n GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nDumps\n\n\n# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME \n dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;\n\n\n\nMysql Replica\n\n\nmysql\n GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql\n FLUSH PRIVILEGES;\n\nmysql\n CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;\n\n\n\nFix single errors on replication:\n\n\nmysql\n STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;", 
+            "text": "MySQL\n\n\nDebug connections problem\n\n\n# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql\n show processlist;\n\n\n\nUsers\n\n\nmysql\n CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql\n SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql\n SELECT PASSWORD('mypass');\n\n\n\nGrants\n\n\nmysql\n SHOW GRANTS FOR 'francis'@'localhost';\nmysql\n GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nTo change password or resource limits for an existing user, without \nchanging privileges\n\n\nmysql\n GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nDumps\n\n\n# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME \n dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;\n\n\n\nMysql Replica\n\n\nmysql\n GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql\n FLUSH PRIVILEGES;\n\nmysql\n CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;\n\n\n\nFix single errors on replication:\n\n\nmysql\n STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;\n\n\n\nInnoDB Compression\n\n\nALTER TABLE \ntable_name\n ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=32;", 
             "title": "Mysql"
         }, 
         {
@@ -404,6 +404,11 @@
             "location": "/mysql/#mysql-replica", 
             "text": "mysql  GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql  FLUSH PRIVILEGES;\n\nmysql  CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;  Fix single errors on replication:  mysql  STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;", 
             "title": "Mysql Replica"
+        }, 
+        {
+            "location": "/mysql/#innodb-compression", 
+            "text": "ALTER TABLE  table_name  ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=32;", 
+            "title": "InnoDB Compression"
         }, 
         {
             "location": "/nginx/", 
