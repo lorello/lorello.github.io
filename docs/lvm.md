@@ -18,19 +18,25 @@ and use directly sdb device, instead of a partition
 
 ## Add LVM Magic
 
-    pvcreate /dev/sdb
-    vgcreate  /dev/sdb1
-    lvcreate -L 150G -n vmware hdd_vg
+    ( pvcreate /dev/sdb )
+    vgcreate vg00 /dev/sdb
 
-    mkfs -t ext4 /dev/hdd_vg/vmstore
+    lvcreate -L 150G -n mysql vg00	# defined size
+    lvcreate -l95%VG -n mysql vg00 	# 95% of the size of the VG
+    lvcreate -l90%FREE -n mysql vg00 	# 90% of the remaining free space in the Volume Group
 
-    blkid /dev/hdd_vg/vmstore
+
+    mkfs -t ext4 /dev/vg00/mysql
+
+    blkid /dev/vg00/mysql
     
-    mkdir -p /mnt/vmstore
+    mkdir -p /mnt/mysql
 
 edit `/etc/fstab` accordingly then
 
     mount -a
+
+    mkdir /mnt/mysql/{binlog,data}
 
 ## Extend existing volume
 
