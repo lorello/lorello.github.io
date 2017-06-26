@@ -49,6 +49,10 @@ Fix single errors on replication:
 
     mysql> STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;
 
+Free disk space taken by binary logs:
+
+    mysql> PURGE BINARY LOGS BEFORE DATE_SUB( NOW(), INTERVAL 2 DAY );
+
 ## InnoDB Compression
 
     ALTER TABLE <table_name> ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=32;
