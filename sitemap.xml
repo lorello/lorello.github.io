@@ -3,216 +3,224 @@
 
     
     <url>
-     <loc>None/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/api-auth/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/api-auth/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/atom/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/atom/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/bash/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/bash/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/bind/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/bind/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/centos/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/centos/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/changelog/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/changelog/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/cisco/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/cisco/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/docker/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/docker/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/git/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/git/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/ip/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/ip/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/linux-networking/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/linux-networking/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/lvm/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/lvm/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/mongodb/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/macosx/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/mysql/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/mongodb/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/nginx/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/mysql/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/octohost/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/nginx/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/openssl/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/octohost/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/php/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/openssl/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/poormanvpn/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/php/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/postfix/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/poormanvpn/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/puppet/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/postfix/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/raid/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/puppet/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/services/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/raid/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/systemd/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/services/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/xenserver/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/systemd/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/zfs/</loc>
-     <lastmod>2017-05-18</lastmod>
+     <loc>/xenserver/</loc>
+     <lastmod>2017-06-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/zfs/</loc>
+     <lastmod>2017-06-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

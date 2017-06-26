@@ -8,7 +8,7 @@
   
   <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Mongodb - Lorello technical notes</title>
+  <title>Macosx - Lorello technical notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Mongodb";
-    var mkdocs_page_input_path = "mongodb.md";
-    var mkdocs_page_url = "/mongodb/";
+    var mkdocs_page_name = "Macosx";
+    var mkdocs_page_input_path = "macosx.md";
+    var mkdocs_page_url = "/macosx/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -112,30 +112,28 @@
     <a class="" href="../lvm/">Lvm</a>
 	    </li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../macosx/">Macosx</a>
-	    </li>
-          
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">Mongodb</a>
+    <a class="current" href="./">Macosx</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#mongodb">MongoDB</a></li>
+    <li class="toctree-l2"><a href="#macos-x">MacOS X</a></li>
     
         <ul>
         
-            <li><a class="toctree-l3" href="#generic-debug-command">Generic debug command</a></li>
+            <li><a class="toctree-l3" href="#manage-services">Manage services</a></li>
         
-            <li><a class="toctree-l3" href="#replica-set">Replica Set</a></li>
-        
-            <li><a class="toctree-l3" href="#lockunlock-from-writes">Lock/Unlock from writes</a></li>
+            <li><a class="toctree-l3" href="#system-configuration-parameters">System configuration parameters</a></li>
         
         </ul>
     
 
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../mongodb/">Mongodb</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -225,10 +223,10 @@
     
       
     
-    <li>Mongodb</li>
+    <li>Macosx</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/mongodb.md"
+        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/macosx.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -238,32 +236,13 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="mongodb">MongoDB</h1>
-<h2 id="generic-debug-command">Generic debug command</h2>
-<pre><code>&gt; db.currentOp();
-&gt; db.serverStatus()
-&gt; db.stats()
-&gt; db.$collection.stats()
+                <h1 id="macos-x">MacOS X</h1>
+<h2 id="manage-services">Manage services</h2>
+<pre><code>launchctl list
 </code></pre>
-<h2 id="replica-set">Replica Set</h2>
-<pre><code>&gt; myreplname:PRIMARY&gt; db.printReplicationInfo()
-
-&gt; myreplname:PRIMARY&gt; db.printSlaveReplicationInfo()
-
-&gt; myreplname:PRIMARY&gt; rs.status()
-
-&gt; myreplname:PRIMARY&gt; rs.init()
-
-&gt; myreplname:SECONDARY&gt; db.SlaveOk()
-
-&gt; myreplname:SECONDARY&gt; use admin; db.shutdownServer({timeoutSecs: 300});
-</code></pre>
-<h2 id="lockunlock-from-writes">Lock/Unlock from writes</h2>
-<pre><code>&gt; db._adminCommand({fsync: 1, lock: 1})
-switched to db admin
-
-&gt; db.$cmd.sys.unlock.findOne()
-{ "ok" : 1, "info" : "unlock requested" }
+<h2 id="system-configuration-parameters">System configuration parameters</h2>
+<pre><code>scutil
+scutil --dns
 </code></pre>
               
             </div>
@@ -272,10 +251,10 @@ switched to db admin
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../mysql/" class="btn btn-neutral float-right" title="Mysql">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../mongodb/" class="btn btn-neutral float-right" title="Mongodb">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../macosx/" class="btn btn-neutral" title="Macosx"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../lvm/" class="btn btn-neutral" title="Lvm"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -305,10 +284,10 @@ switched to db admin
           <a href="https://github.com/lorello/lorello.github.io/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../macosx/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../lvm/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../mysql/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../mongodb/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
