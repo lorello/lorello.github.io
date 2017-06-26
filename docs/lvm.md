@@ -28,19 +28,14 @@ and use directly sdb device, instead of a partition
 
     mkfs -t ext4 /dev/vg00/mysql
 
-    blkid /dev/vg00/mysql
-    
+    UUID=$( blkid /dev/vg00/mysql | awk '{ print $2 }') echo "$UUID	/mnt/mysql	ext4	defaults,noatime,nodiratime	0 0" >> /etc/fstab
     mkdir -p /mnt/mysql
-
-edit `/etc/fstab` accordingly then
-
     mount -a
 
     mkdir /mnt/mysql/{binlog,data}
 
 ## Extend existing volume
 
-    lvextend -l +100G /dev/hdd_vg/vmstore
-    resize2fs /dev/hdd_vg_vmstore
+    lvextend --size +10G --resizefs /dev/mapper/vg01-backup
 
 
