@@ -38,4 +38,14 @@ and use directly sdb device, instead of a partition
 
     lvextend --size +10G --resizefs /dev/mapper/vg01-backup
 
+## Label a volume
+
+Ext4
+
+    e2label /dev/vg00/mysql mysql
+
+XFS
+
+    xfs_admin -u /dev/vg01/mongodb
+
 
