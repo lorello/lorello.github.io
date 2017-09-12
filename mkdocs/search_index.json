@@ -147,7 +147,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \n47aa326\n di 12 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n0905d3a\n di 13 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n019070c\n di 13 minutes ago: new macosx doc\n\n\n\n\n\n\nLoreLLo commit \n1c7120b\n di 13 minutes ago: fixed build command: urls in md are generated correctly\n\n\n\n\n\n\nLoreLLo commit \nfe7b674\n di 14 minutes ago: added command to purge binary logs to mysql\n\n\n\n\n\n\nLoreLLo commit \n4842d2b\n di 18 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n96cf7f2\n di 18 minutes ago: Fixed an error on lvm resize of volume group", 
+            "text": "LoreLLo commit \nf00eb29\n di 13 seconds ago: Added info about labeling", 
             "title": "Changelog"
         }, 
         {
@@ -317,7 +317,7 @@
         }, 
         {
             "location": "/lvm/", 
-            "text": "Managing Logical Volumes\n\n\nImagine to manage SDB\n\n\nShow status of LVM devices / volumes / ...\n\n\npvs\nvgs\nlvs\n\n\n\nCreate an LVM-ready partition /dev/sdb1\n\n\nNot strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition\n\n\nfdisk /dev/sdb\nn p 1 t 8e p w\n\n\n\nAdd LVM Magic\n\n\n( pvcreate /dev/sdb )\nvgcreate vg00 /dev/sdb\n\nlvcreate -L 150G -n mysql vg00  # defined size\nlvcreate -l95%VG -n mysql vg00  # 95% of the size of the VG\nlvcreate -l90%FREE -n mysql vg00    # 90% of the remaining free space in the Volume Group\n\n\nmkfs -t ext4 /dev/vg00/mysql\n\nUUID=$( blkid /dev/vg00/mysql | awk '{ print $2 }') echo \"$UUID /mnt/mysql  ext4    defaults,noatime,nodiratime 0 0\" \n /etc/fstab\nmkdir -p /mnt/mysql\nmount -a\n\nmkdir /mnt/mysql/{binlog,data}\n\n\n\nExtend existing volume\n\n\nlvextend --size +10G --resizefs /dev/mapper/vg01-backup", 
+            "text": "Managing Logical Volumes\n\n\nImagine to manage SDB\n\n\nShow status of LVM devices / volumes / ...\n\n\npvs\nvgs\nlvs\n\n\n\nCreate an LVM-ready partition /dev/sdb1\n\n\nNot strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition\n\n\nfdisk /dev/sdb\nn p 1 t 8e p w\n\n\n\nAdd LVM Magic\n\n\n( pvcreate /dev/sdb )\nvgcreate vg00 /dev/sdb\n\nlvcreate -L 150G -n mysql vg00  # defined size\nlvcreate -l95%VG -n mysql vg00  # 95% of the size of the VG\nlvcreate -l90%FREE -n mysql vg00    # 90% of the remaining free space in the Volume Group\n\n\nmkfs -t ext4 /dev/vg00/mysql\n\nUUID=$( blkid /dev/vg00/mysql | awk '{ print $2 }') echo \"$UUID /mnt/mysql  ext4    defaults,noatime,nodiratime 0 0\" \n /etc/fstab\nmkdir -p /mnt/mysql\nmount -a\n\nmkdir /mnt/mysql/{binlog,data}\n\n\n\nExtend existing volume\n\n\nlvextend --size +10G --resizefs /dev/mapper/vg01-backup\n\n\n\nLabel a volume\n\n\nExt4\n\n\ne2label /dev/vg00/mysql mysql\n\n\n\nXFS\n\n\nxfs_admin -u /dev/vg01/mongodb", 
             "title": "Lvm"
         }, 
         {
@@ -344,6 +344,11 @@
             "location": "/lvm/#extend-existing-volume", 
             "text": "lvextend --size +10G --resizefs /dev/mapper/vg01-backup", 
             "title": "Extend existing volume"
+        }, 
+        {
+            "location": "/lvm/#label-a-volume", 
+            "text": "Ext4  e2label /dev/vg00/mysql mysql  XFS  xfs_admin -u /dev/vg01/mongodb", 
+            "title": "Label a volume"
         }, 
         {
             "location": "/macosx/", 

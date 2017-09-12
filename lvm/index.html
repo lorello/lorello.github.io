@@ -124,6 +124,8 @@
         
             <li><a class="toctree-l3" href="#extend-existing-volume">Extend existing volume</a></li>
         
+            <li><a class="toctree-l3" href="#label-a-volume">Label a volume</a></li>
+        
         </ul>
     
 
@@ -272,6 +274,13 @@ mkdir /mnt/mysql/{binlog,data}
 </code></pre>
 <h2 id="extend-existing-volume">Extend existing volume</h2>
 <pre><code>lvextend --size +10G --resizefs /dev/mapper/vg01-backup
+</code></pre>
+<h2 id="label-a-volume">Label a volume</h2>
+<p>Ext4</p>
+<pre><code>e2label /dev/vg00/mysql mysql
+</code></pre>
+<p>XFS</p>
+<pre><code>xfs_admin -u /dev/vg01/mongodb
 </code></pre>
               
             </div>
