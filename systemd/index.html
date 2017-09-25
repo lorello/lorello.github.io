@@ -181,11 +181,11 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#paths">paths</a></li>
+            <li><a class="toctree-l3" href="#paths">Paths</a></li>
         
             <li><a class="toctree-l3" href="#override-a-systemd-profile">Override a systemd profile</a></li>
         
-            <li><a class="toctree-l3" href="#system-logs">system logs</a></li>
+            <li><a class="toctree-l3" href="#system-logs">System Logs</a></li>
         
             <li><a class="toctree-l3" href="#simple-service-definition">Simple service definition</a></li>
         
@@ -252,7 +252,7 @@
 <li><a href="https://wiki.ubuntu.com/SystemdForUpstartUsers">SystemD for Upstart Users</a></li>
 <li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/chap-Managing_Services_with_systemd.html">RedHat docs</a></li>
 </ul>
-<h2 id="paths">paths</h2>
+<h2 id="paths">Paths</h2>
 <p>Central path system-wide</p>
 <pre><code>/lib/systemd/system     # debian-based
 /usr/lib/systemd/system/    # redhat-based
@@ -265,7 +265,7 @@
 <pre><code>/etc/systemd/system/example.service.d/mycustom.conf
 </code></pre>
 <p>and write there you customizations</p>
-<h2 id="system-logs">system logs</h2>
+<h2 id="system-logs">System Logs</h2>
 <p>Show current logs</p>
 <pre><code>journalctl -n         # show onetime
 journalctl -f         # tail logs
@@ -311,17 +311,19 @@ WantedBy=multi-user.target
 <pre><code>[Unit]
 StartLimitBurst=5       # default
 StartLimitIntervalSec=10    # default
+
 [Service]
 Restart=always
 RestartSec=1        # default: 100ms
 </code></pre>
 <p>Example 2: try a restart every 30 seconds and stop after 5 attempts in 5 minutes
-       reboot after 5 failed attempts to restart the service
-    [Unit]
-    StartLimitBurst=5       # default
-    StartLimitIntervalSec=5min  # default
-    StartLimitAction=reboot </p>
-<pre><code>[Service]
+       reboot after 5 failed attempts to restart the service</p>
+<pre><code>[Unit]
+StartLimitBurst=5       # default
+StartLimitIntervalSec=5min  # default
+StartLimitAction=reboot
+
+[Service]
 Restart=always
 RestartSec=30       # default: 100ms
 </code></pre>
