@@ -62,7 +62,7 @@
         }, 
         {
             "location": "/bash/", 
-            "text": "Bashism\n\n\nI use a little library to have a common set of utilities out of the box in my\nbash scripts, it can be retrieved at https://github.com/lorello/lib.sh\n\n\nLoops\n\n\nLoop on a rows of a text file\n\n\n#!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone\n\n\n\nLoop on a counter\n\n\ncounter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone\n\n\n\nprocess cli options\n\n\nProcess CLI options\n\n\naaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone\n\n\n\nA more advanced options is to use [https://github.com/nk412/optparse|optparse]\n\n\nBash dates\n\n\nA simple date useful for filenaming: YYYY-MM-DD\n\n\n$(date +%F)\n\n\n\nA full datetime\n\n\n$(date +%F-%T)", 
+            "text": "Bashism\n\n\nI use a little library to have a common set of utilities out of the box in my\nbash scripts, it can be retrieved at https://github.com/lorello/lib.sh\n\n\nLoops\n\n\nLoop on a rows of a text file\n\n\n#!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone\n\n\n\nLoop on a counter\n\n\ncounter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone\n\n\n\nprocess cli options\n\n\nProcess CLI options\n\n\naaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone\n\n\n\nA more advanced options is to use [https://github.com/nk412/optparse|optparse]\n\n\nBash dates\n\n\nA simple date useful for filenaming: YYYY-MM-DD\n\n\n$(date +%F)\n\n\n\nA full datetime\n\n\n$(date +%F-%T)\n\n\n\nBuiltin bashism instead of external binaries\n\n\nfqdn='computer1.daveeddy.com'\n\nIFS=. read -r hostname domain tld \n \"$fqdn\"\necho \"$hostname is in $domain.$tld\"\n# =\n \"computer1 is in daveeddy.com\"", 
             "title": "Bash"
         }, 
         {
@@ -84,6 +84,11 @@
             "location": "/bash/#bash-dates", 
             "text": "A simple date useful for filenaming: YYYY-MM-DD  $(date +%F)  A full datetime  $(date +%F-%T)", 
             "title": "Bash dates"
+        }, 
+        {
+            "location": "/bash/#builtin-bashism-instead-of-external-binaries", 
+            "text": "fqdn='computer1.daveeddy.com'\n\nIFS=. read -r hostname domain tld   \"$fqdn\"\necho \"$hostname is in $domain.$tld\"\n# =  \"computer1 is in daveeddy.com\"", 
+            "title": "Builtin bashism instead of external binaries"
         }, 
         {
             "location": "/bind/", 
@@ -147,7 +152,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nf00eb29\n di 13 seconds ago: Added info about labeling", 
+            "text": "LoreLLo commit \n3d6a68d\n di 6 seconds ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n9ce2cb2\n di 13 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nf00eb29\n di 13 days ago: Added info about labeling", 
             "title": "Changelog"
         }, 
         {
@@ -627,17 +632,17 @@
         }, 
         {
             "location": "/systemd/", 
-            "text": "SystemD\n\n\nServices has a new name... happy! They are now \nunits\n\n\nLook also:\n - https://wiki.ubuntu.com/SystemdForUpstartUsers\n\n\npaths\n\n\nCentral path system-wide\n    /lib/systemd/system\n\n\nPut general custom units in\n\n\n/etc/systemd/system/\n\n\n\nsystem logs\n\n\nShow current logs\n\n\njournalctl -n         # show onetime\njournalctl -f         # tail logs\n\n\n\nShow today logs from two units:\n\n\njournalctl -u nginx.service -u php-fpm.service --since today\n\n\n\nShow kernel logs\n\n\njournalctl -k                # last boot\njournalctl -k -b -5          # five boots ago\n\n\n\nShow by field (\nman systemd.journal-fields\n)\n\n\njournalctl _UID=33 --since today\n\n\n\nShow only error messages, from boot\n\n\njournalctl -p err -b\n\n\n\nOther interesting options\n\n\n--no-pager        # don't use more\n--no-full         # truncate at last column\n-a                # show all, even non printable chars\n\n\n\nOverride a systemd profile\n\n\nTo override some attributes inside example.service, create\n\n\n/etc/systemd/system/example.service.d/mycustom.conf\n\n\n\nand write there you customizations\n\n\nManage ULIMITs\n\n\nCheck current ulimits for an hypotethical MongoDB\n\n\nroot@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'\n\n\n\nChange values\n\n\nroot@xenial:~# cat /etc/systemd/system/mongodb.service\n[Service]\nLimitNOFILE=64000\nLimitNPROC=infinity\n\nroot@xenial:~# systemctl daemon-reload", 
+            "text": "SystemD\n\n\nServices has a new name... happy! They are now \nunits\n\n\nLook also:\n\n\n\n\nOffiial docs\n\n\nSystemD for Upstart Users\n\n\nRedHat docs\n\n\n\n\npaths\n\n\nCentral path system-wide\n    /lib/systemd/system     (debian-based)\n    /usr/lib/systemd/system/    (redhat-based)\n\n\nPut general custom units in\n\n\n/etc/systemd/system/\n\n\n\nsystem logs\n\n\nShow current logs\n\n\njournalctl -n         # show onetime\njournalctl -f         # tail logs\n\n\n\nShow today logs from two units:\n\n\njournalctl -u nginx.service -u php-fpm.service --since today\n\n\n\nShow kernel logs\n\n\njournalctl -k                # last boot\njournalctl -k -b -5          # five boots ago\n\n\n\nShow by field (\nman systemd.journal-fields\n)\n\n\njournalctl _UID=33 --since today\n\n\n\nShow only error messages, from boot\n\n\njournalctl -p err -b\n\n\n\nOther interesting options\n\n\n--no-pager        # don't use more\n--no-full         # truncate at last column\n-a                # show all, even non printable chars\n\n\n\nOverride a systemd profile\n\n\nTo override some attributes inside example.service, create\n\n\n/etc/systemd/system/example.service.d/mycustom.conf\n\n\n\nand write there you customizations\n\n\nSimple service definition\n\n\n[Unit]\nDescription=ROT13 demo service\nAfter=network.target\nAfter=mysqld.service\nStartLimitIntervalSec=0\n\n[Service]\nType=simple\nRestart=on-failure\nRestartSec=2        # restart after 2 seconds (default 100ms)\nUser=centos\nExecStart=/usr/bin/env php /path/to/server.php\n\n[Install]\nWantedBy=multi-user.target\n\n\n\nSee also \nUnit Manual\n\n\nService Auto-Restart\n\n\nExample 1: try a restart per second and stop after 5 attempts in 10 seconds\n\n\n[Unit]\nStartLimitBurst=5       # default\nStartLimitIntervalSec=10    # default\n[Service]\nRestart=always\nRestartSec=1        # default: 100ms\n\n\n\nExample 2: try a restart every 30 seconds and stop after 5 attempts in 5 minutes\n       reboot after 5 failed attempts to restart the service\n    [Unit]\n    StartLimitBurst=5       # default\n    StartLimitIntervalSec=5min  # default\n    StartLimitAction=reboot \n\n\n[Service]\nRestart=always\nRestartSec=30       # default: 100ms\n\n\n\nNote that \nsystemctl reset-failed\n will cause the restart rate counter for a \nservice to be flushed, which is useful if the administrator wants to manually\nstart a unit and the start limit interferes with that.\n\n\nManage process limits\n\n\nCheck current ulimits for an hypotethical MongoDB\n\n\nroot@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'\n\n\n\nChange values\n\n\nroot@xenial:~# cat /etc/systemd/system/mongodb.service\n[Service]\nLimitNOFILE=64000\nLimitNPROC=infinity\n\nroot@xenial:~# systemctl daemon-reload", 
             "title": "Systemd"
         }, 
         {
             "location": "/systemd/#systemd", 
-            "text": "Services has a new name... happy! They are now  units  Look also:\n - https://wiki.ubuntu.com/SystemdForUpstartUsers", 
+            "text": "Services has a new name... happy! They are now  units  Look also:   Offiial docs  SystemD for Upstart Users  RedHat docs", 
             "title": "SystemD"
         }, 
         {
             "location": "/systemd/#paths", 
-            "text": "Central path system-wide\n    /lib/systemd/system  Put general custom units in  /etc/systemd/system/", 
+            "text": "Central path system-wide\n    /lib/systemd/system     (debian-based)\n    /usr/lib/systemd/system/    (redhat-based)  Put general custom units in  /etc/systemd/system/", 
             "title": "paths"
         }, 
         {
@@ -651,9 +656,19 @@
             "title": "Override a systemd profile"
         }, 
         {
-            "location": "/systemd/#manage-ulimits", 
+            "location": "/systemd/#simple-service-definition", 
+            "text": "[Unit]\nDescription=ROT13 demo service\nAfter=network.target\nAfter=mysqld.service\nStartLimitIntervalSec=0\n\n[Service]\nType=simple\nRestart=on-failure\nRestartSec=2        # restart after 2 seconds (default 100ms)\nUser=centos\nExecStart=/usr/bin/env php /path/to/server.php\n\n[Install]\nWantedBy=multi-user.target  See also  Unit Manual", 
+            "title": "Simple service definition"
+        }, 
+        {
+            "location": "/systemd/#service-auto-restart", 
+            "text": "Example 1: try a restart per second and stop after 5 attempts in 10 seconds  [Unit]\nStartLimitBurst=5       # default\nStartLimitIntervalSec=10    # default\n[Service]\nRestart=always\nRestartSec=1        # default: 100ms  Example 2: try a restart every 30 seconds and stop after 5 attempts in 5 minutes\n       reboot after 5 failed attempts to restart the service\n    [Unit]\n    StartLimitBurst=5       # default\n    StartLimitIntervalSec=5min  # default\n    StartLimitAction=reboot   [Service]\nRestart=always\nRestartSec=30       # default: 100ms  Note that  systemctl reset-failed  will cause the restart rate counter for a \nservice to be flushed, which is useful if the administrator wants to manually\nstart a unit and the start limit interferes with that.", 
+            "title": "Service Auto-Restart"
+        }, 
+        {
+            "location": "/systemd/#manage-process-limits", 
             "text": "Check current ulimits for an hypotethical MongoDB  root@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'  Change values  root@xenial:~# cat /etc/systemd/system/mongodb.service\n[Service]\nLimitNOFILE=64000\nLimitNPROC=infinity\n\nroot@xenial:~# systemctl daemon-reload", 
-            "title": "Manage ULIMITs"
+            "title": "Manage process limits"
         }, 
         {
             "location": "/xenserver/", 

@@ -82,6 +82,8 @@
         
             <li><a class="toctree-l3" href="#bash-dates">Bash dates</a></li>
         
+            <li><a class="toctree-l3" href="#builtin-bashism-instead-of-external-binaries">Builtin bashism instead of external binaries</a></li>
+        
         </ul>
     
 
@@ -288,6 +290,13 @@ done
 </code></pre>
 <p>A full datetime</p>
 <pre><code>$(date +%F-%T)
+</code></pre>
+<h2 id="builtin-bashism-instead-of-external-binaries">Builtin bashism instead of external binaries</h2>
+<pre><code>fqdn='computer1.daveeddy.com'
+
+IFS=. read -r hostname domain tld &lt;&lt;&lt; "$fqdn"
+echo "$hostname is in $domain.$tld"
+# =&gt; "computer1 is in daveeddy.com"
 </code></pre>
               
             </div>
