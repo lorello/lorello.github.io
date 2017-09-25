@@ -53,3 +53,11 @@ A simple date useful for filenaming: YYYY-MM-DD
 A full datetime
 
     $(date +%F-%T)
+
+## Builtin bashism instead of external binaries
+
+    fqdn='computer1.daveeddy.com'
+
+    IFS=. read -r hostname domain tld <<< "$fqdn"
+    echo "$hostname is in $domain.$tld"
+    # => "computer1 is in daveeddy.com"
