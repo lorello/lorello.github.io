@@ -183,9 +183,9 @@
         
             <li><a class="toctree-l3" href="#paths">paths</a></li>
         
-            <li><a class="toctree-l3" href="#system-logs">system logs</a></li>
-        
             <li><a class="toctree-l3" href="#override-a-systemd-profile">Override a systemd profile</a></li>
+        
+            <li><a class="toctree-l3" href="#system-logs">system logs</a></li>
         
             <li><a class="toctree-l3" href="#simple-service-definition">Simple service definition</a></li>
         
@@ -248,17 +248,23 @@
 <p>Services has a new name... happy! They are now <em>units</em></p>
 <p>Look also:</p>
 <ul>
-<li><a href="https://www.freedesktop.org/wiki/Software/systemd/">Offiial docs</a></li>
+<li><a href="https://www.freedesktop.org/wiki/Software/systemd/">Official docs</a></li>
 <li><a href="https://wiki.ubuntu.com/SystemdForUpstartUsers">SystemD for Upstart Users</a></li>
 <li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/chap-Managing_Services_with_systemd.html">RedHat docs</a></li>
 </ul>
 <h2 id="paths">paths</h2>
-<p>Central path system-wide
-    /lib/systemd/system     (debian-based)
-    /usr/lib/systemd/system/    (redhat-based)</p>
+<p>Central path system-wide</p>
+<pre><code>/lib/systemd/system     # debian-based
+/usr/lib/systemd/system/    # redhat-based
+</code></pre>
 <p>Put general custom units in</p>
 <pre><code>/etc/systemd/system/
 </code></pre>
+<h2 id="override-a-systemd-profile">Override a systemd profile</h2>
+<p>To override some attributes inside example.service, create</p>
+<pre><code>/etc/systemd/system/example.service.d/mycustom.conf
+</code></pre>
+<p>and write there you customizations</p>
 <h2 id="system-logs">system logs</h2>
 <p>Show current logs</p>
 <pre><code>journalctl -n         # show onetime
@@ -282,11 +288,6 @@ journalctl -k -b -5          # five boots ago
 --no-full         # truncate at last column
 -a                # show all, even non printable chars
 </code></pre>
-<h2 id="override-a-systemd-profile">Override a systemd profile</h2>
-<p>To override some attributes inside example.service, create</p>
-<pre><code>/etc/systemd/system/example.service.d/mycustom.conf
-</code></pre>
-<p>and write there you customizations</p>
 <h2 id="simple-service-definition">Simple service definition</h2>
 <pre><code>[Unit]
 Description=ROT13 demo service
