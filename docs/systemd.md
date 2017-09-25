@@ -8,7 +8,7 @@ Look also:
  - [SystemD for Upstart Users](https://wiki.ubuntu.com/SystemdForUpstartUsers)
  - [RedHat docs](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/chap-Managing_Services_with_systemd.html)
 
-## paths
+## Paths
 
 Central path system-wide
 
@@ -28,7 +28,7 @@ To override some attributes inside example.service, create
 and write there you customizations
 
 
-## system logs
+## System Logs
 
 Show current logs
 
@@ -85,12 +85,14 @@ Example 1: try a restart per second and stop after 5 attempts in 10 seconds
     [Unit]
     StartLimitBurst=5		# default
     StartLimitIntervalSec=10	# default
+    
     [Service]
     Restart=always
     RestartSec=1		# default: 100ms
 
 Example 2: try a restart every 30 seconds and stop after 5 attempts in 5 minutes
 	   reboot after 5 failed attempts to restart the service
+    
     [Unit]
     StartLimitBurst=5		# default
     StartLimitIntervalSec=5min	# default
