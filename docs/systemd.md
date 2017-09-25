@@ -4,19 +4,28 @@ Services has a new name... happy! They are now *units*
 
 Look also:
 
- - [Offiial docs](https://www.freedesktop.org/wiki/Software/systemd/)
+ - [Official docs](https://www.freedesktop.org/wiki/Software/systemd/)
  - [SystemD for Upstart Users](https://wiki.ubuntu.com/SystemdForUpstartUsers)
  - [RedHat docs](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/chap-Managing_Services_with_systemd.html)
 
 ## paths
 
 Central path system-wide
-    /lib/systemd/system		(debian-based)
-    /usr/lib/systemd/system/    (redhat-based)
+
+    /lib/systemd/system		# debian-based
+    /usr/lib/systemd/system/    # redhat-based
 
 Put general custom units in
 
     /etc/systemd/system/
+
+## Override a systemd profile
+
+To override some attributes inside example.service, create
+
+    /etc/systemd/system/example.service.d/mycustom.conf
+
+and write there you customizations
 
 
 ## system logs
@@ -25,7 +34,6 @@ Show current logs
 
     journalctl -n         # show onetime
     journalctl -f         # tail logs
-    
 
 Show today logs from two units:
 
@@ -49,15 +57,6 @@ Other interesting options
     --no-pager        # don't use more
     --no-full         # truncate at last column
     -a                # show all, even non printable chars
-
-
-## Override a systemd profile
-
-To override some attributes inside example.service, create
-
-    /etc/systemd/system/example.service.d/mycustom.conf
-
-and write there you customizations
 
 ## Simple service definition
 
