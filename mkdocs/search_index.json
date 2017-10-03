@@ -152,7 +152,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \n140a7d5\n di 3 seconds ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n6a7473f\n di 3 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n923b4f0\n di 4 minutes ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n345fd13\n di 6 minutes ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n3d6a68d\n di 6 minutes ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n9ce2cb2\n di 13 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nf00eb29\n di 13 days ago: Added info about labeling", 
+            "text": "LoreLLo commit \n1cf5dca\n di 17 seconds ago: More on lvextend\n\n\n\n\n\n\nLoreLLo commit \n04231f3\n di 8 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n140a7d5\n di 8 days ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n6a7473f\n di 8 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n923b4f0\n di 8 days ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n345fd13\n di 8 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n3d6a68d\n di 8 days ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n9ce2cb2\n di 3 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nf00eb29\n di 3 weeks ago: Added info about labeling", 
             "title": "Changelog"
         }, 
         {
@@ -322,7 +322,7 @@
         }, 
         {
             "location": "/lvm/", 
-            "text": "Managing Logical Volumes\n\n\nImagine to manage SDB\n\n\nShow status of LVM devices / volumes / ...\n\n\npvs\nvgs\nlvs\n\n\n\nCreate an LVM-ready partition /dev/sdb1\n\n\nNot strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition\n\n\nfdisk /dev/sdb\nn p 1 t 8e p w\n\n\n\nAdd LVM Magic\n\n\n( pvcreate /dev/sdb )\nvgcreate vg00 /dev/sdb\n\nlvcreate -L 150G -n mysql vg00  # defined size\nlvcreate -l95%VG -n mysql vg00  # 95% of the size of the VG\nlvcreate -l90%FREE -n mysql vg00    # 90% of the remaining free space in the Volume Group\n\n\nmkfs -t ext4 /dev/vg00/mysql\n\nUUID=$( blkid /dev/vg00/mysql | awk '{ print $2 }') echo \"$UUID /mnt/mysql  ext4    defaults,noatime,nodiratime 0 0\" \n /etc/fstab\nmkdir -p /mnt/mysql\nmount -a\n\nmkdir /mnt/mysql/{binlog,data}\n\n\n\nExtend existing volume\n\n\nlvextend --size +10G --resizefs /dev/mapper/vg01-backup\n\n\n\nLabel a volume\n\n\nExt4\n\n\ne2label /dev/vg00/mysql mysql\n\n\n\nXFS\n\n\nxfs_admin -u /dev/vg01/mongodb", 
+            "text": "Managing Logical Volumes\n\n\nImagine to manage SDB\n\n\nShow status of LVM devices / volumes / ...\n\n\npvs\nvgs\nlvs\n\n\n\nCreate an LVM-ready partition /dev/sdb1\n\n\nNot strictly necessary, if not needed skip this step \nand use directly sdb device, instead of a partition\n\n\nfdisk /dev/sdb\nn p 1 t 8e p w\n\n\n\nAdd LVM Magic\n\n\n( pvcreate /dev/sdb )\nvgcreate vg00 /dev/sdb\n\nlvcreate -L 150G -n mysql vg00  # defined size\nlvcreate -l95%VG -n mysql vg00  # 95% of the size of the VG\nlvcreate -l90%FREE -n mysql vg00    # 90% of the remaining free space in the Volume Group\n\n\nmkfs -t ext4 /dev/vg00/mysql\n\nUUID=$( blkid /dev/vg00/mysql | awk '{ print $2 }') echo \"$UUID /mnt/mysql  ext4    defaults,noatime,nodiratime 0 0\" \n /etc/fstab\nmkdir -p /mnt/mysql\nmount -a\n\nmkdir /mnt/mysql/{binlog,data}\n\n\n\nExtend existing volume\n\n\nadd 10G\n\n\nlvextend --size +10G --resizefs /dev/mapper/vg01-backup\n\n\n\nadd all remaining size on the volume\n\n\nlvextend -l +100%FREE --resizefs /dev/vg00/docker\n\n\n\nLabel a volume\n\n\nExt4\n\n\ne2label /dev/vg00/mysql mysql\n\n\n\nXFS\n\n\nxfs_admin -u /dev/vg01/mongodb", 
             "title": "Lvm"
         }, 
         {
@@ -347,7 +347,7 @@
         }, 
         {
             "location": "/lvm/#extend-existing-volume", 
-            "text": "lvextend --size +10G --resizefs /dev/mapper/vg01-backup", 
+            "text": "add 10G  lvextend --size +10G --resizefs /dev/mapper/vg01-backup  add all remaining size on the volume  lvextend -l +100%FREE --resizefs /dev/vg00/docker", 
             "title": "Extend existing volume"
         }, 
         {

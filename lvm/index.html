@@ -273,7 +273,11 @@ mount -a
 mkdir /mnt/mysql/{binlog,data}
 </code></pre>
 <h2 id="extend-existing-volume">Extend existing volume</h2>
+<p>add 10G</p>
 <pre><code>lvextend --size +10G --resizefs /dev/mapper/vg01-backup
+</code></pre>
+<p>add all remaining size on the volume</p>
+<pre><code>lvextend -l +100%FREE --resizefs /dev/vg00/docker
 </code></pre>
 <h2 id="label-a-volume">Label a volume</h2>
 <p>Ext4</p>
