@@ -36,7 +36,13 @@ and use directly sdb device, instead of a partition
 
 ## Extend existing volume
 
+add 10G
+
     lvextend --size +10G --resizefs /dev/mapper/vg01-backup
+
+add all remaining size on the volume
+
+    lvextend -l +100%FREE --resizefs /dev/vg00/docker
 
 ## Label a volume
 
