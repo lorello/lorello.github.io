@@ -71,18 +71,21 @@
     
         <ul>
         
+            <li><a class="toctree-l3" href="#checking-strings">Checking strings</a></li>
+        
             <li><a class="toctree-l3" href="#loops">Loops</a></li>
         
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#process-cli-options">Process CLI options</a></li>
-    
-        <ul>
+            <li><a class="toctree-l3" href="#process-cli-options">Process CLI options</a></li>
         
             <li><a class="toctree-l3" href="#bash-dates">Bash dates</a></li>
         
             <li><a class="toctree-l3" href="#builtin-bashism-instead-of-external-binaries">Builtin bashism instead of external binaries</a></li>
+        
+            <li><a class="toctree-l3" href="#vs">[[ vs [</a></li>
+        
+            <li><a class="toctree-l3" href="#debug">Debug</a></li>
+        
+            <li><a class="toctree-l3" href="#some-style">Some style</a></li>
         
         </ul>
     
@@ -248,6 +251,13 @@
                 <h1 id="bashism">Bashism</h1>
 <p>I use a little library to have a common set of utilities out of the box in my
 bash scripts, it can be retrieved at https://github.com/lorello/lib.sh</p>
+<h2 id="checking-strings">Checking strings</h2>
+<pre><code># -z (string length is zero) and -n (string length is not zero) are
+# preferred over testing for an empty string
+if [[ -z "${my_var}" ]]; then
+    do_something
+fi
+</code></pre>
 <h2 id="loops">Loops</h2>
 <p>Loop on a rows of a text file</p>
 <pre><code>#!/bin/sh
@@ -259,14 +269,24 @@ done
 </code></pre>
 <p>Loop on a counter</p>
 <pre><code>counter=1
-while [ $counter -le 10 ]
+while (( $counter &lt; 10 ))
 do
-echo $counter
-((counter++))
+    echo $counter
+    ((counter++))
 done
 </code></pre>
-<p>process cli options</p>
-<h1 id="process-cli-options">Process CLI options</h1>
+<p>Loop on a list of items</p>
+<pre><code>modules=(json httpserver jshint)
+for module in "${modules[@]}"; do
+    npm install -g "$module"
+done
+</code></pre>
+<p>Looping </p>
+<pre><code>for ((i = 0; i &lt; n; i++)); do
+    ...
+done
+</code></pre>
+<h2 id="process-cli-options">Process CLI options</h2>
 <pre><code>aaa=''
 bbb=''
 ccc=''
@@ -280,6 +300,21 @@ do
     -b) bbb=$2 ; shift 2 ;;
     -c) ccc=$2 ; shift 2 ;;
     *) shift 1 ;;
+  esac
+done
+</code></pre>
+<p>Another way</p>
+<pre><code>verbose='false'
+aflag=''
+bflag=''
+files=''
+while getopts 'abf:v' flag; do
+  case "${flag}" in
+    a) aflag='true' ;;
+    b) bflag='true' ;;
+    f) files="${OPTARG}" ;;
+    v) verbose='true' ;;
+    *) error "Unexpected option ${flag}" ;;
   esac
 done
 </code></pre>
@@ -298,6 +333,50 @@ IFS=. read -r hostname domain tld &lt;&lt;&lt; "$fqdn"
 echo "$hostname is in $domain.$tld"
 # =&gt; "computer1 is in daveeddy.com"
 </code></pre>
+<h2 id="vs">[[ vs [</h2>
+<p>There is also the <a href="http://mywiki.wooledge.org/BashFAQ/031">long version</a></p>
+<pre><code>[[ a &gt; b ]]
+
+[[ -n $var &amp;&amp; -f $var ]] &amp;&amp; echo "$var is a file"
+
+[[ $var = img* &amp;&amp; ($var = *.png || $var = *.jpg) ]] &amp;&amp; \
+    echo "$var starts with img and ends with .jpg or .png"
+
+[[ $name = a* ]] || echo "name does not start with an 'a': $name"
+
+[[ $(date) =~ ^Fri\ ...\ 13 ]] &amp;&amp; echo "It's Friday the 13th!"
+</code></pre>
+<h2 id="debug">Debug</h2>
+<p>The following code uses the DEBUG trap to inform the user about what command is about to be executed and wait for his confirmation do to so. Put this code in your script, at the location you wish to begin stepping:</p>
+<pre><code>trap '(read -p "[$BASH_SOURCE:$LINENO] $BASH_COMMAND?")' DEBUG
+</code></pre>
+<p>Give va value to TRACE to add -x flag to execution:</p>
+<pre><code>[[ "$TRACE" ]] &amp;&amp; set -x
+</code></pre>
+<h2 id="some-style">Some style</h2>
+<pre><code>meaningful_function_names() { ... }
+
+
+addition=$((${X} + ${Y}))
+substitution="${string/#foo/bar}"
+</code></pre>
+<p>Case formatting</p>
+<pre><code>case "${expression}" in
+  a)
+    variable="..."
+    some_command "${variable}" "${other_expr}" ...
+    ;;
+  absolute)
+    actions="relative"
+    another_command "${actions}" "${other_expr}" ...
+    ;;
+  *)
+    error "Unexpected expression '${expression}'"
+    ;;
+esac
+</code></pre>
+<p>Sources: <a href="https://google.github.io/styleguide/shell.xml">Google</a>, 
+<a href="https://github.com/progrium/bashstyle">Progrium</a></p>
               
             </div>
           </div>

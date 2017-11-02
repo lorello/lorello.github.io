@@ -267,6 +267,20 @@ sudo usermod -aG docker `whoami`
 git clone https://github.com/firehol/netdata.git –depth=1 &amp;&amp; cd netdata &amp;&amp; ./netdata-installer.sh
 </code></pre>
 <p>For more info see also <a href="https://wiki.centos.org/AdditionalResources/Repositories">https://wiki.centos.org/AdditionalResources/Repositories</a></p>
+<h3 id="firewall">Firewall</h3>
+<p>Check if fireall is enabled and how is configured</p>
+<pre><code>firewall-cmd --state
+firewall-cmd --get-default-zone
+firewall-cmd --get-active-zones
+firewall-cmd --get-zones
+firewall-cmd --list-all
+</code></pre>
+<p>Open https from any</p>
+<pre><code>firewall-cmd --zone=public --add-service=https --permanent
+</code></pre>
+<p>Open mongodb from a specific IP</p>
+<pre><code>firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address=12.34.56.78 accept' --permanent
+</code></pre>
               
             </div>
           </div>

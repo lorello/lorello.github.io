@@ -62,7 +62,7 @@
         }, 
         {
             "location": "/bash/", 
-            "text": "Bashism\n\n\nI use a little library to have a common set of utilities out of the box in my\nbash scripts, it can be retrieved at https://github.com/lorello/lib.sh\n\n\nLoops\n\n\nLoop on a rows of a text file\n\n\n#!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone\n\n\n\nLoop on a counter\n\n\ncounter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone\n\n\n\nprocess cli options\n\n\nProcess CLI options\n\n\naaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone\n\n\n\nA more advanced options is to use [https://github.com/nk412/optparse|optparse]\n\n\nBash dates\n\n\nA simple date useful for filenaming: YYYY-MM-DD\n\n\n$(date +%F)\n\n\n\nA full datetime\n\n\n$(date +%F-%T)\n\n\n\nBuiltin bashism instead of external binaries\n\n\nfqdn='computer1.daveeddy.com'\n\nIFS=. read -r hostname domain tld \n \"$fqdn\"\necho \"$hostname is in $domain.$tld\"\n# =\n \"computer1 is in daveeddy.com\"", 
+            "text": "Bashism\n\n\nI use a little library to have a common set of utilities out of the box in my\nbash scripts, it can be retrieved at https://github.com/lorello/lib.sh\n\n\nChecking strings\n\n\n# -z (string length is zero) and -n (string length is not zero) are\n# preferred over testing for an empty string\nif [[ -z \"${my_var}\" ]]; then\n    do_something\nfi\n\n\n\nLoops\n\n\nLoop on a rows of a text file\n\n\n#!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone\n\n\n\nLoop on a counter\n\n\ncounter=1\nwhile (( $counter \n 10 ))\ndo\n    echo $counter\n    ((counter++))\ndone\n\n\n\nLoop on a list of items\n\n\nmodules=(json httpserver jshint)\nfor module in \"${modules[@]}\"; do\n    npm install -g \"$module\"\ndone\n\n\n\nLooping \n\n\nfor ((i = 0; i \n n; i++)); do\n    ...\ndone\n\n\n\nProcess CLI options\n\n\naaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone\n\n\n\nAnother way\n\n\nverbose='false'\naflag=''\nbflag=''\nfiles=''\nwhile getopts 'abf:v' flag; do\n  case \"${flag}\" in\n    a) aflag='true' ;;\n    b) bflag='true' ;;\n    f) files=\"${OPTARG}\" ;;\n    v) verbose='true' ;;\n    *) error \"Unexpected option ${flag}\" ;;\n  esac\ndone\n\n\n\nA more advanced options is to use [https://github.com/nk412/optparse|optparse]\n\n\nBash dates\n\n\nA simple date useful for filenaming: YYYY-MM-DD\n\n\n$(date +%F)\n\n\n\nA full datetime\n\n\n$(date +%F-%T)\n\n\n\nBuiltin bashism instead of external binaries\n\n\nfqdn='computer1.daveeddy.com'\n\nIFS=. read -r hostname domain tld \n \"$fqdn\"\necho \"$hostname is in $domain.$tld\"\n# =\n \"computer1 is in daveeddy.com\"\n\n\n\n[[ vs [\n\n\nThere is also the \nlong version\n\n\n[[ a \n b ]]\n\n[[ -n $var \n -f $var ]] \n echo \"$var is a file\"\n\n[[ $var = img* \n ($var = *.png || $var = *.jpg) ]] \n \\\n    echo \"$var starts with img and ends with .jpg or .png\"\n\n[[ $name = a* ]] || echo \"name does not start with an 'a': $name\"\n\n[[ $(date) =~ ^Fri\\ ...\\ 13 ]] \n echo \"It's Friday the 13th!\"\n\n\n\nDebug\n\n\nThe following code uses the DEBUG trap to inform the user about what command is about to be executed and wait for his confirmation do to so. Put this code in your script, at the location you wish to begin stepping:\n\n\ntrap '(read -p \"[$BASH_SOURCE:$LINENO] $BASH_COMMAND?\")' DEBUG\n\n\n\nGive va value to TRACE to add -x flag to execution:\n\n\n[[ \"$TRACE\" ]] \n set -x\n\n\n\nSome style\n\n\nmeaningful_function_names() { ... }\n\n\naddition=$((${X} + ${Y}))\nsubstitution=\"${string/#foo/bar}\"\n\n\n\nCase formatting\n\n\ncase \"${expression}\" in\n  a)\n    variable=\"...\"\n    some_command \"${variable}\" \"${other_expr}\" ...\n    ;;\n  absolute)\n    actions=\"relative\"\n    another_command \"${actions}\" \"${other_expr}\" ...\n    ;;\n  *)\n    error \"Unexpected expression '${expression}'\"\n    ;;\nesac\n\n\n\nSources: \nGoogle\n, \n\nProgrium", 
             "title": "Bash"
         }, 
         {
@@ -71,13 +71,18 @@
             "title": "Bashism"
         }, 
         {
+            "location": "/bash/#checking-strings", 
+            "text": "# -z (string length is zero) and -n (string length is not zero) are\n# preferred over testing for an empty string\nif [[ -z \"${my_var}\" ]]; then\n    do_something\nfi", 
+            "title": "Checking strings"
+        }, 
+        {
             "location": "/bash/#loops", 
-            "text": "Loop on a rows of a text file  #!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone  Loop on a counter  counter=1\nwhile [ $counter -le 10 ]\ndo\necho $counter\n((counter++))\ndone  process cli options", 
+            "text": "Loop on a rows of a text file  #!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone  Loop on a counter  counter=1\nwhile (( $counter   10 ))\ndo\n    echo $counter\n    ((counter++))\ndone  Loop on a list of items  modules=(json httpserver jshint)\nfor module in \"${modules[@]}\"; do\n    npm install -g \"$module\"\ndone  Looping   for ((i = 0; i   n; i++)); do\n    ...\ndone", 
             "title": "Loops"
         }, 
         {
             "location": "/bash/#process-cli-options", 
-            "text": "aaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone  A more advanced options is to use [https://github.com/nk412/optparse|optparse]", 
+            "text": "aaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone  Another way  verbose='false'\naflag=''\nbflag=''\nfiles=''\nwhile getopts 'abf:v' flag; do\n  case \"${flag}\" in\n    a) aflag='true' ;;\n    b) bflag='true' ;;\n    f) files=\"${OPTARG}\" ;;\n    v) verbose='true' ;;\n    *) error \"Unexpected option ${flag}\" ;;\n  esac\ndone  A more advanced options is to use [https://github.com/nk412/optparse|optparse]", 
             "title": "Process CLI options"
         }, 
         {
@@ -89,6 +94,21 @@
             "location": "/bash/#builtin-bashism-instead-of-external-binaries", 
             "text": "fqdn='computer1.daveeddy.com'\n\nIFS=. read -r hostname domain tld   \"$fqdn\"\necho \"$hostname is in $domain.$tld\"\n# =  \"computer1 is in daveeddy.com\"", 
             "title": "Builtin bashism instead of external binaries"
+        }, 
+        {
+            "location": "/bash/#vs", 
+            "text": "There is also the  long version  [[ a   b ]]\n\n[[ -n $var   -f $var ]]   echo \"$var is a file\"\n\n[[ $var = img*   ($var = *.png || $var = *.jpg) ]]   \\\n    echo \"$var starts with img and ends with .jpg or .png\"\n\n[[ $name = a* ]] || echo \"name does not start with an 'a': $name\"\n\n[[ $(date) =~ ^Fri\\ ...\\ 13 ]]   echo \"It's Friday the 13th!\"", 
+            "title": "[[ vs ["
+        }, 
+        {
+            "location": "/bash/#debug", 
+            "text": "The following code uses the DEBUG trap to inform the user about what command is about to be executed and wait for his confirmation do to so. Put this code in your script, at the location you wish to begin stepping:  trap '(read -p \"[$BASH_SOURCE:$LINENO] $BASH_COMMAND?\")' DEBUG  Give va value to TRACE to add -x flag to execution:  [[ \"$TRACE\" ]]   set -x", 
+            "title": "Debug"
+        }, 
+        {
+            "location": "/bash/#some-style", 
+            "text": "meaningful_function_names() { ... }\n\n\naddition=$((${X} + ${Y}))\nsubstitution=\"${string/#foo/bar}\"  Case formatting  case \"${expression}\" in\n  a)\n    variable=\"...\"\n    some_command \"${variable}\" \"${other_expr}\" ...\n    ;;\n  absolute)\n    actions=\"relative\"\n    another_command \"${actions}\" \"${other_expr}\" ...\n    ;;\n  *)\n    error \"Unexpected expression '${expression}'\"\n    ;;\nesac  Sources:  Google ,  Progrium", 
+            "title": "Some style"
         }, 
         {
             "location": "/bind/", 
@@ -107,7 +127,7 @@
         }, 
         {
             "location": "/centos/", 
-            "text": "CentOS\n\n\nRepositories\n\n\nExtra Packages (community approved by CentOS)\n\n\n# yum install epel-release\n\n\n\nRackspace updated packages for PHP/Mysql/python\n\n\n# curl -fsSL https://setup.ius.io/ | sh\n\n\n\nPuppet collections\n\n\n# rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-(5|6|7).noarch.rpm\n\n\n\nSysdig\n\n\nsysdig requires kernel headers\n\n\nrpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public\ncurl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo\n\nyum -y install kernel-devel-$(uname -r)\nyum -y install sysdig\n\n\n\nDocker\n\n\nRequires kernel \n= 3.10, probably centos 6.5 and later\n\n\ncurl -fsSL https://get.docker.com/ | sh\nsudo service docker start\nsudo chkconfig docker on\nsudo groupadd docker\nsudo usermod -aG docker `whoami`\n\n\n\nNetdata\n\n\nMonitoring system\n\n\nyum install zlib-devel libuuid-devel libmnl-devel gcc make git autoconf autogen automake pkgconfig\ngit clone https://github.com/firehol/netdata.git \u2013depth=1 \n cd netdata \n ./netdata-installer.sh\n\n\n\nFor more info see also \nhttps://wiki.centos.org/AdditionalResources/Repositories", 
+            "text": "CentOS\n\n\nRepositories\n\n\nExtra Packages (community approved by CentOS)\n\n\n# yum install epel-release\n\n\n\nRackspace updated packages for PHP/Mysql/python\n\n\n# curl -fsSL https://setup.ius.io/ | sh\n\n\n\nPuppet collections\n\n\n# rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-(5|6|7).noarch.rpm\n\n\n\nSysdig\n\n\nsysdig requires kernel headers\n\n\nrpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public\ncurl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo\n\nyum -y install kernel-devel-$(uname -r)\nyum -y install sysdig\n\n\n\nDocker\n\n\nRequires kernel \n= 3.10, probably centos 6.5 and later\n\n\ncurl -fsSL https://get.docker.com/ | sh\nsudo service docker start\nsudo chkconfig docker on\nsudo groupadd docker\nsudo usermod -aG docker `whoami`\n\n\n\nNetdata\n\n\nMonitoring system\n\n\nyum install zlib-devel libuuid-devel libmnl-devel gcc make git autoconf autogen automake pkgconfig\ngit clone https://github.com/firehol/netdata.git \u2013depth=1 \n cd netdata \n ./netdata-installer.sh\n\n\n\nFor more info see also \nhttps://wiki.centos.org/AdditionalResources/Repositories\n\n\nFirewall\n\n\nCheck if fireall is enabled and how is configured\n\n\nfirewall-cmd --state\nfirewall-cmd --get-default-zone\nfirewall-cmd --get-active-zones\nfirewall-cmd --get-zones\nfirewall-cmd --list-all\n\n\n\nOpen https from any\n\n\nfirewall-cmd --zone=public --add-service=https --permanent\n\n\n\nOpen mongodb from a specific IP\n\n\nfirewall-cmd --zone=public --add-rich-rule 'rule family=\"ipv4\" source address=12.34.56.78 accept' --permanent", 
             "title": "Centos"
         }, 
         {
@@ -151,8 +171,13 @@
             "title": "Netdata"
         }, 
         {
+            "location": "/centos/#firewall", 
+            "text": "Check if fireall is enabled and how is configured  firewall-cmd --state\nfirewall-cmd --get-default-zone\nfirewall-cmd --get-active-zones\nfirewall-cmd --get-zones\nfirewall-cmd --list-all  Open https from any  firewall-cmd --zone=public --add-service=https --permanent  Open mongodb from a specific IP  firewall-cmd --zone=public --add-rich-rule 'rule family=\"ipv4\" source address=12.34.56.78 accept' --permanent", 
+            "title": "Firewall"
+        }, 
+        {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \n1cf5dca\n di 17 seconds ago: More on lvextend\n\n\n\n\n\n\nLoreLLo commit \n04231f3\n di 8 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n140a7d5\n di 8 days ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n6a7473f\n di 8 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n923b4f0\n di 8 days ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n345fd13\n di 8 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n3d6a68d\n di 8 days ago: more info on systemd services\n\n\n\n\n\n\nLoreLLo commit \n9ce2cb2\n di 3 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nf00eb29\n di 3 weeks ago: Added info about labeling", 
+            "text": "LoreLLo commit \ne8663c4\n di 6 seconds ago: More and more style formatting\n\n\n\n\n\n\nLoreLLo commit \n831d71f\n di 4 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n1cf5dca\n di 4 weeks ago: More on lvextend", 
             "title": "Changelog"
         }, 
         {
@@ -442,7 +467,7 @@
         }, 
         {
             "location": "/nginx/", 
-            "text": "Nginx\n\n\ndebugging rewrites rules\n\n\nMake sure you have \nnotice\n as loglevel of \nerror_log\n\n\nerror_log  /var/log/nginx/www.yoursite.com.error.log notice;\nrewrite_log on;", 
+            "text": "Nginx\n\n\ndebugging rewrites rules\n\n\nMake sure you have \nnotice\n as loglevel of \nerror_log\n\n\nerror_log  /var/log/nginx/www.yoursite.com.error.log notice;\nrewrite_log on;\n\n\n\nRate limiting per calling IP\n\n\nUnder \nserver\n directive\n\n\nlimit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;\n                       (key)       (name):(size)     (max rate)\nlimit_req_log_level warn;\n\n\n\nZone size is in megabytes, consider that state information for about 16,000 IP addresses takes 1 megabyte.\n\n\nlocation /login/ {\n    limit_req zone=mylimit burst=20 nodelay;\n\n    proxy_pass http://my_upstream;\n}\n\n\n\nThe burst parameters is the size of the queue where requests arrived too quickly\nare stored.\n\n\nMore details on the \nrate limiting manual page\n.", 
             "title": "Nginx"
         }, 
         {
@@ -454,6 +479,11 @@
             "location": "/nginx/#debugging-rewrites-rules", 
             "text": "Make sure you have  notice  as loglevel of  error_log  error_log  /var/log/nginx/www.yoursite.com.error.log notice;\nrewrite_log on;", 
             "title": "debugging rewrites rules"
+        }, 
+        {
+            "location": "/nginx/#rate-limiting-per-calling-ip", 
+            "text": "Under  server  directive  limit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;\n                       (key)       (name):(size)     (max rate)\nlimit_req_log_level warn;  Zone size is in megabytes, consider that state information for about 16,000 IP addresses takes 1 megabyte.  location /login/ {\n    limit_req zone=mylimit burst=20 nodelay;\n\n    proxy_pass http://my_upstream;\n}  The burst parameters is the size of the queue where requests arrived too quickly\nare stored.  More details on the  rate limiting manual page .", 
+            "title": "Rate limiting per calling IP"
         }, 
         {
             "location": "/octohost/", 

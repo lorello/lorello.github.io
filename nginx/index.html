@@ -138,6 +138,8 @@
         
             <li><a class="toctree-l3" href="#debugging-rewrites-rules">debugging rewrites rules</a></li>
         
+            <li><a class="toctree-l3" href="#rate-limiting-per-calling-ip">Rate limiting per calling IP</a></li>
+        
         </ul>
     
 
@@ -240,6 +242,22 @@
 <pre><code>error_log  /var/log/nginx/www.yoursite.com.error.log notice;
 rewrite_log on;
 </code></pre>
+<h2 id="rate-limiting-per-calling-ip">Rate limiting per calling IP</h2>
+<p>Under <code>server</code> directive</p>
+<pre><code>limit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;
+                       (key)       (name):(size)     (max rate)
+limit_req_log_level warn;
+</code></pre>
+<p>Zone size is in megabytes, consider that state information for about 16,000 IP addresses takes 1 megabyte.</p>
+<pre><code>location /login/ {
+    limit_req zone=mylimit burst=20 nodelay;
+
+    proxy_pass http://my_upstream;
+}
+</code></pre>
+<p>The burst parameters is the size of the queue where requests arrived too quickly
+are stored.</p>
+<p>More details on the <a href="https://www.nginx.com/blog/rate-limiting-nginx/">rate limiting manual page</a>.</p>
               
             </div>
           </div>
