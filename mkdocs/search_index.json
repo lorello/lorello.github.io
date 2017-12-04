@@ -177,7 +177,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \ne8663c4\n di 6 seconds ago: More and more style formatting\n\n\n\n\n\n\nLoreLLo commit \n831d71f\n di 4 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \n1cf5dca\n di 4 weeks ago: More on lvextend", 
+            "text": "LoreLLo commit \ne13a19a\n di 9 seconds ago: Rate limiting on nginx\n\n\n\n\n\n\nLoreLLo commit \nfb2cf99\n di 31 seconds ago: Added firewall comands for CentOS\n\n\n\n\n\n\nLoreLLo commit \ne1d1cb6\n di 50 seconds ago: more commands on user management", 
             "title": "Changelog"
         }, 
         {
@@ -427,7 +427,7 @@
         }, 
         {
             "location": "/mysql/", 
-            "text": "MySQL\n\n\nDebug connections problem\n\n\n# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql\n show processlist;\n\n\n\nUsers\n\n\nmysql\n CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql\n SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql\n SELECT PASSWORD('mypass');\n\n\n\nGrants\n\n\nmysql\n SHOW GRANTS FOR 'francis'@'localhost';\nmysql\n GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nTo change password or resource limits for an existing user, without \nchanging privileges\n\n\nmysql\n GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nDumps\n\n\n# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME \n dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;\n\n\n\nMysql Replica\n\n\nmysql\n GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql\n FLUSH PRIVILEGES;\n\nmysql\n CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;\n\n\n\nFix single errors on replication:\n\n\nmysql\n STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;\n\n\n\nFree disk space taken by binary logs:\n\n\nmysql\n PURGE BINARY LOGS BEFORE DATE_SUB( NOW(), INTERVAL 2 DAY );\n\n\n\nInnoDB Compression\n\n\nALTER TABLE \ntable_name\n ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=32;", 
+            "text": "MySQL\n\n\nDebug connections problem\n\n\n# mysql -e \"show status like \\\"%onn%\\\";\"\n# mysqladmin status\nmysql\n show processlist;\n\n\n\nUsers\n\n\nmysql\n CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql\n SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql\n SELECT PASSWORD('mypass');\nmysql\n ALTER user 'francis' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nWhen omitted, host is '%'\n\n\nGrants\n\n\nmysql\n SHOW GRANTS FOR 'francis'@'localhost';\nmysql\n GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nTo change password or resource limits for an existing user, without \nchanging privileges\n\n\nmysql\n GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;\n\n\n\nFine-graned permissions:\n\n\nmysql\n GRANT SELECT,UPDATE,DELETE ON customer.* TO 'francis'@'%';\nmysql\n REVOKE SELECT,UPDATE,DELETE ON customer.* TO 'francis'@'%';\n\n\n\nDumps\n\n\n# Only DATA\nmysqldump --skip-opt --skip-create-options --add-locks --no-create-info DBNAME \n dump-data-only.sql\n\n# Disable foreign key checks\nSET AUTOCOMMIT=0;\nSET FOREIGN_KEY_CHECKS=0;\n\n\n\nMysql Replica\n\n\nmysql\n GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'password';\nmysql\n FLUSH PRIVILEGES;\n\nmysql\n CHANGE MASTER TO \nMASTER_HOST='12.34.56.789',\nMASTER_USER='slave_user',\nMASTER_PASSWORD='password',\nMASTER_LOG_FILE='mysql-bin.000001',\nMASTER_LOG_POS=107;\n\n\n\nFix single errors on replication:\n\n\nmysql\n STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; SLAVE START;\n\n\n\nFree disk space taken by binary logs:\n\n\nmysql\n PURGE BINARY LOGS BEFORE DATE_SUB( NOW(), INTERVAL 2 DAY );\n\n\n\nInnoDB Compression\n\n\nALTER TABLE \ntable_name\n ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=32;", 
             "title": "Mysql"
         }, 
         {
@@ -442,12 +442,12 @@
         }, 
         {
             "location": "/mysql/#users", 
-            "text": "mysql  CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql  SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql  SELECT PASSWORD('mypass');", 
+            "text": "mysql  CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'newpass';\nmysql  SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');\n# Generate encrypted version of a password\nmysql  SELECT PASSWORD('mypass');\nmysql  ALTER user 'francis' WITH MAX_USER_CONNECTIONS 10;  When omitted, host is '%'", 
             "title": "Users"
         }, 
         {
             "location": "/mysql/#grants", 
-            "text": "mysql  SHOW GRANTS FOR 'francis'@'localhost';\nmysql  GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;  To change password or resource limits for an existing user, without \nchanging privileges  mysql  GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;", 
+            "text": "mysql  SHOW GRANTS FOR 'francis'@'localhost';\nmysql  GRANT ALL ON customer.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;  To change password or resource limits for an existing user, without \nchanging privileges  mysql  GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;  Fine-graned permissions:  mysql  GRANT SELECT,UPDATE,DELETE ON customer.* TO 'francis'@'%';\nmysql  REVOKE SELECT,UPDATE,DELETE ON customer.* TO 'francis'@'%';", 
             "title": "Grants"
         }, 
         {
@@ -467,7 +467,7 @@
         }, 
         {
             "location": "/nginx/", 
-            "text": "Nginx\n\n\ndebugging rewrites rules\n\n\nMake sure you have \nnotice\n as loglevel of \nerror_log\n\n\nerror_log  /var/log/nginx/www.yoursite.com.error.log notice;\nrewrite_log on;\n\n\n\nRate limiting per calling IP\n\n\nUnder \nserver\n directive\n\n\nlimit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;\n                       (key)       (name):(size)     (max rate)\nlimit_req_log_level warn;\n\n\n\nZone size is in megabytes, consider that state information for about 16,000 IP addresses takes 1 megabyte.\n\n\nlocation /login/ {\n    limit_req zone=mylimit burst=20 nodelay;\n\n    proxy_pass http://my_upstream;\n}\n\n\n\nThe burst parameters is the size of the queue where requests arrived too quickly\nare stored.\n\n\nMore details on the \nrate limiting manual page\n.", 
+            "text": "Nginx\n\n\nUpstream config\n\n\nupstream myapp {\n    server 127.0.0.1:8081;\n}\n\nserver {\n    ...\n    location / {\n        proxy_pass http://myapp;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header Host $http_host;\n    }\n}\n\n\n\ndebugging rewrites rules\n\n\nMake sure you have \nnotice\n as loglevel of \nerror_log\n\n\nerror_log  /var/log/nginx/www.yoursite.com.error.log notice;\nrewrite_log on;\n\n\n\nRate limiting per calling IP\n\n\nUnder \nserver\n directive\n\n\nlimit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;\n                       (key)       (name):(size)     (max rate)\nlimit_req_log_level warn;\nlimit_req_status 429\nerror_page 429 /error/429.html;\n\n\n\nZone size is in megabytes, consider that state information for about 16,000 IP addresses takes 1 megabyte.\n\n\nlocation /login/ {\n    limit_req zone=mylimit burst=20 nodelay;\n\n    proxy_pass http://my_upstream;\n}\n\n\n\nThe burst parameters is the size of the queue where requests arrived too quickly\nare stored.\n\n\nMore details on the \nrate limiting manual page\n.\n\n\nExample of full config\n\n\nupstream myapp {\n    server 127.0.0.1:8081;\n}\n\nlimit_req_zone $binary_remote_addr zone=login:10m rate=1r/s;\n\nserver {\n    listen 443 ssl spdy;\n    server_name _;\n\n    ssl on;\n    ssl_certificate /etc/nginx/ssl/cert.pem;\n    ssl_certificate_key /etc/nginx/ssl/cert.key;\n    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers AES256+EECDH:AES256+EDH;\n    ssl_session_cache  builtin:1000  shared:SSL:5m;\n    ssl_prefer_server_ciphers on;\n\n\n    location / {\n        proxy_pass http://myapp;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header Host $http_host;\n    }\n\n    location /account/login/ {\n        # apply rate limiting\n        limit_req zone=login burst=5;\n\n        # boilerplate copied from location /\n        proxy_pass http://myapp;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header Host $http_host;\n    }\n}\n\n\n\n\ndocker run -it --rm -p 80:80 sportebois/nginx-rate-limit-sandbox nginx -V 2\n1\nnginx version: nginx/1.11.10\nbuilt by gcc 5.3.0 (Alpine 5.3.0)\nbuilt with OpenSSL 1.0.2k  26 Jan 2017\nTLS SNI support enabled\nconfigure arguments: --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --modules-path=/usr/lib/nginx/modules --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --lock-path=/var/run/nginx.lock --http-client-body-temp-path=/var/cache/nginx/client_temp --http-proxy-temp-path=/var/cache/nginx/proxy_temp --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp --http-scgi-temp-path=/var/cache/nginx/scgi_temp --user=nginx --group=nginx --with-http_ssl_module --with-http_realip_module --with-http_addition_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_random_index_module --with-http_secure_link_module --with-http_stub_status_module --with-http_auth_request_module --with-http_xslt_module=dynamic --with-http_image_filter_module=dynamic --with-http_geoip_module=dynamic --with-http_perl_module=dynamic --with-threads --with-stream --with-stream_ssl_module --with-stream_ssl_preread_module --with-stream_realip_module --with-stream_geoip_module=dynamic --with-http_slice_module --with-mail --with-mail_ssl_module --with-compat --with-file-aio --with-http_v2_module", 
             "title": "Nginx"
         }, 
         {
@@ -476,14 +476,24 @@
             "title": "Nginx"
         }, 
         {
+            "location": "/nginx/#upstream-config", 
+            "text": "upstream myapp {\n    server 127.0.0.1:8081;\n}\n\nserver {\n    ...\n    location / {\n        proxy_pass http://myapp;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header Host $http_host;\n    }\n}", 
+            "title": "Upstream config"
+        }, 
+        {
             "location": "/nginx/#debugging-rewrites-rules", 
             "text": "Make sure you have  notice  as loglevel of  error_log  error_log  /var/log/nginx/www.yoursite.com.error.log notice;\nrewrite_log on;", 
             "title": "debugging rewrites rules"
         }, 
         {
             "location": "/nginx/#rate-limiting-per-calling-ip", 
-            "text": "Under  server  directive  limit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;\n                       (key)       (name):(size)     (max rate)\nlimit_req_log_level warn;  Zone size is in megabytes, consider that state information for about 16,000 IP addresses takes 1 megabyte.  location /login/ {\n    limit_req zone=mylimit burst=20 nodelay;\n\n    proxy_pass http://my_upstream;\n}  The burst parameters is the size of the queue where requests arrived too quickly\nare stored.  More details on the  rate limiting manual page .", 
+            "text": "Under  server  directive  limit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;\n                       (key)       (name):(size)     (max rate)\nlimit_req_log_level warn;\nlimit_req_status 429\nerror_page 429 /error/429.html;  Zone size is in megabytes, consider that state information for about 16,000 IP addresses takes 1 megabyte.  location /login/ {\n    limit_req zone=mylimit burst=20 nodelay;\n\n    proxy_pass http://my_upstream;\n}  The burst parameters is the size of the queue where requests arrived too quickly\nare stored.  More details on the  rate limiting manual page .", 
             "title": "Rate limiting per calling IP"
+        }, 
+        {
+            "location": "/nginx/#example-of-full-config", 
+            "text": "upstream myapp {\n    server 127.0.0.1:8081;\n}\n\nlimit_req_zone $binary_remote_addr zone=login:10m rate=1r/s;\n\nserver {\n    listen 443 ssl spdy;\n    server_name _;\n\n    ssl on;\n    ssl_certificate /etc/nginx/ssl/cert.pem;\n    ssl_certificate_key /etc/nginx/ssl/cert.key;\n    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers AES256+EECDH:AES256+EDH;\n    ssl_session_cache  builtin:1000  shared:SSL:5m;\n    ssl_prefer_server_ciphers on;\n\n\n    location / {\n        proxy_pass http://myapp;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header Host $http_host;\n    }\n\n    location /account/login/ {\n        # apply rate limiting\n        limit_req zone=login burst=5;\n\n        # boilerplate copied from location /\n        proxy_pass http://myapp;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header Host $http_host;\n    }\n}\n\n\n\n\ndocker run -it --rm -p 80:80 sportebois/nginx-rate-limit-sandbox nginx -V 2 1\nnginx version: nginx/1.11.10\nbuilt by gcc 5.3.0 (Alpine 5.3.0)\nbuilt with OpenSSL 1.0.2k  26 Jan 2017\nTLS SNI support enabled\nconfigure arguments: --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --modules-path=/usr/lib/nginx/modules --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --lock-path=/var/run/nginx.lock --http-client-body-temp-path=/var/cache/nginx/client_temp --http-proxy-temp-path=/var/cache/nginx/proxy_temp --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp --http-scgi-temp-path=/var/cache/nginx/scgi_temp --user=nginx --group=nginx --with-http_ssl_module --with-http_realip_module --with-http_addition_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_random_index_module --with-http_secure_link_module --with-http_stub_status_module --with-http_auth_request_module --with-http_xslt_module=dynamic --with-http_image_filter_module=dynamic --with-http_geoip_module=dynamic --with-http_perl_module=dynamic --with-threads --with-stream --with-stream_ssl_module --with-stream_ssl_preread_module --with-stream_realip_module --with-stream_geoip_module=dynamic --with-http_slice_module --with-mail --with-mail_ssl_module --with-compat --with-file-aio --with-http_v2_module", 
+            "title": "Example of full config"
         }, 
         {
             "location": "/octohost/", 
@@ -699,6 +709,21 @@
             "location": "/systemd/#manage-process-limits", 
             "text": "Check current ulimits for an hypotethical MongoDB  root@xenial:~# systemctl --no-pager show mongodb.service | egrep 'NOFILE|NPROC'  Change values  root@xenial:~# cat /etc/systemd/system/mongodb.service\n[Service]\nLimitNOFILE=64000\nLimitNPROC=infinity\n\nroot@xenial:~# systemctl daemon-reload", 
             "title": "Manage process limits"
+        }, 
+        {
+            "location": "/ubuntu/", 
+            "text": "Ubuntu\n\n\nChange hostname\n\n\nsudo vim /etc/hosts\n  sudo vim /etc/hostname\n  sudo hostnamectl set-hostname \n\n  systemctl restart systemd-logind.service", 
+            "title": "Ubuntu"
+        }, 
+        {
+            "location": "/ubuntu/#ubuntu", 
+            "text": "", 
+            "title": "Ubuntu"
+        }, 
+        {
+            "location": "/ubuntu/#change-hostname", 
+            "text": "sudo vim /etc/hosts\n  sudo vim /etc/hostname\n  sudo hostnamectl set-hostname  \n  systemctl restart systemd-logind.service", 
+            "title": "Change hostname"
         }, 
         {
             "location": "/xenserver/", 

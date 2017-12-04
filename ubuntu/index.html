@@ -8,7 +8,7 @@
   
   <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Openssl - Lorello technical notes</title>
+  <title>Ubuntu - Lorello technical notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Openssl";
-    var mkdocs_page_input_path = "openssl.md";
-    var mkdocs_page_url = "/openssl/";
+    var mkdocs_page_name = "Ubuntu";
+    var mkdocs_page_input_path = "ubuntu.md";
+    var mkdocs_page_url = "/ubuntu/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -137,15 +137,9 @@
     <a class="" href="../octohost/">Octohost</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Openssl</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#openssl">OpenSSL</a></li>
-    
-
-    </ul>
+    <a class="" href="../openssl/">Openssl</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -183,9 +177,21 @@
     <a class="" href="../systemd/">Systemd</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../ubuntu/">Ubuntu</a>
+    <a class="current" href="./">Ubuntu</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#ubuntu">Ubuntu</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#change-hostname">Change hostname</a></li>
+        
+        </ul>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -220,10 +226,10 @@
     
       
     
-    <li>Openssl</li>
+    <li>Ubuntu</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/openssl.md"
+        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/ubuntu.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -233,38 +239,12 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="openssl">OpenSSL</h1>
-<p>Create private key</p>
-<pre><code>openssl genrsa -des3 -out server.key 1024
-</code></pre>
-<p>Generate a CSR (Certificate Signing Request)</p>
-<pre><code>openssl req -new -key server.key -out server.csr
-</code></pre>
-<p>Remove Passphrase from Key</p>
-<pre><code>openssl rsa -in server-with-passphrase.key -out server.key
-</code></pre>
-<p>Generating a Self-Signed Certificate</p>
-<pre><code>openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-</code></pre>
-<p>Convert x509 to pem</p>
-<pre><code>openssl x509 -inform der -in server.crt -out server.pem
-</code></pre>
-<p>pkcs12 to pem – key only</p>
-<pre><code>openssl pkcs12 -nocerts -in c:\server.pfx -out c:\server-key.key
-</code></pre>
-<p>pkcs12 to pem – certificate only</p>
-<pre><code>openssl pkcs12 -nokeys -in server.pfx -out server-cert.cer
-</code></pre>
-<p>Check a private key</p>
-<pre><code>openssl rsa -in privateKey.key -check
-</code></pre>
-<p>Check a certificate</p>
-<pre><code>openssl x509 -in certificate.crt -text -noout
-</code></pre>
-<p>split pfx file</p>
-<pre><code>openssl pkcs12 -in your.pfx -clcerts -nokeys -out yourcert.pem
-openssl pkcs12 -in your.pfx -nocerts -out yourkey.pem
-</code></pre>
+                <h1 id="ubuntu">Ubuntu</h1>
+<h2 id="change-hostname">Change hostname</h2>
+<p>sudo vim /etc/hosts
+  sudo vim /etc/hostname
+  sudo hostnamectl set-hostname <NEWNAME>
+  systemctl restart systemd-logind.service</p>
               
             </div>
           </div>
@@ -272,10 +252,10 @@ openssl pkcs12 -in your.pfx -nocerts -out yourkey.pem
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../php/" class="btn btn-neutral float-right" title="Php">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../xenserver/" class="btn btn-neutral float-right" title="Xenserver">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../octohost/" class="btn btn-neutral" title="Octohost"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../systemd/" class="btn btn-neutral" title="Systemd"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -305,10 +285,10 @@ openssl pkcs12 -in your.pfx -nocerts -out yourkey.pem
           <a href="https://github.com/lorello/lorello.github.io/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../octohost/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../systemd/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../php/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../xenserver/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
