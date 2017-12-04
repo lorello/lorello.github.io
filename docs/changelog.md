@@ -1,5 +1,5 @@
-* LoreLLo commit [e8663c4](https://github.com/lorello/lorello.github.io/commit/e8663c4297704cc2a20ef25c94b1a44cf6c9d397) di 6 seconds ago: More and more style formatting
+* LoreLLo commit [e13a19a](https://github.com/lorello/lorello.github.io/commit/e13a19a756837f0c916297d27cecffac31ea8782) di 9 seconds ago: Rate limiting on nginx
 
-* LoreLLo commit [831d71f](https://github.com/lorello/lorello.github.io/commit/831d71f1b4cd5b45ec18fa2c29af869e13a92ee3) di 4 weeks ago: Updated changelog
+* LoreLLo commit [fb2cf99](https://github.com/lorello/lorello.github.io/commit/fb2cf994ac043ffd34ca7a84c0075c17a245c7d4) di 31 seconds ago: Added firewall comands for CentOS
 
-* LoreLLo commit [1cf5dca](https://github.com/lorello/lorello.github.io/commit/1cf5dcaa062e2e15b64c4ef8355aaf58e2336ec1) di 4 weeks ago: More on lvextend
+* LoreLLo commit [e1d1cb6](https://github.com/lorello/lorello.github.io/commit/e1d1cb63e287bd9afbace8e4bf5f81e632051ac6) di 50 seconds ago: more commands on user management
