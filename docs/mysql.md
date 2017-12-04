@@ -12,6 +12,9 @@
     mysql> SET PASSWORD FOR 'existinguser'@'localhost' = PASSWORD('existingpass');
     # Generate encrypted version of a password
     mysql> SELECT PASSWORD('mypass');
+    mysql> ALTER user 'francis' WITH MAX_USER_CONNECTIONS 10;
+
+When omitted, host is '%'
 
 ## Grants
 
@@ -23,6 +26,10 @@ changing privileges
 
     mysql> GRANT USAGE ON *.* TO 'francis'@'localhost' WITH MAX_USER_CONNECTIONS 10;
 
+Fine-graned permissions:
+
+    mysql> GRANT SELECT,UPDATE,DELETE ON customer.* TO 'francis'@'%';
+    mysql> REVOKE SELECT,UPDATE,DELETE ON customer.* TO 'francis'@'%';
 
 ## Dumps
 
