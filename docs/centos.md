@@ -43,3 +43,21 @@ Monitoring system
 
 
 For more info see also <https://wiki.centos.org/AdditionalResources/Repositories>
+
+### Firewall
+
+Check if fireall is enabled and how is configured
+
+    firewall-cmd --state
+    firewall-cmd --get-default-zone
+    firewall-cmd --get-active-zones
+    firewall-cmd --get-zones
+    firewall-cmd --list-all
+
+Open https from any
+
+    firewall-cmd --zone=public --add-service=https --permanent
+
+Open mongodb from a specific IP
+
+    firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address=12.34.56.78 accept' --permanent
