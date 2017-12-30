@@ -64,4 +64,36 @@ Free disk space taken by binary logs:
 
     ALTER TABLE <table_name> ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=32;
 
+## Reduce restart time
+
+    SET GLOBAL innodb_max_dirty_pages_pct = 0;
+    SHOW GLOBAL STATUS LIKE 'Innodb_buffer_pool_pages_%';
+
+More info:
+ 
+ * https://dba.stackexchange.com/questions/36102/how-to-properly-kill-mysql
+ * http://www.fromdual.com/innodb-variables-and-status-explained
+ * https://www.speedemy.com/how-to-speed-up-mysql-restart/
+ 
+
+## Troubleshooting
+
+## Check apparmor 
+
+... if db data or logs are oureside default paths
+
+    service apparmrmor status
+    apparmor_status
+
+
+## Check I/O problems
+
+Check if I/O is saturated with *pt-diskstats* (column `busy` near 100%)
+
+If not, try to use more I/O tuning InnoDB:
+
+    show variables like "innodb_io_capacity";
+    
+    set global innodb_io_capacity = 2000;
+
 
