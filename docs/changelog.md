@@ -1,10 +1,14 @@
-* LoreLLo commit [09401f6](https://github.com/lorello/lorello.github.io/commit/09401f6af20fd78fddbf172534498fb156b45cb2) di 3 minutes ago: Updated changelog
+* LoreLLo commit [b8e75a1](https://github.com/lorello/lorello.github.io/commit/b8e75a143d8b32ca966151562f46aa5ccfb1fba2) di 2 seconds ago: More mysql troubleshooting
 
-* LoreLLo commit [7896271](https://github.com/lorello/lorello.github.io/commit/78962719ac3fccc72391bb8456ca79e08fbd9b6c) di 3 minutes ago: More mysql troubleshooting
+* LoreLLo commit [2fe3906](https://github.com/lorello/lorello.github.io/commit/2fe39062bccd2462dd875b5dffb0394c019145f9) di 2 minutes ago: Updated changelog
 
-* LoreLLo commit [2be96ac](https://github.com/lorello/lorello.github.io/commit/2be96ac2f89b43d12a6c266cc9081fc76ac9e68a) di 20 minutes ago: Updated changelog
+* LoreLLo commit [09401f6](https://github.com/lorello/lorello.github.io/commit/09401f6af20fd78fddbf172534498fb156b45cb2) di 6 minutes ago: Updated changelog
 
-* LoreLLo commit [4d754fb](https://github.com/lorello/lorello.github.io/commit/4d754fbba57125ad80a857db1bcfa5a37c1a5b47) di 21 minutes ago: Some tips for package problems
+* LoreLLo commit [7896271](https://github.com/lorello/lorello.github.io/commit/78962719ac3fccc72391bb8456ca79e08fbd9b6c) di 6 minutes ago: More mysql troubleshooting
+
+* LoreLLo commit [2be96ac](https://github.com/lorello/lorello.github.io/commit/2be96ac2f89b43d12a6c266cc9081fc76ac9e68a) di 23 minutes ago: Updated changelog
+
+* LoreLLo commit [4d754fb](https://github.com/lorello/lorello.github.io/commit/4d754fbba57125ad80a857db1bcfa5a37c1a5b47) di 23 minutes ago: Some tips for package problems
 
 * LoreLLo commit [3c1ba76](https://github.com/lorello/lorello.github.io/commit/3c1ba76b858db02ea020e332a720b01602fdfc00) di 4 weeks ago: Updated changelog
 
