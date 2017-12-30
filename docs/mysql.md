@@ -69,6 +69,9 @@ Free disk space taken by binary logs:
     SET GLOBAL innodb_max_dirty_pages_pct = 0;
     SHOW GLOBAL STATUS LIKE 'Innodb_buffer_pool_pages_%';
 
+    mysqladmin ext -i10 | grep dirty
+
+
 More info:
  
  * https://dba.stackexchange.com/questions/36102/how-to-properly-kill-mysql
