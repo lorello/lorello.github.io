@@ -8,6 +8,10 @@ Generate a CSR (Certificate Signing Request)
 
     openssl req -new -key server.key -out server.csr
 
+non interactive & creating key on the fly:
+
+    openssl req -nodes -newkey rsa:2048 -keyout example.key -out example.csr -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=example.com"
+
 Remove Passphrase from Key
 
     openssl rsa -in server-with-passphrase.key -out server.key
