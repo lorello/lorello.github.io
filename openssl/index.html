@@ -104,6 +104,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../kubernates/">Kubernates</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../linux-networking/">Linux networking</a>
 	    </li>
           
@@ -239,6 +244,9 @@
 </code></pre>
 <p>Generate a CSR (Certificate Signing Request)</p>
 <pre><code>openssl req -new -key server.key -out server.csr
+</code></pre>
+<p>non interactive &amp; creating key on the fly:</p>
+<pre><code>openssl req -nodes -newkey rsa:2048 -keyout example.key -out example.csr -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=example.com"
 </code></pre>
 <p>Remove Passphrase from Key</p>
 <pre><code>openssl rsa -in server-with-passphrase.key -out server.key

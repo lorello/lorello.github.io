@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Kubernates - Lorello technical notes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Kubernates";
+    var mkdocs_page_input_path = "kubernates.md";
+    var mkdocs_page_url = "/kubernates/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Lorello technical notes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../api-auth/">Api auth</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../atom/">Atom</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../bash/">Bash</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../bind/">Bind</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../centos/">Centos</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../changelog/">Changelog</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cisco/">Cisco</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../docker/">Docker</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../git/">Git</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ip/">Ip</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Kubernates</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#kubernates">Kubernates</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#minikube">MiniKube</a></li>
+        
+            <li><a class="toctree-l3" href="#kops">Kops</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../linux-networking/">Linux networking</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../lvm/">Lvm</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../macosx/">Macosx</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../mongodb/">Mongodb</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../mysql/">Mysql</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../nginx/">Nginx</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../octohost/">Octohost</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../openssl/">Openssl</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../php/">Php</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../poormanvpn/">Poormanvpn</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../postfix/">Postfix</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../puppet/">Puppet</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../raid/">Raid</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../services/">Services</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../systemd/">Systemd</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ubuntu/">Ubuntu</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../xenserver/">Xenserver</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../zfs/">Zfs</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Lorello technical notes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Kubernates</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/kubernates.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="kubernates">Kubernates</h1>
+<ul>
+<li>local deploy: <a href="https://kubernetes.io/docs/tasks/tools/install-minikube/">minikube</a></li>
+<li>cloud deploy: <a href="https://github.com/kubernetes/kops/blob/master/docs/install.md">kops</a></li>
+<li>management cli: <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a></li>
+</ul>
+<h2 id="minikube">MiniKube</h2>
+<pre><code>minikube start
+minikube stop
+</code></pre>
+<h2 id="kops">Kops</h2>
+<ol>
+<li>create domain and delegate to Route 53: <code>k.devops.it</code></li>
+<li>create an S3 bucket to store the state of kops (eg: <code>kops-state-dev.devops.it</code>)</li>
+<li>ensure that your console has a running config for</li>
+<li><code>awscli</code></li>
+<li><code>ssh</code> (a public/private keys setup)</li>
+<li><code>kops</code></li>
+<li><code>kops create cluster --name k.devops.it --state=s3://kops-state-dev.devops.it --zones=eu-central-1a --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=k.devops.it</code></li>
+<li><code>export KOPS_STATE_STORE=s3://kops-state-dev.devops.it</code></li>
+<li><code>kops update cluster k.devops.it --yes</code></li>
+<li><code>kops get cluster</code></li>
+</ol>
+<p>Test the cluster</p>
+<pre><code>kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
+kubectl expose deployment hello-minikube --type=NodePort
+kubectl get service
+</code></pre>
+<h3 id="commands-output">Commands output</h3>
+<pre><code>I0103 20:06:19.122358   37479 create_cluster.go:439] Inferred --cloud=aws from zone &quot;eu-central-1a&quot;
+I0103 20:06:19.122639   37479 create_cluster.go:971] Using SSH public key: /Users/lorello/.ssh/id_rsa.pub
+I0103 20:06:21.887562   37479 subnets.go:184] Assigned CIDR 172.20.32.0/19 to subnet eu-central-1a
+Previewing changes that will be made:
+
+I0103 20:06:32.117533   37479 executor.go:91] Tasks: 0 done / 73 total; 31 can run
+I0103 20:06:33.963192   37479 executor.go:91] Tasks: 31 done / 73 total; 24 can run
+I0103 20:06:35.633850   37479 executor.go:91] Tasks: 55 done / 73 total; 16 can run
+I0103 20:06:36.449792   37479 executor.go:91] Tasks: 71 done / 73 total; 2 can run
+I0103 20:06:36.606435   37479 executor.go:91] Tasks: 73 done / 73 total; 0 can run
+Will create resources:
+  AutoscalingGroup/master-eu-central-1a.masters.k.devops.it
+    MinSize                 1
+    MaxSize                 1
+    Subnets                 [name:eu-central-1a.k.devops.it]
+    Tags                    {k8s.io/cluster-autoscaler/node-template/label/kops.k8s.io/instancegroup: master-eu-central-1a, k8s.io/role/master: 1, Name: master-eu-central-1a.masters.k.devops.it, KubernetesCluster: k.devops.it}
+    LaunchConfiguration     name:master-eu-central-1a.masters.k.devops.it
+
+  AutoscalingGroup/nodes.k.devops.it
+    MinSize                 2
+    MaxSize                 2
+    Subnets                 [name:eu-central-1a.k.devops.it]
+    Tags                    {k8s.io/role/node: 1, Name: nodes.k.devops.it, KubernetesCluster: k.devops.it, k8s.io/cluster-autoscaler/node-template/label/kops.k8s.io/instancegroup: nodes}
+    LaunchConfiguration     name:nodes.k.devops.it
+
+  DHCPOptions/k.devops.it
+    DomainName              eu-central-1.compute.internal
+    DomainNameServers       AmazonProvidedDNS
+
+  EBSVolume/a.etcd-events.k.devops.it
+    AvailabilityZone        eu-central-1a
+    VolumeType              gp2
+    SizeGB                  20
+    Encrypted               false
+    Tags                    {k8s.io/role/master: 1, Name: a.etcd-events.k.devops.it, KubernetesCluster: k.devops.it, k8s.io/etcd/events: a/a}
+
+  EBSVolume/a.etcd-main.k.devops.it
+    AvailabilityZone        eu-central-1a
+    VolumeType              gp2
+    SizeGB                  20
+    Encrypted               false
+    Tags                    {Name: a.etcd-main.k.devops.it, KubernetesCluster: k.devops.it, k8s.io/etcd/main: a/a, k8s.io/role/master: 1}
+
+  IAMInstanceProfile/masters.k.devops.it
+
+  IAMInstanceProfile/nodes.k.devops.it
+
+  IAMInstanceProfileRole/masters.k.devops.it
+    InstanceProfile         name:masters.k.devops.it id:masters.k.devops.it
+    Role                    name:masters.k.devops.it
+
+  IAMInstanceProfileRole/nodes.k.devops.it
+    InstanceProfile         name:nodes.k.devops.it id:nodes.k.devops.it
+    Role                    name:nodes.k.devops.it
+
+  IAMRole/masters.k.devops.it
+    ExportWithID            masters
+
+  IAMRole/nodes.k.devops.it
+    ExportWithID            nodes
+
+  IAMRolePolicy/masters.k.devops.it
+    Role                    name:masters.k.devops.it
+
+  IAMRolePolicy/nodes.k.devops.it
+    Role                    name:nodes.k.devops.it
+
+  InternetGateway/k.devops.it
+    VPC                     name:k.devops.it
+    Shared                  false
+
+  Keypair/apiserver-aggregator
+    Subject                 cn=aggregator
+    Type                    client
+    Signer                  name:apiserver-aggregator-ca id:cn=apiserver-aggregator-ca
+
+  Keypair/apiserver-aggregator-ca
+    Subject                 cn=apiserver-aggregator-ca
+    Type                    ca
+
+  Keypair/apiserver-proxy-client
+    Subject                 cn=apiserver-proxy-client
+    Type                    client
+    Signer                  name:ca id:cn=kubernetes
+
+  Keypair/ca
+    Subject                 cn=kubernetes
+    Type                    ca
+
+  Keypair/kops
+    Subject                 o=system:masters,cn=kops
+    Type                    client
+    Signer                  name:ca id:cn=kubernetes
+
+  Keypair/kube-controller-manager
+    Subject                 cn=system:kube-controller-manager
+    Type                    client
+    Signer                  name:ca id:cn=kubernetes
+
+  Keypair/kube-proxy
+    Subject                 cn=system:kube-proxy
+    Type                    client
+    Signer                  name:ca id:cn=kubernetes
+
+  Keypair/kube-scheduler
+    Subject                 cn=system:kube-scheduler
+    Type                    client
+    Signer                  name:ca id:cn=kubernetes
+
+  Keypair/kubecfg
+    Subject                 o=system:masters,cn=kubecfg
+    Type                    client
+    Signer                  name:ca id:cn=kubernetes
+
+  Keypair/kubelet
+    Subject                 o=system:nodes,cn=kubelet
+    Type                    client
+    Signer                  name:ca id:cn=kubernetes
+
+  Keypair/kubelet-api
+    Subject                 cn=kubelet-api
+    Type                    client
+    Signer                  name:ca id:cn=kubernetes
+
+  Keypair/master
+    Subject                 cn=kubernetes-master
+    Type                    server
+    AlternateNames          [100.64.0.1, 127.0.0.1, api.internal.k.devops.it, api.k.devops.it, kubernetes, kubernetes.default, kubernetes.default.svc, kubernetes.default.svc.cluster.local]
+    Signer                  name:ca id:cn=kubernetes
+
+  LaunchConfiguration/master-eu-central-1a.masters.k.devops.it
+    ImageID                 kope.io/k8s-1.8-debian-jessie-amd64-hvm-ebs-2017-12-02
+    InstanceType            t2.micro
+    SSHKey                  name:kubernetes.k.devops.it-c8:89:94:5e:f2:69:0f:02:73:2a:a2:a0:a5:50:48:6d id:kubernetes.k.devops.it-c8:89:94:5e:f2:69:0f:02:73:2a:a2:a0:a5:50:48:6d
+    SecurityGroups          [name:masters.k.devops.it]
+    AssociatePublicIP       true
+    IAMInstanceProfile      name:masters.k.devops.it id:masters.k.devops.it
+    RootVolumeSize          64
+    RootVolumeType          gp2
+    SpotPrice
+
+  LaunchConfiguration/nodes.k.devops.it
+    ImageID                 kope.io/k8s-1.8-debian-jessie-amd64-hvm-ebs-2017-12-02
+    InstanceType            t2.micro
+    SSHKey                  name:kubernetes.k.devops.it-c8:89:94:5e:f2:69:0f:02:73:2a:a2:a0:a5:50:48:6d id:kubernetes.k.devops.it-c8:89:94:5e:f2:69:0f:02:73:2a:a2:a0:a5:50:48:6d
+    SecurityGroups          [name:nodes.k.devops.it]
+    AssociatePublicIP       true
+    IAMInstanceProfile      name:nodes.k.devops.it id:nodes.k.devops.it
+    RootVolumeSize          128
+    RootVolumeType          gp2
+    SpotPrice
+
+  ManagedFile/k.devops.it-addons-bootstrap
+    Location                addons/bootstrap-channel.yaml
+
+  ManagedFile/k.devops.it-addons-core.addons.k8s.io
+    Location                addons/core.addons.k8s.io/v1.4.0.yaml
+
+  ManagedFile/k.devops.it-addons-dns-controller.addons.k8s.io-k8s-1.6
+    Location                addons/dns-controller.addons.k8s.io/k8s-1.6.yaml
+
+  ManagedFile/k.devops.it-addons-dns-controller.addons.k8s.io-pre-k8s-1.6
+    Location                addons/dns-controller.addons.k8s.io/pre-k8s-1.6.yaml
+
+  ManagedFile/k.devops.it-addons-kube-dns.addons.k8s.io-k8s-1.6
+    Location                addons/kube-dns.addons.k8s.io/k8s-1.6.yaml
+
+  ManagedFile/k.devops.it-addons-kube-dns.addons.k8s.io-pre-k8s-1.6
+    Location                addons/kube-dns.addons.k8s.io/pre-k8s-1.6.yaml
+
+  ManagedFile/k.devops.it-addons-limit-range.addons.k8s.io
+    Location                addons/limit-range.addons.k8s.io/v1.5.0.yaml
+
+  ManagedFile/k.devops.it-addons-rbac.addons.k8s.io-k8s-1.8
+    Location                addons/rbac.addons.k8s.io/k8s-1.8.yaml
+
+  ManagedFile/k.devops.it-addons-storage-aws.addons.k8s.io-v1.6.0
+    Location                addons/storage-aws.addons.k8s.io/v1.6.0.yaml
+
+  ManagedFile/k.devops.it-addons-storage-aws.addons.k8s.io-v1.7.0
+    Location                addons/storage-aws.addons.k8s.io/v1.7.0.yaml
+
+  Route/0.0.0.0/0
+    RouteTable              name:k.devops.it
+    CIDR                    0.0.0.0/0
+    InternetGateway         name:k.devops.it
+
+  RouteTable/k.devops.it
+    VPC                     name:k.devops.it
+
+  RouteTableAssociation/eu-central-1a.k.devops.it
+    RouteTable              name:k.devops.it
+    Subnet                  name:eu-central-1a.k.devops.it
+
+  SSHKey/kubernetes.k.devops.it-c8:89:94:5e:f2:69:0f:02:73:2a:a2:a0:a5:50:48:6d
+    KeyFingerprint          37:a8:b9:4a:da:45:1e:ea:00:2f:89:ea:e8:50:02:00
+
+  Secret/admin
+
+  Secret/kube
+
+  Secret/kube-proxy
+
+  Secret/kubelet
+
+  Secret/system:controller_manager
+
+  Secret/system:dns
+
+  Secret/system:logging
+
+  Secret/system:monitoring
+
+  Secret/system:scheduler
+
+  SecurityGroup/masters.k.devops.it
+    Description             Security group for masters
+    VPC                     name:k.devops.it
+    RemoveExtraRules        [port=22, port=443, port=2380, port=2381, port=4001, port=4002, port=4789, port=179]
+
+  SecurityGroup/nodes.k.devops.it
+    Description             Security group for nodes
+    VPC                     name:k.devops.it
+    RemoveExtraRules        [port=22]
+
+  SecurityGroupRule/all-master-to-master
+    SecurityGroup           name:masters.k.devops.it
+    SourceGroup             name:masters.k.devops.it
+
+  SecurityGroupRule/all-master-to-node
+    SecurityGroup           name:nodes.k.devops.it
+    SourceGroup             name:masters.k.devops.it
+
+  SecurityGroupRule/all-node-to-node
+    SecurityGroup           name:nodes.k.devops.it
+    SourceGroup             name:nodes.k.devops.it
+
+  SecurityGroupRule/https-external-to-master-0.0.0.0/0
+    SecurityGroup           name:masters.k.devops.it
+    CIDR                    0.0.0.0/0
+    Protocol                tcp
+    FromPort                443
+    ToPort                  443
+
+  SecurityGroupRule/master-egress
+    SecurityGroup           name:masters.k.devops.it
+    CIDR                    0.0.0.0/0
+    Egress                  true
+
+  SecurityGroupRule/node-egress
+    SecurityGroup           name:nodes.k.devops.it
+    CIDR                    0.0.0.0/0
+    Egress                  true
+
+  SecurityGroupRule/node-to-master-tcp-1-2379
+    SecurityGroup           name:masters.k.devops.it
+    Protocol                tcp
+    FromPort                1
+    ToPort                  2379
+    SourceGroup             name:nodes.k.devops.it
+
+  SecurityGroupRule/node-to-master-tcp-2382-4000
+    SecurityGroup           name:masters.k.devops.it
+    Protocol                tcp
+    FromPort                2382
+    ToPort                  4000
+    SourceGroup             name:nodes.k.devops.it
+
+  SecurityGroupRule/node-to-master-tcp-4003-65535
+    SecurityGroup           name:masters.k.devops.it
+    Protocol                tcp
+    FromPort                4003
+    ToPort                  65535
+    SourceGroup             name:nodes.k.devops.it
+
+  SecurityGroupRule/node-to-master-udp-1-65535
+    SecurityGroup           name:masters.k.devops.it
+    Protocol                udp
+    FromPort                1
+    ToPort                  65535
+    SourceGroup             name:nodes.k.devops.it
+
+  SecurityGroupRule/ssh-external-to-master-0.0.0.0/0
+    SecurityGroup           name:masters.k.devops.it
+    CIDR                    0.0.0.0/0
+    Protocol                tcp
+    FromPort                22
+    ToPort                  22
+
+  SecurityGroupRule/ssh-external-to-node-0.0.0.0/0
+    SecurityGroup           name:nodes.k.devops.it
+    CIDR                    0.0.0.0/0
+    Protocol                tcp
+    FromPort                22
+    ToPort                  22
+
+  Subnet/eu-central-1a.k.devops.it
+    VPC                     name:k.devops.it
+    AvailabilityZone        eu-central-1a
+    CIDR                    172.20.32.0/19
+    Shared                  false
+    Tags                    {Name: eu-central-1a.k.devops.it, KubernetesCluster: k.devops.it, kubernetes.io/cluster/k.devops.it: owned, kubernetes.io/role/elb: 1}
+
+  VPC/k.devops.it
+    CIDR                    172.20.0.0/16
+    EnableDNSHostnames      true
+    EnableDNSSupport        true
+    Shared                  false
+    Tags                    {Name: k.devops.it, KubernetesCluster: k.devops.it, kubernetes.io/cluster/k.devops.it: owned}
+
+  VPCDHCPOptionsAssociation/k.devops.it
+    VPC                     name:k.devops.it
+    DHCPOptions             name:k.devops.it
+
+Must specify --yes to apply changes
+
+Cluster configuration has been created.
+
+Suggestions:
+ * list clusters with: kops get cluster
+ * edit this cluster with: kops edit cluster k.devops.it
+ * edit your node instance group: kops edit ig --name=k.devops.it nodes
+ * edit your master instance group: kops edit ig --name=k.devops.it master-eu-central-1a
+
+Finally configure your cluster with: kops update cluster k.devops.it --yes
+
+
+
+$ kops update cluster k.devops.it --yes
+
+I0103 20:26:33.972291   37712 executor.go:91] Tasks: 0 done / 73 total; 31 can run
+I0103 20:26:38.551266   37712 vfs_castore.go:430] Issuing new certificate: &quot;ca&quot;
+I0103 20:26:39.664412   37712 vfs_castore.go:430] Issuing new certificate: &quot;apiserver-aggregator-ca&quot;
+I0103 20:26:42.471653   37712 executor.go:91] Tasks: 31 done / 73 total; 24 can run
+I0103 20:26:44.232161   37712 vfs_castore.go:430] Issuing new certificate: &quot;master&quot;
+I0103 20:26:44.912815   37712 vfs_castore.go:430] Issuing new certificate: &quot;kops&quot;
+I0103 20:26:45.180290   37712 vfs_castore.go:430] Issuing new certificate: &quot;apiserver-proxy-client&quot;
+I0103 20:26:45.937739   37712 vfs_castore.go:430] Issuing new certificate: &quot;kube-controller-manager&quot;
+I0103 20:26:46.115086   37712 vfs_castore.go:430] Issuing new certificate: &quot;kubelet&quot;
+I0103 20:26:46.120062   37712 vfs_castore.go:430] Issuing new certificate: &quot;kubelet-api&quot;
+I0103 20:26:46.184562   37712 vfs_castore.go:430] Issuing new certificate: &quot;kubecfg&quot;
+I0103 20:26:46.707359   37712 vfs_castore.go:430] Issuing new certificate: &quot;apiserver-aggregator&quot;
+I0103 20:26:46.985966   37712 vfs_castore.go:430] Issuing new certificate: &quot;kube-scheduler&quot;
+I0103 20:26:47.184163   37712 vfs_castore.go:430] Issuing new certificate: &quot;kube-proxy&quot;
+I0103 20:26:51.430634   37712 executor.go:91] Tasks: 55 done / 73 total; 16 can run
+I0103 20:26:56.134750   37712 executor.go:91] Tasks: 71 done / 73 total; 2 can run
+I0103 20:26:57.007112   37712 executor.go:91] Tasks: 73 done / 73 total; 0 can run
+I0103 20:26:57.007156   37712 dns.go:153] Pre-creating DNS records
+I0103 20:26:59.096587   37712 update_cluster.go:248] Exporting kubecfg for cluster
+kops has set your kubectl context to k.devops.it
+
+Cluster is starting.  It should be ready in a few minutes.
+
+Suggestions:
+ * validate cluster: kops validate cluster
+ * list nodes: kubectl get nodes --show-labels
+ * ssh to the master: ssh -i ~/.ssh/id_rsa admin@api.k.devops.it
+The admin user is specific to Debian. If not using Debian please use the appropriate user based on your OS.
+ * read about installing addons: https://github.com/kubernetes/kops/blob/master/docs/addons.md
+
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../linux-networking/" class="btn btn-neutral float-right" title="Linux networking">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ip/" class="btn btn-neutral" title="Ip"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>It's all free, copy and use at your own risk</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/lorello/lorello.github.io/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../ip/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../linux-networking/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../js/theme.js"></script>
+
+</body>
+</html>

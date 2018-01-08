@@ -104,6 +104,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../kubernates/">Kubernates</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../linux-networking/">Linux networking</a>
 	    </li>
           
@@ -188,6 +193,10 @@
         
             <li><a class="toctree-l3" href="#change-hostname">Change hostname</a></li>
         
+            <li><a class="toctree-l3" href="#package-install-fixes">Package install fixes</a></li>
+        
+            <li><a class="toctree-l3" href="#things-to-check">Things to check</a></li>
+        
         </ul>
     
 
@@ -241,10 +250,29 @@
               
                 <h1 id="ubuntu">Ubuntu</h1>
 <h2 id="change-hostname">Change hostname</h2>
-<p>sudo vim /etc/hosts
-  sudo vim /etc/hostname
-  sudo hostnamectl set-hostname <NEWNAME>
-  systemctl restart systemd-logind.service</p>
+<pre><code>sudo vim /etc/hosts
+sudo vim /etc/hostname
+sudo hostnamectl set-hostname &lt;NEWNAME&gt;
+systemctl restart systemd-logind.service
+</code></pre>
+<h2 id="package-install-fixes">Package install fixes</h2>
+<pre><code>apt-get clean
+apt-get autoremove
+apt-get update &amp;&amp; sudo apt-get upgrade
+dpkg --configure -a
+apt-get install -f
+</code></pre>
+<p>In case of postinst/preinst issues, try also</p>
+<pre><code>apt-get install -o APT::Immediate-Configure=false -f apt SOMEPACKAGE
+</code></pre>
+<h2 id="things-to-check">Things to check</h2>
+<pre><code>/var/log/auth.log
+/var/log/syslog
+/var/log/cloud-init.log
+
+service apparmor status
+apparmor_status
+</code></pre>
               
             </div>
           </div>
