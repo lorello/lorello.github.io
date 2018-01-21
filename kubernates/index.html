@@ -107,13 +107,15 @@
     <a class="current" href="./">Kubernates</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#kubernates">Kubernates</a></li>
+    <li class="toctree-l2"><a href="#kubernetes">Kubernetes</a></li>
     
         <ul>
         
             <li><a class="toctree-l3" href="#minikube">MiniKube</a></li>
         
             <li><a class="toctree-l3" href="#kops">Kops</a></li>
+        
+            <li><a class="toctree-l3" href="#useful-commands">Useful commands</a></li>
         
         </ul>
     
@@ -246,7 +248,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="kubernates">Kubernates</h1>
+                <h1 id="kubernetes">Kubernetes</h1>
 <ul>
 <li>local deploy: <a href="https://kubernetes.io/docs/tasks/tools/install-minikube/">minikube</a></li>
 <li>cloud deploy: <a href="https://github.com/kubernetes/kops/blob/master/docs/install.md">kops</a></li>
@@ -269,10 +271,25 @@ minikube stop
 <li><code>kops update cluster k.devops.it --yes</code></li>
 <li><code>kops get cluster</code></li>
 </ol>
+<p>When your exercise is done:</p>
+<pre><code>kops delete cluster --name k.devops.it --state=s3://kops-state-dev.cloud4wi.com
+</code></pre>
 <p>Test the cluster</p>
 <pre><code>kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 kubectl expose deployment hello-minikube --type=NodePort
 kubectl get service
+</code></pre>
+<h2 id="useful-commands">Useful commands</h2>
+<pre><code>kubectl config view
+kubectl create -f pod-something.yml
+kubectl get pod
+kubectl describe pod
+kubectl expose pod &lt;pod&gt; --port=444 --name=something
+kubectl port-forward &lt;pod&gt; 8080
+kubectl attach &lt;podname&gt; -i
+kubectl exec &lt;pod&gt; -- &lt;command&gt;
+
+kubectl run -i --tty busybox --image=busybox --restart=Never -- sh
 </code></pre>
 <h3 id="commands-output">Commands output</h3>
 <pre><code>I0103 20:06:19.122358   37479 create_cluster.go:439] Inferred --cloud=aws from zone &quot;eu-central-1a&quot;
