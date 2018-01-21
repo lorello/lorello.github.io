@@ -1,4 +1,8 @@
-* LoreLLo commit [98942c0](https://github.com/lorello/lorello.github.io/commit/98942c0af6a8eec94e10dc15f25fd1e3a6c3e868) di 3 seconds ago: Notes from the kubernates course
+* LoreLLo commit [32d35c7](https://github.com/lorello/lorello.github.io/commit/32d35c7afebb5dd2ef4c8df8890d73b53295b16d) di 10 seconds ago: Fixed type in pagename
+
+* LoreLLo commit [60fd2c3](https://github.com/lorello/lorello.github.io/commit/60fd2c341ea7f7ac7a3ac56cb7ed4cc49a885686) di 75 minutes ago: Updated changelog
+
+* LoreLLo commit [98942c0](https://github.com/lorello/lorello.github.io/commit/98942c0af6a8eec94e10dc15f25fd1e3a6c3e868) di 75 minutes ago: Notes from the kubernates course
 
 * LoreLLo commit [461f191](https://github.com/lorello/lorello.github.io/commit/461f191de5b791a9b20927253ddab12c2da6db3c) di 13 days ago: Updated changelog
 
