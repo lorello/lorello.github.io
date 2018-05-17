@@ -26,6 +26,8 @@ sysdig requires kernel headers
 
 ### Docker
 
+#### Centos 6
+
 Requires kernel >= 3.10, probably centos 6.5 and later
 
     curl -fsSL https://get.docker.com/ | sh
@@ -53,11 +55,29 @@ Check if fireall is enabled and how is configured
     firewall-cmd --get-active-zones
     firewall-cmd --get-zones
     firewall-cmd --list-all
+    firewall-cmd --get-services
+    firewall-cmd --runtime-to-permanent
 
 Open https from any
 
     firewall-cmd --zone=public --add-service=https --permanent
+    firewall-cmd --reload
 
-Open mongodb from a specific IP
+Open mysql from a specific IP
 
-    firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address=12.34.56.78 accept' --permanent
+    firewall-cmd --zone=external --permanent --add-source="123.456.1.1/32"
+    firewall-cmd --zone=external --permanent --add-service="mysql"
+    firewall-cmd --reload
+
+Open a custom port 
+
+    firewall-cmd --zone=public --add-port=5000/tcp
+    firewall-cmd --zone=public --add-port=4990-4999/udp
+
+Open all traffic from a specific IP
+
+    fireall-cmd --zone=trusted --permanent --add-source="123.456.1.1/32"
+
+
+More info on the [official FirewallD homepage](http://www.firewalld.org/documentation/man-pages/firewall-cmd.html).
+
