@@ -75,6 +75,8 @@
         
             <li><a class="toctree-l3" href="#loops">Loops</a></li>
         
+            <li><a class="toctree-l3" href="#array-loops">Array loops</a></li>
+        
             <li><a class="toctree-l3" href="#process-cli-options">Process CLI options</a></li>
         
             <li><a class="toctree-l3" href="#bash-dates">Bash dates</a></li>
@@ -126,6 +128,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../ip/">Ip</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../kubernates/">Kubernates</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -296,6 +303,17 @@ done
     ...
 done
 </code></pre>
+<h2 id="array-loops">Array loops</h2>
+<p>names=(
+  "Aaron Maxwell"
+  "Wayne Gretzky"
+  "David Beckham"
+  "Anderson da Silva"
+)
+IFS=$'\n\t'
+for name in ${names[@]}; do
+  echo "$name"
+done</p>
 <h2 id="process-cli-options">Process CLI options</h2>
 <pre><code>aaa=''
 bbb=''

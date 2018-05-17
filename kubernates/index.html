@@ -8,7 +8,7 @@
   
   <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Kubernetes - Lorello technical notes</title>
+  <title>Kubernates - Lorello technical notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Kubernetes";
-    var mkdocs_page_input_path = "kubernetes.md";
-    var mkdocs_page_url = "/kubernetes/";
+    var mkdocs_page_name = "Kubernates";
+    var mkdocs_page_input_path = "kubernates.md";
+    var mkdocs_page_url = "/kubernates/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -102,14 +102,9 @@
     <a class="" href="../ip/">Ip</a>
 	    </li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../kubernates/">Kubernates</a>
-	    </li>
-          
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">Kubernetes</a>
+    <a class="current" href="./">Kubernates</a>
     <ul class="subnav">
             
     <li class="toctree-l2"><a href="#kubernetes">Kubernetes</a></li>
@@ -126,6 +121,11 @@
     
 
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../kubernetes/">Kubernetes</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -240,10 +240,10 @@
     
       
     
-    <li>Kubernetes</li>
+    <li>Kubernates</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/kubernetes.md"
+        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/kubernates.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -283,6 +283,7 @@ minikube stop
 <pre><code>kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 kubectl expose deployment hello-minikube --type=NodePort
 kubectl get service
+kubectl describe service hello-minikube
 </code></pre>
 <h2 id="useful-commands">Useful commands</h2>
 <pre><code>kubectl config view
@@ -665,10 +666,10 @@ The admin user is specific to Debian. If not using Debian please use the appropr
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../linux-networking/" class="btn btn-neutral float-right" title="Linux networking">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../kubernetes/" class="btn btn-neutral float-right" title="Kubernetes">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../kubernates/" class="btn btn-neutral" title="Kubernates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ip/" class="btn btn-neutral" title="Ip"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -698,10 +699,10 @@ The admin user is specific to Debian. If not using Debian please use the appropr
           <a href="https://github.com/lorello/lorello.github.io/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../kubernates/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../ip/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../linux-networking/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../kubernetes/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
