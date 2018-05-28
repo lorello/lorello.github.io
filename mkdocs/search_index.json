@@ -187,7 +187,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \ndd23ab4\n di 4 seconds ago: Many more details and commands for firealld management", 
+            "text": "LoreLLo commit \nf4c4045\n di 2 minutes ago: Added Fabio Loadbalancer page\n\n\n\n\n\n\nLoreLLo commit \n68fbd14\n di 11 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \ndd23ab4\n di 11 days ago: Many more details and commands for firealld management", 
             "title": "Changelog"
         }, 
         {
@@ -294,6 +294,21 @@
             "location": "/docker/#start-a-container-that-use-the-same-macvlan-interface", 
             "text": "CID=$(docker run -d ...)\npipework eth0 $CID 10.1.1.234/24@10.1.1.254", 
             "title": "Start a container that use the same macvlan interface"
+        }, 
+        {
+            "location": "/fabio/", 
+            "text": "Fabio Load Balancer\n\n\nSSL\n\n\nConfiguration using environment variables\n\n\nversion: \n2.3\n\nservices:\n  lb:\n    image: fabiolb/fabio:1.5.8-go1.10\n    container_name: fabio\n    restart: unless-stopped\n    cpus: 2\n    mem_limit: '256m'\n    mem_reservation: '128m'\n    network_mode: 'host'\n#    ports:\n#      - 80:80\n#      - 443:443\n#      - 9998:9998\n    environment:\n      FABIO_proxy_cs: 'cs=mydomain;type=consul;cert=http://127.0.0.1:8500/v1/kv/ssl'\n      FABIO_proxy_addr: ':80,:443;cs=mydomain'\n      FABIO_PROXY_SHUTDOWNWAIT: '10s'\n      FABIO_proxy_gzip_contenttype: '^(text/.*|application/(javascript|json|font-woff|xml)|.*\\+(json|xml))(;.*)?$$'\n      FABIO_log_access_target: 'stdout'\n      FABIO_log_access_format: 'combined'\n      FABIO_log_level: 'WARN'\n      FABIO_registry_consul_addr: '127.0.0.1:8500'\n\n\n\n\n\nStoring the SSL certificates in consul KV store is simple:\n\n\ncat CA_intermediate.crt mydomain.crt | consul kv put ssl/mydomain-cert.pem -\ncat mydomain.key | mydomain consul kv put ssl/mydomain-key.pem -\n\n\n\nCert must contain the intermediate certificates, if they are available", 
+            "title": "Fabio"
+        }, 
+        {
+            "location": "/fabio/#fabio-load-balancer", 
+            "text": "", 
+            "title": "Fabio Load Balancer"
+        }, 
+        {
+            "location": "/fabio/#ssl", 
+            "text": "Configuration using environment variables  version:  2.3 \nservices:\n  lb:\n    image: fabiolb/fabio:1.5.8-go1.10\n    container_name: fabio\n    restart: unless-stopped\n    cpus: 2\n    mem_limit: '256m'\n    mem_reservation: '128m'\n    network_mode: 'host'\n#    ports:\n#      - 80:80\n#      - 443:443\n#      - 9998:9998\n    environment:\n      FABIO_proxy_cs: 'cs=mydomain;type=consul;cert=http://127.0.0.1:8500/v1/kv/ssl'\n      FABIO_proxy_addr: ':80,:443;cs=mydomain'\n      FABIO_PROXY_SHUTDOWNWAIT: '10s'\n      FABIO_proxy_gzip_contenttype: '^(text/.*|application/(javascript|json|font-woff|xml)|.*\\+(json|xml))(;.*)?$$'\n      FABIO_log_access_target: 'stdout'\n      FABIO_log_access_format: 'combined'\n      FABIO_log_level: 'WARN'\n      FABIO_registry_consul_addr: '127.0.0.1:8500'  Storing the SSL certificates in consul KV store is simple:  cat CA_intermediate.crt mydomain.crt | consul kv put ssl/mydomain-cert.pem -\ncat mydomain.key | mydomain consul kv put ssl/mydomain-key.pem -  Cert must contain the intermediate certificates, if they are available", 
+            "title": "SSL"
         }, 
         {
             "location": "/git/", 
