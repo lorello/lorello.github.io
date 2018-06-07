@@ -132,7 +132,7 @@
         }, 
         {
             "location": "/centos/", 
-            "text": "CentOS\n\n\nRepositories\n\n\nExtra Packages (community approved by CentOS)\n\n\n# yum install epel-release\n\n\n\nRackspace updated packages for PHP/Mysql/python\n\n\n# curl -fsSL https://setup.ius.io/ | sh\n\n\n\nPuppet collections\n\n\n# rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-(5|6|7).noarch.rpm\n\n\n\nSysdig\n\n\nsysdig requires kernel headers\n\n\nrpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public\ncurl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo\n\nyum -y install kernel-devel-$(uname -r)\nyum -y install sysdig\n\n\n\nDocker\n\n\nCentos 6\n\n\nRequires kernel \n= 3.10, probably centos 6.5 and later\n\n\ncurl -fsSL https://get.docker.com/ | sh\nsudo service docker start\nsudo chkconfig docker on\nsudo groupadd docker\nsudo usermod -aG docker `whoami`\n\n\n\nNetdata\n\n\nMonitoring system\n\n\nyum install zlib-devel libuuid-devel libmnl-devel gcc make git autoconf autogen automake pkgconfig\ngit clone https://github.com/firehol/netdata.git \u2013depth=1 \n cd netdata \n ./netdata-installer.sh\n\n\n\nFor more info see also \nhttps://wiki.centos.org/AdditionalResources/Repositories\n\n\nFirewall\n\n\nCheck if fireall is enabled and how is configured\n\n\nfirewall-cmd --state\nfirewall-cmd --get-default-zone\nfirewall-cmd --get-active-zones\nfirewall-cmd --get-zones\nfirewall-cmd --list-all\nfirewall-cmd --get-services\nfirewall-cmd --runtime-to-permanent\n\n\n\nOpen https from any\n\n\nfirewall-cmd --zone=public --add-service=https --permanent\nfirewall-cmd --reload\n\n\n\nOpen mysql from a specific IP\n\n\nfirewall-cmd --zone=external --permanent --add-source=\"123.456.1.1/32\"\nfirewall-cmd --zone=external --permanent --add-service=\"mysql\"\nfirewall-cmd --reload\n\n\n\nOpen a custom port \n\n\nfirewall-cmd --zone=public --add-port=5000/tcp\nfirewall-cmd --zone=public --add-port=4990-4999/udp\n\n\n\nOpen all traffic from a specific IP\n\n\nfireall-cmd --zone=trusted --permanent --add-source=\"123.456.1.1/32\"\n\n\n\nMore info on the \nofficial FirewallD homepage\n.", 
+            "text": "CentOS\n\n\nRepositories\n\n\nFind packages\n\n\nPackage that contains a binary:\n\n\nrpm -qf which dig\n\n\n\n\nList of files in a package\n\n\nrpm -ql bind-utils\n\n\n\n\nExtra Packages (community approved by CentOS)\n\n\n# yum install epel-release\n\n\n\nRackspace updated packages for PHP/Mysql/python\n\n\n# curl -fsSL https://setup.ius.io/ | sh\n\n\n\nPuppet collections\n\n\n# rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-(5|6|7).noarch.rpm\n\n\n\nSysdig\n\n\nsysdig requires kernel headers\n\n\nrpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public\ncurl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo\n\nyum -y install kernel-devel-$(uname -r)\nyum -y install sysdig\n\n\n\nUtils\n\n\nrpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm\nyum install -y htop byobu bind-utils\n\n\n\n\nDocker\n\n\nCentos 6\n\n\nRequires kernel \n= 3.10, probably centos 6.5 and later\n\n\ncurl -fsSL https://get.docker.com/ | sh\nsudo service docker start\nsudo chkconfig docker on\nsudo groupadd docker\nsudo usermod -aG docker `whoami`\n\n\n\nCentos 7\n\n\nKernel upgrade\n\n\nsudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org\nsudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm\nsudo yum --disablerepo=\n*\n --enablerepo=\nelrepo-kernel\n list available\nsudo yum --enablerepo=elrepo-kernel install -y kernel-lt\nsudo grub2-set-default 0    # setta l'ultimo kernel instalato come default\n\n\n\n\nDocker packages install\n\n\nsudo yum remove docker \\\n                  docker-client \\\n                  docker-client-latest \\\n                  docker-common \\\n                  docker-latest \\\n                  docker-latest-logrotate \\\n                  docker-logrotate \\\n                  docker-selinux \\\n                  docker-engine-selinux \\\n                  docker-engine\nsudo yum install -y yum-utils \\\n  device-mapper-persistent-data \\\n  lvm2\nsudo yum-config-manager \\\n    --add-repo \\\n    https://download.docker.com/linux/centos/docker-ce.repo\nsudo yum install -y docker-ce\nsudo systemctl start docker\nsudo docker run -it --rm hello-world\nsudo systemctl enable docker\nsudo groupadd docker\nsudo usermod -aG docker $USER\n\n\n\n\nNetdata\n\n\nMonitoring system\n\n\nyum install zlib-devel libuuid-devel libmnl-devel gcc make git autoconf autogen automake pkgconfig\ngit clone https://github.com/firehol/netdata.git \u2013depth=1 \n cd netdata \n ./netdata-installer.sh\n\n\n\nFor more info see also \nhttps://wiki.centos.org/AdditionalResources/Repositories\n\n\nFirewall\n\n\nCheck if fireall is enabled and how is configured\n\n\nfirewall-cmd --state\nfirewall-cmd --get-default-zone\nfirewall-cmd --get-active-zones\nfirewall-cmd --get-zones\nfirewall-cmd --list-all\nfirewall-cmd --get-services\nfirewall-cmd --runtime-to-permanent\n\n\n\nOpen https from any\n\n\nfirewall-cmd --zone=public --add-service=https --permanent\nfirewall-cmd --reload\n\n\n\nOpen mysql from a specific IP\n\n\nfirewall-cmd --zone=external --permanent --add-source=\"123.456.1.1/32\"\nfirewall-cmd --zone=external --permanent --add-service=\"mysql\"\nfirewall-cmd --reload\n\n\n\nOpen a custom port \n\n\nfirewall-cmd --zone=public --add-port=5000/tcp\nfirewall-cmd --zone=public --add-port=4990-4999/udp\n\n\n\nOpen all traffic from a specific IP\n\n\nfireall-cmd --zone=trusted --permanent --add-source=\"123.456.1.1/32\"\n\n\n\nMore info on the \nofficial FirewallD homepage\n.", 
             "title": "Centos"
         }, 
         {
@@ -144,6 +144,11 @@
             "location": "/centos/#repositories", 
             "text": "", 
             "title": "Repositories"
+        }, 
+        {
+            "location": "/centos/#find-packages", 
+            "text": "Package that contains a binary:  rpm -qf which dig  List of files in a package  rpm -ql bind-utils", 
+            "title": "Find packages"
         }, 
         {
             "location": "/centos/#extra-packages-community-approved-by-centos", 
@@ -166,6 +171,11 @@
             "title": "Sysdig"
         }, 
         {
+            "location": "/centos/#utils", 
+            "text": "rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm\nyum install -y htop byobu bind-utils", 
+            "title": "Utils"
+        }, 
+        {
             "location": "/centos/#docker", 
             "text": "", 
             "title": "Docker"
@@ -174,6 +184,11 @@
             "location": "/centos/#centos-6", 
             "text": "Requires kernel  = 3.10, probably centos 6.5 and later  curl -fsSL https://get.docker.com/ | sh\nsudo service docker start\nsudo chkconfig docker on\nsudo groupadd docker\nsudo usermod -aG docker `whoami`", 
             "title": "Centos 6"
+        }, 
+        {
+            "location": "/centos/#centos-7", 
+            "text": "Kernel upgrade  sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org\nsudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm\nsudo yum --disablerepo= *  --enablerepo= elrepo-kernel  list available\nsudo yum --enablerepo=elrepo-kernel install -y kernel-lt\nsudo grub2-set-default 0    # setta l'ultimo kernel instalato come default  Docker packages install  sudo yum remove docker \\\n                  docker-client \\\n                  docker-client-latest \\\n                  docker-common \\\n                  docker-latest \\\n                  docker-latest-logrotate \\\n                  docker-logrotate \\\n                  docker-selinux \\\n                  docker-engine-selinux \\\n                  docker-engine\nsudo yum install -y yum-utils \\\n  device-mapper-persistent-data \\\n  lvm2\nsudo yum-config-manager \\\n    --add-repo \\\n    https://download.docker.com/linux/centos/docker-ce.repo\nsudo yum install -y docker-ce\nsudo systemctl start docker\nsudo docker run -it --rm hello-world\nsudo systemctl enable docker\nsudo groupadd docker\nsudo usermod -aG docker $USER", 
+            "title": "Centos 7"
         }, 
         {
             "location": "/centos/#netdata", 
@@ -187,7 +202,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \nf4c4045\n di 2 minutes ago: Added Fabio Loadbalancer page\n\n\n\n\n\n\nLoreLLo commit \n68fbd14\n di 11 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \ndd23ab4\n di 11 days ago: Many more details and commands for firealld management", 
+            "text": "LoreLLo commit \ne128e23\n di 7 seconds ago: Created Consul page\n\n\n\n\n\n\nLoreLLo commit \n093c652\n di 10 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nf4c4045\n di 10 days ago: Added Fabio Loadbalancer page\n\n\n\n\n\n\nLoreLLo commit \n68fbd14\n di 3 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \ndd23ab4\n di 3 weeks ago: Many more details and commands for firealld management", 
             "title": "Changelog"
         }, 
         {
@@ -229,6 +244,26 @@
             "location": "/cisco/#set-a-description", 
             "text": "# en\n# conf t\n(config)# int FastEthernet 0/1\n(config-subif)# description This is 1st Port of My Switch\n(config-subif)# end\n# write", 
             "title": "Set a description"
+        }, 
+        {
+            "location": "/consul/", 
+            "text": "Consul\n\n\nhttps://consul.io\n\n\nRemove a dead service\n\n\nhttp put :8500/v1/agent/service/deregister/:ID\n\n\n\nDev mode\n\n\n$ consul agent -server -dev -ui -client 0.0.0.0", 
+            "title": "Consul"
+        }, 
+        {
+            "location": "/consul/#consul", 
+            "text": "https://consul.io", 
+            "title": "Consul"
+        }, 
+        {
+            "location": "/consul/#remove-a-dead-service", 
+            "text": "http put :8500/v1/agent/service/deregister/:ID", 
+            "title": "Remove a dead service"
+        }, 
+        {
+            "location": "/consul/#dev-mode", 
+            "text": "$ consul agent -server -dev -ui -client 0.0.0.0", 
+            "title": "Dev mode"
         }, 
         {
             "location": "/docker/", 
@@ -297,7 +332,7 @@
         }, 
         {
             "location": "/fabio/", 
-            "text": "Fabio Load Balancer\n\n\nSSL\n\n\nConfiguration using environment variables\n\n\nversion: \n2.3\n\nservices:\n  lb:\n    image: fabiolb/fabio:1.5.8-go1.10\n    container_name: fabio\n    restart: unless-stopped\n    cpus: 2\n    mem_limit: '256m'\n    mem_reservation: '128m'\n    network_mode: 'host'\n#    ports:\n#      - 80:80\n#      - 443:443\n#      - 9998:9998\n    environment:\n      FABIO_proxy_cs: 'cs=mydomain;type=consul;cert=http://127.0.0.1:8500/v1/kv/ssl'\n      FABIO_proxy_addr: ':80,:443;cs=mydomain'\n      FABIO_PROXY_SHUTDOWNWAIT: '10s'\n      FABIO_proxy_gzip_contenttype: '^(text/.*|application/(javascript|json|font-woff|xml)|.*\\+(json|xml))(;.*)?$$'\n      FABIO_log_access_target: 'stdout'\n      FABIO_log_access_format: 'combined'\n      FABIO_log_level: 'WARN'\n      FABIO_registry_consul_addr: '127.0.0.1:8500'\n\n\n\n\n\nStoring the SSL certificates in consul KV store is simple:\n\n\ncat CA_intermediate.crt mydomain.crt | consul kv put ssl/mydomain-cert.pem -\ncat mydomain.key | mydomain consul kv put ssl/mydomain-key.pem -\n\n\n\nCert must contain the intermediate certificates, if they are available", 
+            "text": "Fabio Load Balancer\n\n\nSSL\n\n\nConfiguration using environment variables\n\n\nversion: \n2.3\n\nservices:\n  lb:\n    image: fabiolb/fabio:1.5.8-go1.10\n    container_name: fabio\n    restart: unless-stopped\n    cpus: 2\n    mem_limit: '256m'\n    mem_reservation: '128m'\n    network_mode: 'host'\n#    ports:\n#      - 80:80\n#      - 443:443\n#      - 9998:9998\n    environment:\n      FABIO_proxy_cs: 'cs=mydomain;type=consul;cert=http://127.0.0.1:8500/v1/kv/ssl'\n      FABIO_proxy_addr: ':80,:443;cs=mydomain'\n      FABIO_PROXY_SHUTDOWNWAIT: '10s'\n      FABIO_proxy_gzip_contenttype: '^(text/.*|application/(javascript|json|font-woff|xml)|.*\\+(json|xml))(;.*)?$$'\n      FABIO_log_access_target: 'stdout'\n      FABIO_log_access_format: 'combined'\n      FABIO_log_level: 'WARN'\n      FABIO_registry_consul_addr: '127.0.0.1:8500'\n\n\n\n\n\nStoring the SSL certificates in consul KV store is simple:\n\n\ncat CA_intermediate.crt mydomain.crt | consul kv put ssl/mydomain-cert.pem -\ncat mydomain.key | mydomain consul kv put ssl/mydomain-key.pem -\n\n\n\nCert must contain the intermediate certificates, if they are available\n\n\nProxying Consul UI\n\n\nroute add consul consul.mydomain.tld http://127.0.0.1:8500", 
             "title": "Fabio"
         }, 
         {
@@ -307,7 +342,7 @@
         }, 
         {
             "location": "/fabio/#ssl", 
-            "text": "Configuration using environment variables  version:  2.3 \nservices:\n  lb:\n    image: fabiolb/fabio:1.5.8-go1.10\n    container_name: fabio\n    restart: unless-stopped\n    cpus: 2\n    mem_limit: '256m'\n    mem_reservation: '128m'\n    network_mode: 'host'\n#    ports:\n#      - 80:80\n#      - 443:443\n#      - 9998:9998\n    environment:\n      FABIO_proxy_cs: 'cs=mydomain;type=consul;cert=http://127.0.0.1:8500/v1/kv/ssl'\n      FABIO_proxy_addr: ':80,:443;cs=mydomain'\n      FABIO_PROXY_SHUTDOWNWAIT: '10s'\n      FABIO_proxy_gzip_contenttype: '^(text/.*|application/(javascript|json|font-woff|xml)|.*\\+(json|xml))(;.*)?$$'\n      FABIO_log_access_target: 'stdout'\n      FABIO_log_access_format: 'combined'\n      FABIO_log_level: 'WARN'\n      FABIO_registry_consul_addr: '127.0.0.1:8500'  Storing the SSL certificates in consul KV store is simple:  cat CA_intermediate.crt mydomain.crt | consul kv put ssl/mydomain-cert.pem -\ncat mydomain.key | mydomain consul kv put ssl/mydomain-key.pem -  Cert must contain the intermediate certificates, if they are available", 
+            "text": "Configuration using environment variables  version:  2.3 \nservices:\n  lb:\n    image: fabiolb/fabio:1.5.8-go1.10\n    container_name: fabio\n    restart: unless-stopped\n    cpus: 2\n    mem_limit: '256m'\n    mem_reservation: '128m'\n    network_mode: 'host'\n#    ports:\n#      - 80:80\n#      - 443:443\n#      - 9998:9998\n    environment:\n      FABIO_proxy_cs: 'cs=mydomain;type=consul;cert=http://127.0.0.1:8500/v1/kv/ssl'\n      FABIO_proxy_addr: ':80,:443;cs=mydomain'\n      FABIO_PROXY_SHUTDOWNWAIT: '10s'\n      FABIO_proxy_gzip_contenttype: '^(text/.*|application/(javascript|json|font-woff|xml)|.*\\+(json|xml))(;.*)?$$'\n      FABIO_log_access_target: 'stdout'\n      FABIO_log_access_format: 'combined'\n      FABIO_log_level: 'WARN'\n      FABIO_registry_consul_addr: '127.0.0.1:8500'  Storing the SSL certificates in consul KV store is simple:  cat CA_intermediate.crt mydomain.crt | consul kv put ssl/mydomain-cert.pem -\ncat mydomain.key | mydomain consul kv put ssl/mydomain-key.pem -  Cert must contain the intermediate certificates, if they are available  Proxying Consul UI  route add consul consul.mydomain.tld http://127.0.0.1:8500", 
             "title": "SSL"
         }, 
         {

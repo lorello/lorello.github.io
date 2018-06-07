@@ -8,7 +8,7 @@
   
   <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Git - Lorello technical notes</title>
+  <title>Consul - Lorello technical notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Git";
-    var mkdocs_page_input_path = "git.md";
-    var mkdocs_page_url = "/git/";
+    var mkdocs_page_name = "Consul";
+    var mkdocs_page_input_path = "consul.md";
+    var mkdocs_page_url = "/consul/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -87,9 +87,23 @@
     <a class="" href="../cisco/">Cisco</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../consul/">Consul</a>
+    <a class="current" href="./">Consul</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#consul">Consul</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#remove-a-dead-service">Remove a dead service</a></li>
+        
+            <li><a class="toctree-l3" href="#dev-mode">Dev mode</a></li>
+        
+        </ul>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -102,23 +116,9 @@
     <a class="" href="../fabio/">Fabio</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Git</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#git-versioning-system">Git Versioning System</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#config">Config</a></li>
-        
-            <li><a class="toctree-l3" href="#change-log-generation">Change Log generation</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../git/">Git</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -248,10 +248,10 @@
     
       
     
-    <li>Git</li>
+    <li>Consul</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/git.md"
+        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/consul.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -261,37 +261,13 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="git-versioning-system">Git Versioning System</h1>
-<h2 id="config">Config</h2>
-<pre><code>git config --global http.postBuffer 1024000000
+                <h1 id="consul">Consul</h1>
+<p>https://consul.io</p>
+<h2 id="remove-a-dead-service">Remove a dead service</h2>
+<pre><code>http put :8500/v1/agent/service/deregister/:ID
 </code></pre>
-<h2 id="change-log-generation">Change Log generation</h2>
-<p>List file names changed between two revisions IDs</p>
-<pre><code>git diff $oldrev $newrev --diff-filter=ACDMR --name-only
-</code></pre>
-<p>List changes between two revisions IDs, with author and commit message</p>
-<pre><code># sed removes double \n that come from git log (%B)
-git log --abbrev-commit --pretty=format:'* %h %an %ar: %B' ${oldrev}..${newrev} | sed ':a;N;$!ba;s/\n\n/\n/g'
-</code></pre>
-<p>List changes after a specified date, with author and commit message</p>
-<pre><code>git log --abbrev-commit --pretty=format:'* %h %an %ar: %B' --after='2016-02-01'| sed ':a;N;$!ba;s/\n\n/\n/g'
-</code></pre>
-<p>A changelog for Slack chat</p>
-<pre><code>BRANCH=$(git rev-parse --abbrev-ref HEAD)
-HOSTNAME=$(hostname -f)
-
-# Links to changed files
-FILES_CHANGED=''
-for ITEM in $(git diff $oldrev $newrev --diff-filter=ACDMR --name-only); do
-  FILES_CHANGED="$FILES_CHANGED\n* &lt;$GIT_REPO/blob/$newrev/$ITEM|$ITEM&gt;"
-done
-
-NUM_CHANGED=$(git diff $oldrev $newrev --diff-filter=ACDMR --name-only | wc -l)
-BASEURL="$GIT_REPO/commit"
-
-GITLOG=$(git log --abbrev-commit --pretty=format:"* %an commit &lt;$BASEURL/%H|%h&gt; di %ar: %B" ${oldrev}..${newrev} | sed ':a;N;$!ba;s/\n\n/\n/g')
-
-CHANGELOG="*$NUM_CHANGED* files changed:\n$FILES_CHANGED\n\n*Details*:\n$GITLOG\n"
+<h2 id="dev-mode">Dev mode</h2>
+<pre><code>$ consul agent -server -dev -ui -client 0.0.0.0
 </code></pre>
               
             </div>
@@ -300,10 +276,10 @@ CHANGELOG="*$NUM_CHANGED* files changed:\n$FILES_CHANGED\n\n*Details*:\n$GITLOG\
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ip/" class="btn btn-neutral float-right" title="Ip">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../docker/" class="btn btn-neutral float-right" title="Docker">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../fabio/" class="btn btn-neutral" title="Fabio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cisco/" class="btn btn-neutral" title="Cisco"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -333,10 +309,10 @@ CHANGELOG="*$NUM_CHANGED* files changed:\n$FILES_CHANGED\n\n*Details*:\n$GITLOG\
           <a href="https://github.com/lorello/lorello.github.io/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../fabio/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../cisco/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../ip/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../docker/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

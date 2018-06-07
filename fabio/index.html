@@ -89,6 +89,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../consul/">Consul</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../docker/">Docker</a>
 	    </li>
           
@@ -288,6 +293,8 @@ services:
 cat mydomain.key | mydomain consul kv put ssl/mydomain-key.pem -
 </code></pre>
 <p>Cert must contain the intermediate certificates, if they are available</p>
+<p>Proxying Consul UI</p>
+<p>route add consul consul.mydomain.tld http://127.0.0.1:8500</p>
               
             </div>
           </div>
