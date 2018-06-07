@@ -2,6 +2,20 @@
 
 ## Repositories
 
+### Find packages
+
+Package that contains a binary:
+
+```
+rpm -qf which dig
+```
+
+List of files in a package
+
+```
+rpm -ql bind-utils
+```
+
 ### Extra Packages (community approved by CentOS)
 
     # yum install epel-release
@@ -24,6 +38,14 @@ sysdig requires kernel headers
     yum -y install kernel-devel-$(uname -r)
     yum -y install sysdig
 
+## Utils
+
+```
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+yum install -y htop byobu bind-utils
+```
+
+
 ### Docker
 
 #### Centos 6
@@ -35,6 +57,47 @@ Requires kernel >= 3.10, probably centos 6.5 and later
     sudo chkconfig docker on
     sudo groupadd docker
     sudo usermod -aG docker `whoami`
+
+
+#### Centos 7
+
+Kernel upgrade
+
+```
+sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
+sudo yum --disablerepo="*" --enablerepo="elrepo-kernel" list available
+sudo yum --enablerepo=elrepo-kernel install -y kernel-lt
+sudo grub2-set-default 0    # setta l'ultimo kernel instalato come default
+```
+
+Docker packages install
+
+```
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install -y docker-ce
+sudo systemctl start docker
+sudo docker run -it --rm hello-world
+sudo systemctl enable docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+
 
 ### Netdata
 

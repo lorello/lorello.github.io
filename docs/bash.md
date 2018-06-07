@@ -45,6 +45,20 @@ Looping
         ...
     done
 
+## Array loops
+
+names=(
+  "Aaron Maxwell"
+  "Wayne Gretzky"
+  "David Beckham"
+  "Anderson da Silva"
+)
+IFS=$'\n\t'
+for name in ${names[@]}; do
+  echo "$name"
+done
+
+
 ## Process CLI options
 	aaa=''
 	bbb=''

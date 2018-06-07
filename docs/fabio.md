@@ -37,5 +37,6 @@ Storing the SSL certificates in consul KV store is simple:
 
 Cert must contain the intermediate certificates, if they are available
 
+Proxying Consul UI
 
-
+route add consul consul.mydomain.tld http://127.0.0.1:8500
