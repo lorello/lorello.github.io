@@ -47,6 +47,7 @@ Looping
 
 ## Array loops
 
+```
 names=(
   "Aaron Maxwell"
   "Wayne Gretzky"
@@ -57,6 +58,19 @@ IFS=$'\n\t'
 for name in ${names[@]}; do
   echo "$name"
 done
+```
+
+## Loops on files containing spaces
+
+```
+OIFS="$IFS"
+IFS=$'\n'
+for file in $(find . -type f -name "*.csv")
+do
+   echo "file = '$file'"
+done
+IFS="$OIFS"
+```
 
 
 ## Process CLI options
