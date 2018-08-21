@@ -62,7 +62,7 @@
         }, 
         {
             "location": "/bash/", 
-            "text": "Bashism\n\n\nI use a little library to have a common set of utilities out of the box in my\nbash scripts, it can be retrieved at https://github.com/lorello/lib.sh\n\n\nChecking strings\n\n\n# -z (string length is zero) and -n (string length is not zero) are\n# preferred over testing for an empty string\nif [[ -z \"${my_var}\" ]]; then\n    do_something\nfi\n\n\n\nLoops\n\n\nLoop on a rows of a text file\n\n\n#!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone\n\n\n\nLoop on a counter\n\n\ncounter=1\nwhile (( $counter \n 10 ))\ndo\n    echo $counter\n    ((counter++))\ndone\n\n\n\nLoop on a list of items\n\n\nmodules=(json httpserver jshint)\nfor module in \"${modules[@]}\"; do\n    npm install -g \"$module\"\ndone\n\n\n\nLooping \n\n\nfor ((i = 0; i \n n; i++)); do\n    ...\ndone\n\n\n\nArray loops\n\n\nnames=(\n  \"Aaron Maxwell\"\n  \"Wayne Gretzky\"\n  \"David Beckham\"\n  \"Anderson da Silva\"\n)\nIFS=$'\\n\\t'\nfor name in ${names[@]}; do\n  echo \"$name\"\ndone\n\n\nProcess CLI options\n\n\naaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone\n\n\n\nAnother way\n\n\nverbose='false'\naflag=''\nbflag=''\nfiles=''\nwhile getopts 'abf:v' flag; do\n  case \"${flag}\" in\n    a) aflag='true' ;;\n    b) bflag='true' ;;\n    f) files=\"${OPTARG}\" ;;\n    v) verbose='true' ;;\n    *) error \"Unexpected option ${flag}\" ;;\n  esac\ndone\n\n\n\nA more advanced options is to use [https://github.com/nk412/optparse|optparse]\n\n\nBash dates\n\n\nA simple date useful for filenaming: YYYY-MM-DD\n\n\n$(date +%F)\n\n\n\nA full datetime\n\n\n$(date +%F-%T)\n\n\n\nBuiltin bashism instead of external binaries\n\n\nfqdn='computer1.daveeddy.com'\n\nIFS=. read -r hostname domain tld \n \"$fqdn\"\necho \"$hostname is in $domain.$tld\"\n# =\n \"computer1 is in daveeddy.com\"\n\n\n\n[[ vs [\n\n\nThere is also the \nlong version\n\n\n[[ a \n b ]]\n\n[[ -n $var \n -f $var ]] \n echo \"$var is a file\"\n\n[[ $var = img* \n ($var = *.png || $var = *.jpg) ]] \n \\\n    echo \"$var starts with img and ends with .jpg or .png\"\n\n[[ $name = a* ]] || echo \"name does not start with an 'a': $name\"\n\n[[ $(date) =~ ^Fri\\ ...\\ 13 ]] \n echo \"It's Friday the 13th!\"\n\n\n\nDebug\n\n\nThe following code uses the DEBUG trap to inform the user about what command is about to be executed and wait for his confirmation do to so. Put this code in your script, at the location you wish to begin stepping:\n\n\ntrap '(read -p \"[$BASH_SOURCE:$LINENO] $BASH_COMMAND?\")' DEBUG\n\n\n\nGive va value to TRACE to add -x flag to execution:\n\n\n[[ \"$TRACE\" ]] \n set -x\n\n\n\nSome style\n\n\nmeaningful_function_names() { ... }\n\n\naddition=$((${X} + ${Y}))\nsubstitution=\"${string/#foo/bar}\"\n\n\n\nCase formatting\n\n\ncase \"${expression}\" in\n  a)\n    variable=\"...\"\n    some_command \"${variable}\" \"${other_expr}\" ...\n    ;;\n  absolute)\n    actions=\"relative\"\n    another_command \"${actions}\" \"${other_expr}\" ...\n    ;;\n  *)\n    error \"Unexpected expression '${expression}'\"\n    ;;\nesac\n\n\n\nSources: \nGoogle\n, \n\nProgrium", 
+            "text": "Bashism\n\n\nI use a little library to have a common set of utilities out of the box in my\nbash scripts, it can be retrieved at https://github.com/lorello/lib.sh\n\n\nChecking strings\n\n\n# -z (string length is zero) and -n (string length is not zero) are\n# preferred over testing for an empty string\nif [[ -z \"${my_var}\" ]]; then\n    do_something\nfi\n\n\n\nLoops\n\n\nLoop on a rows of a text file\n\n\n#!/bin/sh\nlist=/tmp/blacklists/porn/domains\ncat $list | while read domains\ndo\n    echo $domains\ndone\n\n\n\nLoop on a counter\n\n\ncounter=1\nwhile (( $counter \n 10 ))\ndo\n    echo $counter\n    ((counter++))\ndone\n\n\n\nLoop on a list of items\n\n\nmodules=(json httpserver jshint)\nfor module in \"${modules[@]}\"; do\n    npm install -g \"$module\"\ndone\n\n\n\nLooping \n\n\nfor ((i = 0; i \n n; i++)); do\n    ...\ndone\n\n\n\nArray loops\n\n\nnames=(\n  \nAaron Maxwell\n\n  \nWayne Gretzky\n\n  \nDavid Beckham\n\n  \nAnderson da Silva\n\n)\nIFS=$'\\n\\t'\nfor name in ${names[@]}; do\n  echo \n$name\n\ndone\n\n\n\n\nLoops on files containing spaces\n\n\nOIFS=\n$IFS\n\nIFS=$'\\n'\nfor file in $(find . -type f -name \n*.csv\n)\ndo\n   echo \nfile = '$file'\n\ndone\nIFS=\n$OIFS\n\n\n\n\n\nProcess CLI options\n\n\naaa=''\nbbb=''\nccc=''\n\nwhile [ $# -gt 0 ]\ndo\n  case $1 in\n    -h) print_help ;;\n    --help) print_help ;;\n    -a) aaa=$2 ; shift 2 ;;\n    -b) bbb=$2 ; shift 2 ;;\n    -c) ccc=$2 ; shift 2 ;;\n    *) shift 1 ;;\n  esac\ndone\n\n\n\nAnother way\n\n\nverbose='false'\naflag=''\nbflag=''\nfiles=''\nwhile getopts 'abf:v' flag; do\n  case \"${flag}\" in\n    a) aflag='true' ;;\n    b) bflag='true' ;;\n    f) files=\"${OPTARG}\" ;;\n    v) verbose='true' ;;\n    *) error \"Unexpected option ${flag}\" ;;\n  esac\ndone\n\n\n\nA more advanced options is to use [https://github.com/nk412/optparse|optparse]\n\n\nBash dates\n\n\nA simple date useful for filenaming: YYYY-MM-DD\n\n\n$(date +%F)\n\n\n\nA full datetime\n\n\n$(date +%F-%T)\n\n\n\nBuiltin bashism instead of external binaries\n\n\nfqdn='computer1.daveeddy.com'\n\nIFS=. read -r hostname domain tld \n \"$fqdn\"\necho \"$hostname is in $domain.$tld\"\n# =\n \"computer1 is in daveeddy.com\"\n\n\n\n[[ vs [\n\n\nThere is also the \nlong version\n\n\n[[ a \n b ]]\n\n[[ -n $var \n -f $var ]] \n echo \"$var is a file\"\n\n[[ $var = img* \n ($var = *.png || $var = *.jpg) ]] \n \\\n    echo \"$var starts with img and ends with .jpg or .png\"\n\n[[ $name = a* ]] || echo \"name does not start with an 'a': $name\"\n\n[[ $(date) =~ ^Fri\\ ...\\ 13 ]] \n echo \"It's Friday the 13th!\"\n\n\n\nDebug\n\n\nThe following code uses the DEBUG trap to inform the user about what command is about to be executed and wait for his confirmation do to so. Put this code in your script, at the location you wish to begin stepping:\n\n\ntrap '(read -p \"[$BASH_SOURCE:$LINENO] $BASH_COMMAND?\")' DEBUG\n\n\n\nGive va value to TRACE to add -x flag to execution:\n\n\n[[ \"$TRACE\" ]] \n set -x\n\n\n\nSome style\n\n\nmeaningful_function_names() { ... }\n\n\naddition=$((${X} + ${Y}))\nsubstitution=\"${string/#foo/bar}\"\n\n\n\nCase formatting\n\n\ncase \"${expression}\" in\n  a)\n    variable=\"...\"\n    some_command \"${variable}\" \"${other_expr}\" ...\n    ;;\n  absolute)\n    actions=\"relative\"\n    another_command \"${actions}\" \"${other_expr}\" ...\n    ;;\n  *)\n    error \"Unexpected expression '${expression}'\"\n    ;;\nesac\n\n\n\nSources: \nGoogle\n, \n\nProgrium", 
             "title": "Bash"
         }, 
         {
@@ -82,8 +82,13 @@
         }, 
         {
             "location": "/bash/#array-loops", 
-            "text": "names=(\n  \"Aaron Maxwell\"\n  \"Wayne Gretzky\"\n  \"David Beckham\"\n  \"Anderson da Silva\"\n)\nIFS=$'\\n\\t'\nfor name in ${names[@]}; do\n  echo \"$name\"\ndone", 
+            "text": "names=(\n   Aaron Maxwell \n   Wayne Gretzky \n   David Beckham \n   Anderson da Silva \n)\nIFS=$'\\n\\t'\nfor name in ${names[@]}; do\n  echo  $name \ndone", 
             "title": "Array loops"
+        }, 
+        {
+            "location": "/bash/#loops-on-files-containing-spaces", 
+            "text": "OIFS= $IFS \nIFS=$'\\n'\nfor file in $(find . -type f -name  *.csv )\ndo\n   echo  file = '$file' \ndone\nIFS= $OIFS", 
+            "title": "Loops on files containing spaces"
         }, 
         {
             "location": "/bash/#process-cli-options", 
@@ -202,7 +207,7 @@
         }, 
         {
             "location": "/changelog/", 
-            "text": "LoreLLo commit \ne128e23\n di 7 seconds ago: Created Consul page\n\n\n\n\n\n\nLoreLLo commit \n093c652\n di 10 days ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \nf4c4045\n di 10 days ago: Added Fabio Loadbalancer page\n\n\n\n\n\n\nLoreLLo commit \n68fbd14\n di 3 weeks ago: Updated changelog\n\n\n\n\n\n\nLoreLLo commit \ndd23ab4\n di 3 weeks ago: Many more details and commands for firealld management", 
+            "text": "LoreLLo commit \n878a3e7\n di 5 seconds ago: Added example of loop on files with spaces in name", 
             "title": "Changelog"
         }, 
         {
@@ -264,6 +269,11 @@
             "location": "/consul/#dev-mode", 
             "text": "$ consul agent -server -dev -ui -client 0.0.0.0", 
             "title": "Dev mode"
+        }, 
+        {
+            "location": "/docker-swarm/", 
+            "text": "", 
+            "title": "Docker swarm"
         }, 
         {
             "location": "/docker/", 
@@ -852,7 +862,7 @@
         }, 
         {
             "location": "/ubuntu/", 
-            "text": "Ubuntu\n\n\nChange hostname\n\n\nsudo vim /etc/hosts\nsudo vim /etc/hostname\nsudo hostnamectl set-hostname \nNEWNAME\n\nsystemctl restart systemd-logind.service\n\n\n\nPackage install fixes\n\n\napt-get clean\napt-get autoremove\napt-get update \n sudo apt-get upgrade\ndpkg --configure -a\napt-get install -f\n\n\n\nIn case of postinst/preinst issues, try also\n\n\napt-get install -o APT::Immediate-Configure=false -f apt SOMEPACKAGE\n\n\n\nThings to check\n\n\n/var/log/auth.log\n/var/log/syslog\n/var/log/cloud-init.log\n\nservice apparmor status\napparmor_status", 
+            "text": "Ubuntu\n\n\nChange hostname\n\n\nsudo vim /etc/hosts\nsudo vim /etc/hostname\nsudo hostnamectl set-hostname \nNEWNAME\n\nsystemctl restart systemd-logind.service\n\n\n\nPackage install fixes\n\n\napt-get clean\napt-get autoremove\napt-get update \n sudo apt-get upgrade\ndpkg --configure -a\napt-get install -f\n\n\n\nIn case of postinst/preinst issues, try also\n\n\napt-get install -o APT::Immediate-Configure=false -f apt SOMEPACKAGE\n\n\n\nThings to check\n\n\n/var/log/auth.log\n/var/log/syslog\n/var/log/cloud-init.log\n\nservice apparmor status\napparmor_status\n\n\n\nSolve /boot 100%\n\n\npurge-old-kernels\nrm *-4.4.x-yyy... not used kernels\napt-get purge linux-image-4.4.x-yyy\napt install -f", 
             "title": "Ubuntu"
         }, 
         {
@@ -874,6 +884,11 @@
             "location": "/ubuntu/#things-to-check", 
             "text": "/var/log/auth.log\n/var/log/syslog\n/var/log/cloud-init.log\n\nservice apparmor status\napparmor_status", 
             "title": "Things to check"
+        }, 
+        {
+            "location": "/ubuntu/#solve-boot-100", 
+            "text": "purge-old-kernels\nrm *-4.4.x-yyy... not used kernels\napt-get purge linux-image-4.4.x-yyy\napt install -f", 
+            "title": "Solve /boot 100%"
         }, 
         {
             "location": "/xenserver/", 

@@ -94,6 +94,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../docker-swarm/">Docker swarm</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../docker/">Docker</a>
 	    </li>
           
@@ -212,6 +217,8 @@
         
             <li><a class="toctree-l3" href="#things-to-check">Things to check</a></li>
         
+            <li><a class="toctree-l3" href="#solve-boot-100">Solve /boot 100%</a></li>
+        
         </ul>
     
 
@@ -287,6 +294,12 @@ apt-get install -f
 
 service apparmor status
 apparmor_status
+</code></pre>
+<h2 id="solve-boot-100">Solve /boot 100%</h2>
+<pre><code>purge-old-kernels
+rm *-4.4.x-yyy... not used kernels
+apt-get purge linux-image-4.4.x-yyy
+apt install -f
 </code></pre>
               
             </div>

@@ -8,7 +8,7 @@
   
   <meta name="author" content="Lorenzo Salvadorini aka LoreLLo">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Centos - Lorello technical notes</title>
+  <title>Docker swarm - Lorello technical notes</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Centos";
-    var mkdocs_page_input_path = "centos.md";
-    var mkdocs_page_url = "/centos/";
+    var mkdocs_page_name = "Docker swarm";
+    var mkdocs_page_input_path = "docker-swarm.md";
+    var mkdocs_page_url = "/docker-swarm/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -72,23 +72,9 @@
     <a class="" href="../bind/">Bind</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Centos</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#centos">CentOS</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#repositories">Repositories</a></li>
-        
-            <li><a class="toctree-l3" href="#utils">Utils</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../centos/">Centos</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -106,9 +92,12 @@
     <a class="" href="../consul/">Consul</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../docker-swarm/">Docker swarm</a>
+    <a class="current" href="./">Docker swarm</a>
+    <ul class="subnav">
+            
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -253,10 +242,10 @@
     
       
     
-    <li>Centos</li>
+    <li>Docker swarm</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/centos.md"
+        <a href="https://github.com/lorello/lorello.github.io/edit/master/docs/docker-swarm.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -266,115 +255,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="centos">CentOS</h1>
-<h2 id="repositories">Repositories</h2>
-<h3 id="find-packages">Find packages</h3>
-<p>Package that contains a binary:</p>
-<pre><code>rpm -qf which dig
-</code></pre>
-
-<p>List of files in a package</p>
-<pre><code>rpm -ql bind-utils
-</code></pre>
-
-<h3 id="extra-packages-community-approved-by-centos">Extra Packages (community approved by CentOS)</h3>
-<pre><code># yum install epel-release
-</code></pre>
-<h3 id="rackspace-updated-packages-for-phpmysqlpython">Rackspace updated packages for PHP/Mysql/python</h3>
-<pre><code># curl -fsSL https://setup.ius.io/ | sh
-</code></pre>
-<h3 id="puppet-collections">Puppet collections</h3>
-<pre><code># rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-(5|6|7).noarch.rpm
-</code></pre>
-<h3 id="sysdig">Sysdig</h3>
-<p>sysdig requires kernel headers</p>
-<pre><code>rpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public
-curl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo
-
-yum -y install kernel-devel-$(uname -r)
-yum -y install sysdig
-</code></pre>
-<h2 id="utils">Utils</h2>
-<pre><code>rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
-yum install -y htop byobu bind-utils
-</code></pre>
-
-<h3 id="docker">Docker</h3>
-<h4 id="centos-6">Centos 6</h4>
-<p>Requires kernel &gt;= 3.10, probably centos 6.5 and later</p>
-<pre><code>curl -fsSL https://get.docker.com/ | sh
-sudo service docker start
-sudo chkconfig docker on
-sudo groupadd docker
-sudo usermod -aG docker `whoami`
-</code></pre>
-<h4 id="centos-7">Centos 7</h4>
-<p>Kernel upgrade</p>
-<pre><code>sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
-sudo yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available
-sudo yum --enablerepo=elrepo-kernel install -y kernel-lt
-sudo grub2-set-default 0    # setta l'ultimo kernel instalato come default
-</code></pre>
-
-<p>Docker packages install</p>
-<pre><code>sudo yum remove docker \
-                  docker-client \
-                  docker-client-latest \
-                  docker-common \
-                  docker-latest \
-                  docker-latest-logrotate \
-                  docker-logrotate \
-                  docker-selinux \
-                  docker-engine-selinux \
-                  docker-engine
-sudo yum install -y yum-utils \
-  device-mapper-persistent-data \
-  lvm2
-sudo yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install -y docker-ce
-sudo systemctl start docker
-sudo docker run -it --rm hello-world
-sudo systemctl enable docker
-sudo groupadd docker
-sudo usermod -aG docker $USER
-</code></pre>
-
-<h3 id="netdata">Netdata</h3>
-<p>Monitoring system</p>
-<pre><code>yum install zlib-devel libuuid-devel libmnl-devel gcc make git autoconf autogen automake pkgconfig
-git clone https://github.com/firehol/netdata.git –depth=1 &amp;&amp; cd netdata &amp;&amp; ./netdata-installer.sh
-</code></pre>
-<p>For more info see also <a href="https://wiki.centos.org/AdditionalResources/Repositories">https://wiki.centos.org/AdditionalResources/Repositories</a></p>
-<h3 id="firewall">Firewall</h3>
-<p>Check if fireall is enabled and how is configured</p>
-<pre><code>firewall-cmd --state
-firewall-cmd --get-default-zone
-firewall-cmd --get-active-zones
-firewall-cmd --get-zones
-firewall-cmd --list-all
-firewall-cmd --get-services
-firewall-cmd --runtime-to-permanent
-</code></pre>
-<p>Open https from any</p>
-<pre><code>firewall-cmd --zone=public --add-service=https --permanent
-firewall-cmd --reload
-</code></pre>
-<p>Open mysql from a specific IP</p>
-<pre><code>firewall-cmd --zone=external --permanent --add-source="123.456.1.1/32"
-firewall-cmd --zone=external --permanent --add-service="mysql"
-firewall-cmd --reload
-</code></pre>
-<p>Open a custom port </p>
-<pre><code>firewall-cmd --zone=public --add-port=5000/tcp
-firewall-cmd --zone=public --add-port=4990-4999/udp
-</code></pre>
-<p>Open all traffic from a specific IP</p>
-<pre><code>fireall-cmd --zone=trusted --permanent --add-source="123.456.1.1/32"
-</code></pre>
-<p>More info on the <a href="http://www.firewalld.org/documentation/man-pages/firewall-cmd.html">official FirewallD homepage</a>.</p>
+                
               
             </div>
           </div>
@@ -382,10 +263,10 @@ firewall-cmd --zone=public --add-port=4990-4999/udp
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../changelog/" class="btn btn-neutral float-right" title="Changelog">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../docker/" class="btn btn-neutral float-right" title="Docker">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../bind/" class="btn btn-neutral" title="Bind"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../consul/" class="btn btn-neutral" title="Consul"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -415,10 +296,10 @@ firewall-cmd --zone=public --add-port=4990-4999/udp
           <a href="https://github.com/lorello/lorello.github.io/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../bind/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../consul/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../changelog/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../docker/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -77,6 +77,8 @@
         
             <li><a class="toctree-l3" href="#array-loops">Array loops</a></li>
         
+            <li><a class="toctree-l3" href="#loops-on-files-containing-spaces">Loops on files containing spaces</a></li>
+        
             <li><a class="toctree-l3" href="#process-cli-options">Process CLI options</a></li>
         
             <li><a class="toctree-l3" href="#bash-dates">Bash dates</a></li>
@@ -118,6 +120,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../consul/">Consul</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../docker-swarm/">Docker swarm</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -314,16 +321,28 @@ done
 done
 </code></pre>
 <h2 id="array-loops">Array loops</h2>
-<p>names=(
-  "Aaron Maxwell"
-  "Wayne Gretzky"
-  "David Beckham"
-  "Anderson da Silva"
+<pre><code>names=(
+  &quot;Aaron Maxwell&quot;
+  &quot;Wayne Gretzky&quot;
+  &quot;David Beckham&quot;
+  &quot;Anderson da Silva&quot;
 )
 IFS=$'\n\t'
 for name in ${names[@]}; do
-  echo "$name"
-done</p>
+  echo &quot;$name&quot;
+done
+</code></pre>
+
+<h2 id="loops-on-files-containing-spaces">Loops on files containing spaces</h2>
+<pre><code>OIFS=&quot;$IFS&quot;
+IFS=$'\n'
+for file in $(find . -type f -name &quot;*.csv&quot;)
+do
+   echo &quot;file = '$file'&quot;
+done
+IFS=&quot;$OIFS&quot;
+</code></pre>
+
 <h2 id="process-cli-options">Process CLI options</h2>
 <pre><code>aaa=''
 bbb=''
